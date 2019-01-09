@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jvascript——exercise</title>
+</head>
+<body>
+    <script>
+        //(function(){}())意思是自执行函数  function(){}()表示是一个表达式
+        //赋值是从右向左执行的 b=15 b是全局变量 var a=b,a是局部变量  在函数外部访问不到 
+        var b = 5;
+        var a = 10;
+        (function(){
+            var a=b=15;
+        })()
+        console.log(a+'*'+b); //10*15
+
+        var a = 123;
+        (function(w,u){
+            console.log(w.a+'*'+u);
+        })(window) //123*undefined
+
+        //e.g.3
+        var fullname = 'A'; 
+        var obj = {
+            fullname:'B',
+            prop:{
+                fullname:'C',
+                getFullname:function(){
+                    return this.fullname;
+                    // console.log(this)
+                }
+            }
+        };
+        
+        console.log(obj.prop.getFullname());
+        var test = obj.prop.getFullname;
+        console.log(test());
+        //CA
+
+        //eg4 ????????????????????
+        var a = 5.10;
+        //parseInt()是解析字符串 并返回整数
+        var b = parseInt(a*100)/100;
+        alert(b)  //5.09
+    </script>
+</body>
+</html>
