@@ -1,0 +1,35 @@
+面试准备：
+1.基础知识复习
+doctype的作用：告知浏览器的解析器用什么文档标准来解析
+常见的块元素：div p ul ol li 
+常见的行元素：span input a 
+行内块元素：img 
+页面导入样式时有两种方式link和@import 两者的区别是前者是XHTML标签无兼容问题，且在页面加载的时候link所引入的文件是同时加载的 
+                                    而@import是css提供的 在页面全部加载完成后才会加载 只有IE5以上才会识别 
+浏览器内核：一般包括两部分 渲染引擎和js引擎
+          渲染引擎就是取得页面html,img,css等输出到显示器上 浏览器的内核不同对于解析网页的语法也有不同 所以渲染的效果也不尽相同
+          js引擎：解析和执行js完成网页的动态效果
+常见的浏览器内核有：webkit内核（google,safari）          
+                  Gecko内核（Firefox）
+h5新添加的新特性：用于媒介回放的video audio
+                语意化更好的内容元素，比如 article、footer、header、nav、section;
+                表单控件，calendar、date、time、email、url、search;                
+h5的语义化怎么理解：用适当的标签做正确的事 
+                  语义化使得页面的内容更加结构化 结构更加清晰 便于浏览器,引擎解析
+                  提高了seo
+                  使阅读代码的人更加容易模块化 方便维护和修改
+请描述一下 cookies，sessionStorage 和 localStorage 的区别？
+    cookies:用来标识用户的 存储在终端的  在同源的http下记录会在服务器和浏览器之间来回传递   数据较小 一般不超过4k 在关闭网页或浏览器时，信息无效
+    sessionStrage :在当前窗口关闭时自动删除 大小5M
+    localStorage:存储较持久 浏览器关闭后不会删除数据 除非自己手动删除
+
+css:
+盒子模型：有两种 IE盒子模型和W3C盒子模型 
+         区别是IE盒子模型会把border和padding计算进去
+选择器：id选择器 类选择器 标签选择器 子选择器 伪类选择器 通配符选择器
+不可继承的属性：border padding margin width height
+可继承的属性：font-size font-family color 
+C3新增的伪类是: p:first-of-type  其父元素首个p元素的每个p元素
+               p:last-of-type   其父元素的最后一个p元素的每个p元素
+               p:only-of-type   其父元素的唯一一个p元素的每个p元素
+            
