@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="gbk">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    li{
+        list-style: none;
+    }
+    .list1{
+        width: 800px;
+        height: 50px;
+        margin: 0 auto;
+    }
+    .list1  li{
+        float: left;
+        width: 33.33%;
+        height: 50px;
+    }
+    .list1 li:nth-child(1){
+        background: yellow;
+    }
+    
+    .list1 li:nth-child(2){
+        background: rebeccapurple;
+    }
+    
+    .list1 li:nth-child(3){
+        background: green;
+    }
+
+    .list2 li{
+        width: 263px;
+        height: 200px;
+        display: none;
+        margin: 0 auto;
+        /* float: left; */
+    }
+    .list2 .active{
+        display: block;
+    }
+    </style>
+</head>
+<body>
+    <ul class="list1">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul class="list2">
+        <li>
+            <div><img src="pic4.jpg" alt=""></div>
+        </li>
+        <li>
+            <div><img src="pic2.jpg" alt=""></div>
+        </li>
+        <li>
+            <div><img src="pic3.jpg" alt=""></div>
+        </li>
+    </ul>
+
+</body>
+<script src="../../../node_modules/jquery/dist/jquery.js"></script>
+<script>
+   $(document).ready(function(){
+    $('.list1 li').on("click",function(){
+        $(this).addClass('active').siblings().removeClass('active')
+        $('.list2 li').eq($(this).index()).addClass('active').siblings().removeClass('active')
+    })
+   })
+</script>
+</html>

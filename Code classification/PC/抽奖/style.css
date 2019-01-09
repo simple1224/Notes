@@ -1,0 +1,17 @@
+.lotterycontent_container {
+    width: 100% !important;
+    height:100% !important;
+} */
+/* clear blank */
+.lotterycontent_start {
+    background-color: transparent !important;
+    animation-play-state:paused !important;
+    animation: none;
+    -webkit-animation-play-state:paused !important;
+}
+.lotterycontent_disable {
+    background: none!important;
+}
+.lotterycontent_slight,#lotterycontent_start{
+    animation: none;
+}

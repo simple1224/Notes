@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="gbk">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .hj_box{width:482px;}
+    .hj_con {
+        height: 235px;
+        overflow: hidden;
+        position: relative
+    }
+
+    .hj_list,
+    .colee2 {
+        font-size: 13.98px;
+        color: #9a99d0;
+        line-height: 26px;
+        text-align: center;
+        list-style: none;
+        display: block;
+        overflow: hidden;
+    }
+
+    .hj_list li,
+    .colee2 li {
+        height: 26px;
+        float: left;
+        margin-left: 26px;
+    }
+</style>
+
+<body>
+    <div class="hj_box fl">
+        <!-- 获奖名单 -->
+        <h3 class="hj_tit rule_1"></h3>
+        <div class="hj_con colee" id="colee" style="overflow:hidden;">
+            <ul id="carouselContent" class="carouselContent hj_list colee1">
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+                <li>2017-05-18 01:04:35</li><li>770448**</li><li>获得了飞行印章（1个）</li>
+            </ul>
+            <ul class="colee2" id="colee2"></ul>
+
+        </div>
+    </div>
+    <script>
+        var speed = 30;
+        var colee2 = document.getElementById("colee2");
+        var colee1 = document.getElementById("carouselContent");
+        var colee = document.getElementById("colee");
+        colee2.innerHTML = colee1.innerHTML; //克隆colee1为colee2
+        function Marquee1() {
+            //当滚动至colee1与colee2交界时
+            if (colee2.offsetTop - colee.scrollTop <= 0) {
+                colee.scrollTop -= colee1.offsetHeight; //colee跳到最顶端
+            } else {
+                colee.scrollTop++
+            }
+        }
+        var MyMar1 = setInterval(Marquee1, speed) //设置定时器
+        //鼠标移上时清除定时器达到滚动停止的目的
+        colee.onmouseover = function () {
+            clearInterval(MyMar1)
+        }
+        //鼠标移开时重设定时器
+        colee.onmouseout = function () {
+            MyMar1 = setInterval(Marquee1, speed)
+        }
+    </script>
+</body>
+
+</html>

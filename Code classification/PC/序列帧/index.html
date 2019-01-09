@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+.add{
+	position: absolute;
+	z-index: 5;
+	width: 1200px;
+	height: 569px;
+	top: 177px;
+}
+.people {
+    width: 1532px;
+    height: 530px;
+	 /* margin: -216px 0 0 117px; */
+}
+.people .i1 {
+    display: block;
+	width: 766px !important;
+ 	height: 530px !important;
+	margin: -175px 0 0 117px;
+	}
+.people .i2 {
+    display: block;
+	width: 371px !important;
+ 	height: 416px !important;
+	margin: -445px 0 0 922px;
+	}
+.people .i3 {
+    display: block;
+	width: 240px !important;
+    height: 348px !important;
+	margin: -378px 0 0 -131px;
+}	
+</style>
+<body>
+    <div class="add">
+        <div class="people">
+            <img class="i1" src="A/A_000000.png" alt="">
+            <img class="i2" src="B/B_000000.png" alt="">
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script>
+        function loading() {
+            // –Ú¡–÷°
+            var sourceArr = [];
+
+
+            function pushSourceArr(sourceArr, path, num) {
+                for (var i = 0; i <= num; i++) {
+                    var len = 6 - (i + '').length;
+                    var str = path;
+                    for (var k = 0; k < len; k++)
+                        str += '0';
+                    sourceArr.push(str + i + '.png');
+                }
+                return sourceArr;
+            }
+
+            pushSourceArr(sourceArr, 'A/A_', 189);
+
+
+            var imgLoader = function (imgs, callback) {
+                var len = imgs.length,
+                    i = 0;
+                while (imgs.length) {
+                    loadImage(imgs.shift(), function (path) {
+                        callback(path, ++i, len);
+                    });
+                }
+            }
+            var loadImage = function (path, callback) {
+                var img = new Image();
+                img.onload = function () {
+                    img.onload = null;
+                    callback(path);
+                }
+                img.src = path;
+            }
+            imgLoader(sourceArr, function (path, curNum, total) {
+                var percent = curNum / total;
+                if (percent == 1) {}
+            });
+            imgLoader(sourceArr);
+        }
+        loading();
+        var fun = {
+            _index: 0,
+            _index1: 0,
+            showImg: function () {
+                clearTimeout(fun.timer);
+                fun._index++;
+                if (fun._index >= 189) {
+                    fun._index = 0;
+                    // return;
+                }
+                if (fun._index < 10) {
+                    $(".people .i1").attr("src", "A/A_00000" + fun._index + ".png");
+                } else if (fun._index >= 10 && fun._index < 100) {
+                    $(".people .i1").attr("src", "A/A_0000" + fun._index + ".png");
+                } else {
+                    $(".people .i1").attr("src", "A/A_000" + fun._index + ".png");
+                }
+                fun.timer = setTimeout(fun.showImg, 100);
+            },
+        }
+        fun.showImg();
+    </script> -->
+    <script>
+            // –Ú¡–÷°
+            var sourceArr = [];
+            function loading(){
+                for (var i = 0; i <= 189; i++) {
+                    if(i<9){
+                        var arr  = "A/A_00000"+i+".png";
+                    }else if(i>9&&i<100){
+                        var arr  = "A/A_0000"+i+".png";
+                    }else{
+                        var arr  = "A/A_000"+i+".png";
+                    }
+                    sourceArr.push(arr);
+                    //  console.log(sourceArr)
+                }
+                for (var j = 0; j <= 123; j++) {
+                    if(j<9){
+                        var arr  = "B/B_00000"+j+".png";
+                    }else if(j>9&&j<100){
+                        var arr  = "B/B_0000"+j+".png";
+                    }else{
+                        var arr  = "B/B_000"+j+".png";
+                    }
+                    sourceArr.push(arr);
+                    //  console.log(sourceArr)
+                }
+                var imgLoader = function(imgs, callback) {
+                    var len = imgs.length,
+                            i = 0;
+                    while (imgs.length) {
+                        loadImage(imgs.shift(), function(path) {
+                            callback(path, ++i, len);
+                        });
+                    }
+                }
+                var loadImage = function(path, callback) {
+                    var img = new Image();
+                    img.onload = function() {
+                        img.onload = null;
+                        callback(path);
+                    }
+                    img.src = path;
+                }
+                imgLoader(sourceArr, function(path, curNum, total) {
+                    var percent = curNum / total;
+                    if (percent == 1) {
+                    }
+                });
+                imgLoader(sourceArr);
+            }
+            loading();
+            var fun  = {
+                _index:0,
+                _index1:0,
+                showImg:function(){
+                    clearTimeout(fun.timer);
+                    fun._index++;
+                    if(fun._index >= 189){
+                        fun._index = 0;
+                        // return;
+                    }
+                    if(fun._index<10){
+                        $(".people .i1").attr("src","A/A_00000"+fun._index+".png");
+                    }else if(fun._index>=10&&fun._index<100){
+                        $(".people .i1").attr("src","A/A_0000"+fun._index+".png");
+                    }else{
+                        $(".people .i1").attr("src","A/A_000"+fun._index+".png");
+                    }
+                    fun.timer = setTimeout(fun.showImg,100);
+                },
+                showImg1:function(){
+                    clearTimeout(fun.timer1);
+                    fun._index1++;
+                    if(fun._index1 >= 123){
+                        fun._index1 = 0;
+                        // return;
+                    }
+                    if(fun._index1<10){
+                        $(".people .i2").attr("src","B/B_00000"+fun._index1+".png");
+                    }else if(fun._index1>=10&&fun._index1<100){
+                        $(".people .i2").attr("src","B/B_0000"+fun._index1+".png");
+                    }else{
+                        $(".people .i2").attr("src","B/B_000"+fun._index1+".png");
+                    }
+                    fun.timer1 = setTimeout(fun.showImg1,100);
+                },
+            }
+            fun.showImg();
+            fun.showImg1();
+        
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="gbk">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+</head>
+<body>
+    <div class="login">
+        <p id="unlogin">亲爱的用户，请<a href="javascript:LoginManager.login();">登录</a></p>
+        <p id="logined" style="display:none;">欢迎您，<span id='login_qq_span'></span>，<a href="javascript:LoginManager.logout();">注销</a></p>
+    </div>
+    <script src="http://ossweb-img.qq.com/images/js/login/loginmanagerv3.js" charset="gb2312"></script>
+    <script>
+        //检查是否已登录，已登录则获取QQ号显示已登录状态
+        LoginManager.checkLogin(function(){
+        document.getElementById("login_qq_span").innerText= LoginManager.getUserUin();//获取QQ号
+        });
+    </script>
+
+    <!--登录前状态 Start-->
+	<p id="unlogin">亲爱的用户，请 <a href="javascript:;" id="dologin">[登录]</a></p>
+	<!--登录前状态 End-->
+	<!--登录后状态 Start-->
+	<p id="logined" style="display:none">欢迎您，<span id='login_qq_span'></span>，<a href="javascript:;" id="dologout">[注销]</a></p>
+	<!--登录后状态 End-->
+	<script src="http://ossweb-img.qq.com/images/js/milo/milo-min.js"></script>
+	<script>
+		milo.addEvent(g("dologin"), "click", function() {
+			need("biz.login-min",function(LoginManager){
+			LoginManager.init({
+					needReloadPage:true
+				});
+				LoginManager.login();
+			});
+			return false;
+		});
+		milo.addEvent(g("dologout"), "click", function() {
+			need("biz.login-min",function(LoginManager){
+				LoginManager.logout();
+			});
+			return false;
+		});
+		milo.ready(function() {
+			need("biz.login-min",function(LoginManager){
+				LoginManager.checkLogin(function(){
+					g("login_qq_span").innerText= LoginManager.getUserUin();//获取QQ号
+				});
+			});
+		});
+</script>
+</body>
+</html>

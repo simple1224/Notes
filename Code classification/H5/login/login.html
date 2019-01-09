@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="gbk">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+</head>
+<body>
+    <div>
+        <div id="unlogin">hi，亲爱的<a href="javascript:login();">登录</a></div>
+        <div id="logined" style="display:none;">hi，<span id='login_nickname_span'></span><span id='login_qq_span'></span><a href="javascript:logout();">注销</a></div>
+    </div> 
+</body>
+<script src="http://ossweb-img.qq.com/images/js/zepto/zepto.min.js"></script>
+<script src="http://ossweb-img.qq.com/images/js/login/loginmanagerv3.js" charset="gb2312"></script>
+<script src="http://ossweb-img.qq.com/images/js/mobile_build/milo.js"></script>
+<script>
+	//登陆
+	function login() {
+		parent.need("biz.login", function (LoginManager) {
+			LoginManager.login();
+		});
+	}
+	function logout() {
+		parent.need("biz.login", function (LoginManager) {
+			LoginManager.logout();
+		});
+	}
+	LoginManager.checkLogin(function () {
+		if ($E("#login_nickname_span")) {
+			LoginManager.getNickName(function (loginInfo) {
+				if (loginInfo.isLogin) {
+					$E("#login_nickname_span").innerText= loginInfo.nickName;
+				}
+		});
+	}})
+</script>
+</html>

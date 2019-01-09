@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="gbk">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>一个弹窗</title>
+</head>
+<body>
+	<a class="dia-btn" href="javascript:showDia();">点击显示弹层</a>
+	<div class="dia" id="dia" style="display:none">
+		<div class="dia-con">弹出层内容</div>
+		<a class="dia-close" href="javascript:showDialog.hide()" title="关闭">×</a>
+	</div>
+	<script src="http://ossweb-img.qq.com/images/js/comm/showDialog.min.js"></script>
+	<script>
+		function showDia(){
+			showDialog.show({
+				id:"dia", //需要弹出的id，如果是弹出页面上的div，则该选项为必??
+				bgcolor:"#e3e3e3",//弹出“遮罩”的颜色，格式为"#FF6600"，可选，默认??"#fff"
+				opacity:50 //弹出“遮罩”的透明度，格式为｛10-100｝，可??
+			});
+		}
+	</script>
+</body>
+</html>
