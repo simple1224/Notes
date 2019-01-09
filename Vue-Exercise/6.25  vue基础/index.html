@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hello world</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">{{content}}</div>
+    <!-- {{}}插值表达式 -->
+    <script>
+        /* //原生js写法 获取dom节点 改变内容 
+        var dom = document.getElementById('app');
+        dom.innerHTML = 'Hello World'
+        //延迟2秒后输出bye word
+        setTimeout(function(){
+            dom.innerHTML = 'bye word'
+        },2000) */
+
+        //Vue写法  alt+shift+a 多行注释
+        //是id为app的vue实例 el:限制了vue接管的范围
+        var app = new Vue({
+            el:'#app',
+            data:{
+                content:'hello vue',
+            }
+        })
+        setTimeout(function(){
+            app.$data.content = 'bye bye'
+        },2000)
+    </script>
+</body>
+</html>
