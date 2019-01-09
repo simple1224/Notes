@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <title>todolist</title>
+</head>
+<body>
+<div class="all">
+    <!--最外层实例模版开始-->
+    <div>
+        <!--这里input和下面的实例进行双向绑定-->
+        <input v-model="inputValue">
+        <button v-on:click="handleSubmit">提交</button>
+    </div>
+    <!-- <ul>
+         &lt;!&ndash;key值主要是用来给每一个节点做标识  v-for提供参数，分别是value,key,index&ndash;&gt;
+         &lt;!&ndash;用插值表达式来显示li标签的内容&ndash;&gt;
+         <li v-for="(item,index) of list" :key="index">{{item}}</li>
+     </ul>-->
+    <ul>
+        <!--:content="item"  是把内容传给content  父组件向子组件传递数据是通过属性完成的-->
+        <!--@等于v-on  事件绑定  监听自组件的方法@delete  -->
+        <todo-item v-for="(item,index) of list" :key="index" :content="item"
+                   :index="index" @delete="handleDelete">
+        </todo-item>
+    </ul>
+    <!--最外层实例模版结束-->
+</div>
+
+<script>
+
+    //组建的创建
+    //全局组件的定义
+    /* Vue.component('todo-item',{
+         template:'<li>item</li>'
+     }),*/
+
+    //局部组件的定义
+    //在父组件的模版调用子组件  需要最外层的实例中做组件的声明
+    //每一个组件都是vue实例  可以在组件中写methods，data等
+    var ToDoItem = {
+        props:['content','index'],//接收传来的content
+        template:'<li @click="handleClick">{{content}}</li>',
+        methods:{
+            //实现自组件的删除 先要删除对应的数据
+            handleClick:function () {
+               this.$emit('delete',this.index)//$emit()触发一个叫delete方法  this.index所对应的值
+            }
+        }
+    }
+
+    new Vue({
+        el: '.all',
+        //局部组件的声明
+        components:{
+            'todo-item':ToDoItem
+        },
+        data: {
+            inputValue: '',
+            list: []
+        },
+        methods: {
+            handleSubmit: function () {
+                this.list.push(this.inputValue),
+                    this.inputValue = ''//在提交之后把input的内容置空
+            },
+            handleDelete: function (index) {
+                    //splice():arrayObject.splice(index,howmany,item1,.....,itemX)
+                    // 向数组中添加或删除项目 并返回被删除的内容
+                    this.list.splice(index,1)
+            }
+        }
+    })
+</script>
+</body>
+</html>
