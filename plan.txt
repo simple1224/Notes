@@ -1,0 +1,18 @@
+计划表
+1.了解前端所需知识点  合理安排学习计划
+2.HTML所需掌握：HTML5   CSS所需掌握：布局方式 flex grid 熟悉兼容性 css有关框架 简化css代码量 bootstrap 
+
+1.大致的路线 HTML->css->js->jq->bootstrap->json->ajax->node->php
+
+第一阶段：掌握h5的新布局标签。掌握css3的动画属性 2D、3D的转换 animation动画 flex的布局  学习css预处理器 less 了解bootstrap的响应式页面  了解移动端兼容方案
+第二阶段：掌握js基本语法 基本算法。了解dom bom的基本操作。了解闭包  原型 原型链 正则表达式。熟练使用jq操作DOM。学习es6
+第三阶段：学习json ajax。了解js的异步编程思想 ajax的跨域技巧 。了解HTTP协议。学习node.js操作数据库MySQL
+第四阶段：学习框架Vue/react 以及打包工具webpack  
+第五阶段：学习canvas 掌握小程序的开发基础  了解页面的开发周期
+第六阶段：实例练习
+
+11月计划表：
+1.学习bootstrap框架  跟着文档过一遍
+2.学习css预处理器  了解其作用 
+3.巩固弹性布局 熟练使用里面的常用属性
+4.利用c3动画 flex布局以及bootstrap做一个H5的demo
