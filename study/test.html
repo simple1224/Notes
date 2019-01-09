@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="gbk">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图像地图</title>
+<!-- 
+    <script type="text/javascript">
+        function writeText(txt)
+        {
+        document.getElementById("desc").innerHTML=txt
+        }
+        </script> -->
+</head>
+<style>
+.box1{
+    width: 300px;
+    height: 300px;
+    /* background: red; */
+    /* 线性渐变 */
+    /* background: linear-gradient(red, blue);  */ 
+    background: linear-gradient(to right, red , blue); 
+    /* background: linear-gradient(180deg, red, blue);  */
+    /* background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); */
+    /* 径向渐变 */
+    /* background: radial-gradient(red, green, blue);  */
+    transition: width 2s,height 2s,transform 2s; 
+    
+    /* 对宽度进行过渡 */
+}
+.box1:hover{
+    width: 600px;
+    height: 100px;
+    transform: rotate(180deg);
+}
+.box2{
+    width: 200px;
+    height: 200px;
+    animation: first 5s;
+    background: lightpink;
+}
+@keyframes first{
+    from{background: lightpink;}
+    to{background: lightgreen;}
+}
+.box3{
+    width: 200px;
+    height: 200px;
+    animation: second 20s;
+    background: red;
+    position: relative;
+}
+@keyframes second{
+    0%{background: orange;left:0px; top:0px;}
+    25%{background: pink;left:200px; top:0px;}
+    505%{background: red;}
+    75%{background: green;}
+    100%{background: blue;}
+}
+.box4{
+    width: 564px;
+    height: 154px;
+    background: lightpink;
+    column-count: 3;
+    column-gap: 111px;
+    column-rule: 4px outset lightblue;
+}
+.box5{
+    width: 300px;
+    height: 300px;
+    box-sizing: border-box;
+    background-color: blue;
+}
+.box6{
+    width: 300px;
+    height: 300px;
+    border: 2px black solid;
+    resize: both;
+    overflow: auto;
+}
+.box7{
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    outline: 2px solid red;
+    /* margin: 0 auto; */
+    outline-offset: 15px;
+}
+.img1{
+    border-radius: 8px;
+}
+.img2{
+    border-radius: 20%;
+}
+.img3{
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    padding: 5px;
+    transition: 0.3s;
+}
+.img3:hover{
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+.img4{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    /* margin: 0 auto; */
+}
+.box9{
+    width: 200px;
+    height: 200px;
+}
+.box9 button{
+    width: 150px;
+    height: 60px;
+    background-color: white;
+    transition-duration: .4s;
+    border: 2px solid green;
+    border-radius: 25px;
+    margin-top: 68px;
+    cursor: pointer; /*设置小手*/
+}
+.box9 button:hover{
+    background-color: aquamarine;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    cursor:not-allowed;  /*设置按钮禁用*/
+}
+.box10 {width: 200px;
+height: 150px;}
+.box10 a{
+    display: block;
+    width: 100px;
+    height: 23px;
+    margin: 0 auto;
+}
+a:link {color:lightblue}
+a:visited {color:lightcoral}
+a:hover {color: lightgreen}
+a:active {color: red};
+.box11{
+    width: 100px;
+    height: 110px;
+    color: black;
+}
+/* 对.box11下的第一个p元素设置 */
+.box11 p:first-child{
+    color: red;
+}
+/* 对.box11下的p元素下的第一个strong元素设置 */
+.box11 p>strong:first-child{
+    color: red;
+}
+/* 对.box11下的第一个p元素下的所有strong元素设置 */
+.box11 p:first-child strong{
+    color: red;
+}
+.box12 q:lang(no){
+   quotes: "~@!~" "~"
+}
+.box13 p{
+    color: green;
+}
+.box13:first-line{
+    color: red;
+}
+.box13:first-letter{
+    font-size: xx-large;
+    color: aqua;
+    font-variant:small-caps;  /*改为小型的大写字母*/
+}
+p.three:first-letter{
+    color: blue;
+}
+p.three:after{
+    content: url(./sdskdsjd)
+}
+.box14 {
+    width: 0;
+    height: 0;
+    border-width: 20px;
+    border-style: solid;
+    border-color: transparent transparent red transparent;
+  }
+  .box15{
+      width: 200px;
+      height: 20%;
+      background: red;
+  }
+</style>
+<body>
+    <!-- <img src="planets.gif" width="145" height="126"
+alt="Planets" usemap="#planetmap" />
+
+<map id ="planetmap" name="planetmap">
+<area shape ="rect" coords ="0,0,82,126"
+onmouseover="writeText('dsffdsfdshd fgf')"
+href ="sun.htm" target ="_blank" alt="Sun" />
+
+<area shape ="circle" coords ="90,58,3"
+onmouseover="writeText('hghgfhghghghg.')"
+href ="mercur.htm" target ="_blank" alt="Mercury" />
+
+<area shape ="circle" coords ="124,58,8"
+onMouseOver="writeText('nhnfnhfnhfh')"
+href ="venus.htm" target ="_blank" alt="Venus" />
+
+</map> 
+
+<p id="desc"></p> -->
+
+CSS3过渡效果
+<div class="box1"></div>
+CSS3动画效果
+<div class="box2"></div>
+CSS3动画效果
+<div class="box3"></div>
+CSS3多列
+<div class="box4">
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis adipisci minima recusandae sed ut fugit enim odit ratione? Similique possimus quae reprehenderit iusto voluptatibus nulla in, eius culpa omnis mollitia.
+</div>
+<div class="box5"><h2>box-sizing改变盒子模型的计算方式</h2></div>
+<div class="box6">用户可以自动调整div的大小</div>
+<div class="box7"><h2>outline-offset 外轮廓</h2></div>
+<div class="box8">
+    圆角
+    <img class="img1" src="paris.jpg" alt="Paris" width="400" height="300">
+    椭圆
+    <img class="img2" src="paris.jpg" alt="Paris" width="400" height="300">
+    缩略图
+    <img class="img3" src="paris.jpg" alt="Paris" width="400" height="300">
+    自适应
+    <img class="img4" src="Desert.jpg" alt="Desert" width="1024" height="768"> 
+</div>
+<div class="box9">
+    <button>按钮</button>
+</div>
+<div class="box10">
+    <a href="http://baidu.com" target="_blank">请点击here</a>
+</div>
+<div class="box11">
+    <p>hghg <strong>ghjhgs</strong> fgdfsa<strong>sfsdfsgf</strong> </p>
+    <p>dhsjdhajhdfsa</p>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <ul>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+    </ul>
+    <p>hghg <strong>ghjhgs</strong> fgdfsa</p>
+    <p>hghg <strong>ghjhgs</strong> fgdfsa</p>
+</div>
+<div class="box12">
+    <p>文字<q lang="no">段落中的引用的文字</q>文字</p>
+</div>
+<div class="box13">
+    <p>我是第一行</p>
+    <p>我是第二行</p>
+    <p class="three">我是第三行</p>
+</div>
+<div class="box14">
+
+</div>
+<div class="box15"></div>
+<!-- 231 .my_gift tfoot a {
+    margin: 0 188px !important;
+    color: #d0b7f1 !important;
+}
+230 .my_gift td {
+    font-size: 14px;
+    color: #d0b7f1;
+    height: 30px;
+    padding-top: 32px;
+} -->
+</body>
+</html>

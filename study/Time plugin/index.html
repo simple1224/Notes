@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>时间插件</title>
+    <link rel="stylesheet" href="./dateTime.css">
+    <script src="./jquery.js"></script>
+    <script src="./moment.js"></script>
+    <script src="./bootstrap-datetimepicker.js"></script>
+</head>
+
+<body>
+    <input type="text" class="datetimepicker">
+    <script>
+    	$('.datetimepicker').datetimepicker({
+			locale: "zh-cn",
+			keepOpen: false,
+			defaultDate: "2018-11-11 12:12:12",
+			// format: "YYYY-MM-DD"
+			format: "YYYY-MM-DD hh:mm:ss"
+		});
+    </script>
+</body>
+
+</html>

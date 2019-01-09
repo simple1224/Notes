@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ionoc</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <ol class="h4">
+            <li>创建新的包：ionoc start MyIonicProject tutorial. <br>
+                其中MyIonicProject(项目中的目录名称和应用程序名称) <br>
+                tutorial是项目的入门模版 <br>
+            </li>
+            <li>创建新的组件：ionic g page test</li>
+            <li>创建组件之后需要在app.moudle.ts里面import新的组件</li>
+            <ul>模版还包括：
+                <li>tabs ：简单的3标签布局</li>
+                <li>sidemenu：侧面有可转换菜单的布局</li>
+                <li>blank：一个单页的裸机</li>
+                <li>super：具有超过14个即用型页面设计的入门项目</li>
+                <li>tutorial：一个引导启动项目</li>
+            </ul>
+            <li>src/index.html是应用程序的主要入口点，但其目的是设置脚本，CSS包含和引导程序，或者开始运行我们的应用程序。</li>
+            <li>src/app/app.module.ts 是我们的应用程序的入口点。</li>
+            <li>解决刷新 关掉服务器的问题：删除node_module下的ws文件夹，安装npm install ws@3.3.2</li>
+            <ul>在一个组件中引入另一个组件：HomePage引入TestPage
+                <li>在HomePage.ts中import { TestPage } from '../test/test';</li>
+                <li>在 HomePage 类中定义 testPage 属性;</li>
+                <li>在构造函数中农将 testPage 指向 TestPage，以便模板可以使用。</li>
+            </ul>
+            <li>ion-button 是一个内置指令 有一定的默认样式</li>
+            <li>[navPush] 指令 实现简单的页面跳转</li>
+            <li>ionic把app的众多交互封装成了若干个controller，其中NavController就是用来管理和导航页面的一个controller。
+                由于几乎每一个页面都会用到NavController</li>
+            <ul>点击按钮时，进行一些业务处理，再跳转到下一个页面，这时候就可以利用NavController中的push方法来实现，同样也只有三步：
+                <li>在HomePage.ts中import { TestPage } from '../test/test';</li>
+                <li>在类中编写一个方法，我们就叫它pushTestPage吧，调用navCtrl对象的push方法，将页面导航到TestPage上</li>
+                <li>
+                    <pre>pushTestPage(){
+                            this.navCtrl.push(TestPage);
+                          }</pre>
+                </li>
+                <li>通过button调用 (click)="pushTestPage()</li>
+            </ul>
+            <ul>将参数传递给下一个页面：即有时我们完成了一个页面上的业务之后，要把相关的数据传给下一个页面处理，
+                这时候就需要向被push的页面传入相关的参数。NavController的push方法的第二个参数接收一个对象。
+                <li>在pushTestPage()方法中传入第二个参数</li>
+                <li>
+                    <pre>
+                            pushTestPage() {
+                                this.navCtrl.push(TestPage, {
+                                  title: '没有人可以比我帅'
+                                });
+                              }
+                    </pre>
+                </li>
+                <li>在test.ts中利用NavPrarams的get的方法获取到传进来的参数</li>
+                <li> 1.引入NavParams并，并在构造函数添加注入语句</li>
+                <li>2.为TestPage类添加title属性，读取参数并赋给title</li>
+                <li> 3.将title输出到模板中</li>
+            </ul>
+            <ul>手动返回上一个界面:如同进入页面，我们在退出页面的时候，除了用户点击返回按钮外，
+                也有可能在完成了业务之后，自动返回上一个页面，这时候可以使用NavController的pop方法来实现
+                <li>在test.ts中导入navcontroller</li>
+                <li>
+                    <pre>
+                        popPage(){
+                            this.navCtrl.pop();
+                        }
+                    </pre>
+                </li>
+                <li>页面调用：<button ion-button (click)="popPage()">返回</button></li>
+            </ul>
+            <li>
+                <ol>生命周期事件，也就是凡间所说的钩子.
+                    <li>ionViewDidLoad:页面加载完成触发，这里的“加载完成”指的是页面所需的资源已经加载完成，
+                        但还没进入这个页面的状态（用户看到的还是上一个页面）。全程只调用一次。
+                        因此这个钩子适合你做一些一次性的处理，比如从服务器拉取用户数据存到缓存中。
+                    </li>
+                    <li>ionViewWillEnter：字面意义理解就是“我要进来了”的那一刻，这个时候页面刚刚开始切换。
+                        你可以在这时对页面的数据进行预处理，这个钩子是每次都会调用的。</li>
+                    <li>ionViewDidEnter:当这个钩子被触发的时候，用户已经进入到新页面了（页面处于激活状态），同样也是每次都会调用。</li>
+                    <li>ionViewWillLeave:页面准备 (is about to) 离开时触发，这时用户刚刚触发了返回按钮或者相关的事件。</li>
+                    <li>ionViewDidLeave:页面已经 (has finished) 离开时触发，页面处于非激活状态了。</li>
+                    <li>ionViewWillUnload:页面中的资源即将被销毁时触发，此刻你是否会猜测这个钩子与ionViewDidLoad一样，只会被触发一次呢？</li>
+                    <li>ionViewCanEnter 每次调用 返回boolean</li>
+                    <li>ionViewCanLeave 每次调用 返回boolean</li>
+                </ol>
+                <ol>结论：
+                    <li>构造函数在ionViewDidLoad之前被触发 </li>
+                    <li> ionViewDidLoad只在第一次进入页面时触发</li>
+                    <li>ionViewWillUnload会在每次离开页面后触发</li>
+                </ol>
+            </li>
+            <ol>常用指令
+                <li>重复指令ngFor:将批量的数据（数组）结合HTML元素添加到页面DOM中。
+                    语法*ngFor="let item of data"</li>
+                <li>es6:for (let i of [1,2,3,4,5,6]) { ... }</li>
+                <li>对象的渲染：<div *ngFor="let item of data">{{item.name}}</div>
+                </li>
+                <li>列表渲染：其中 ion-list 是列表容器， ion-item 是列表中的一个条目，
+                    当把 ion-item 和 ngFor 指令结合使用，就可以渲染出一个多条目的列表：
+                    <pre>
+                        <ion-list>
+                            <ion-item></ion-item>
+                        </ion-list>
+                    </pre>
+                <li>指令 item-end 将指定的元素渲染在条目的尾部</li>
+                </li>
+                <li>有条件地渲染：ngIf 指令。通过一个表达式来判断元素是否会被添加到模板中。
+                    这一指令同样也是动态的：当表达式的值变为真，元素便会添加；当表达式的值变为假，元素会从模版中被移除。
+                    注：在angular中，*ngFor 和 *ngIf 不能放置在同一个标签上(Vue之类的框架则可以)，
+                    因此在 ion-item 外加上一个“虚拟”的标签 ng-container, 它自身不会被渲染到DOM中,
+                    只会渲染它包裹的内容
+                </li>
+                <li>
+                    <ul>
+                         表单组件
+                         <li>文本输入：Input 组件</li>
+                         <li>在移动应用开发时，input的type和其调出的手机键盘是紧密相连的，因此在开发时应该根据input的实际功能，
+                             细致地区分它们的 type，你也可以利用它们来验证这些值的合法性，常用的有：email、tel、url、number</li>
+                    </ul>
+                </li>
+
+            </ol>
+        </ol>
+    </div>
+</body>
+
+</html>

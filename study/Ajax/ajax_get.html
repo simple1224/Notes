@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax note</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+    <!-- <script>
+    function test(){
+        $.ajax({
+            url:('http://132.232.2.53:8080/api/persons'),
+            type:'GET',
+            dataType:'jsonp',
+
+            success:function(data){
+                alert(data);
+            }
+        })
+    }
+    </script> -->
+</head>
+<body>
+    <!-- 1.什么是 Ajax:异步javascript和XML. 是基于javascript和http请求的新方法
+    2.ajax的作用是什么：通过ajax使得javascript的XMLHttpRequst对象可以直接与服务器进行通信。通过XMLHttpRequest对象，javascript页面不许重载就可以与服务器进行数据交换
+    3.ajax在浏览器与服务器之间使用异步数据传输（http）这样可以使网页从服务器请求少量的信息而不是整个页面
+    4.ajax的小demo
+    <script type="text/javascript">
+
+        function ajaxFunction()
+         {
+         var xmlHttp;
+         
+         try
+            {
+           // Firefox, Opera 8.0+, Safari
+            xmlHttp=new XMLHttpRequest();
+            }
+         catch (e)
+            {
+        
+          // Internet Explorer
+           try
+              {
+              xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+              }
+           catch (e)
+              {
+        
+              try
+                 {
+                 xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+                 }
+              catch (e)
+                 {
+                 alert("您的浏览器不支持AJAX！");
+                 return false;
+                 }
+              }
+            }
+         }
+        </script>
+    <form name="myForm">
+        用户: <input type="text" name="username" />
+        时间: <input type="text" name="time" />
+    </form>
+    5.ajax的浏览器支持：ajax最重要的就是XMLHttpRquest对象 而不同的浏览器创建对象的方式不同。IE中使用的是ActiveXObject对象，其他浏览器是使用javascript的内置对象XMLHttpRquest。在使用创建对象时 要使用try...catch语句
+    6. -->
+
+    <div class="container">
+       <p class="h1 text-center">AJAX</p>
+       <ol class="h3">什么是ajax ajax包括什么
+          <li>ajax即异步js and xml</li>
+          <li>是一种异步加载数据的方式</li>
+          <li>可以通过ajax实现页面的局部刷新</li>
+       </ol>
+       <ol class="h3">Ajax的使用
+         <li>get:要从服务器取得数据 数据放在url,发送的数据大小有要求,可以看到</li>
+         <li>post:向服务器发送数据 数据放在请求体 安全性更高</li>
+         <li>
+            e.g.1 <h2 class="get"></h2>
+         </li>
+         <li>为什么要在配置对象之前监听事件？</li>
+       </ol>
+       <p class="h1">JSON</p>
+       <ol class="h3">什么是json?
+          <li>即JavaScript Object Natation 是一种轻量级的数据交换格式</li>
+          <li>是JavaScript的子集，与JS无缝连接
+             <li>为什么是子集呢？是ICMA定义的 json是有规范的 包括数组{string:value,string:value} 数组[value,value]</li>
+             <li>value是指string，number,object,array,true,false,null中的一种 json也可以嵌套  其中function,undefined不能传递</li>
+          </li>
+          <li>json数据与js对象的转换
+             <li>JSON-->JS: JSON.parse(data)</li>
+             <li>JS-->JSON: JSON.stringify(JSObj)</li>
+          </li>
+          <li>readtstate和status的区别:
+              <li>replaceState是表示ajax步骤进行状态值</li>
+              <li>status:表示的是http返回的状态码</li>
+          </li>
+       </ol>
+       <p class="h1">回调地域</p>
+       <p class="h1">jquery中的ajax</p>
+       <ol class="h3">
+           <li>load()方法：从服务器加载数据。并把返回的数据放入被选元素中。
+               <li>$(selector).load(url,data,callback) 其中url是必写项 data表示与请求一同发送的查询字符串 callback是load()
+                   完成后所执行的函数名称  
+               </li>
+               <li>callback参数规定当load()方法完成后所要允许的回调函数，回调函数可以设置不同的参数:
+                   <ul>
+                       <li>responseText 包含调用成功时的结果内容</li>
+                       <li>statusText 包含调用的状态</li>
+                       <li>xhr 包含XMLHttpRequst对象</li>
+                   </ul>
+               </li>
+           </li>
+           <li>$.get(url,callback):从指定的资源请求数据</li>
+           <li>$.post(url,data,callback):向指定的资源提交要处理的数据</li>
+       </ol>
+       <p class="h1">同源策略</p>
+       <ol class="h3">
+           <li>同源策略:浏览器的安全机制。源是指协议、域名以及端口号。检测请求数据的源与执行html脚本的源是否一致，
+                一致则执行，不一致则是跨域问题</li>
+       </ol>
+    </div>
+
+    <script src="../../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script>
+   //  ajax的使用步骤
+   // a.发送get请求
+   //1.创建ajax对象
+   var xhr = new XMLHttpRequest();
+   //4.创建监听
+   xhr.onreadystatechange = function(){
+      //当xhr对象的readystate属性发生了改变，这个事件会被触发
+      //readtstate ：
+      //0 ===> xhr对象已经创建 但是还没有进行初始化操作
+      //1 ===> xhr对象已经调用open() 
+      //2 ===> xhr对象已经发出ajax请求
+      //3 ===> xhr对象已经返回部分数据
+      //4 ===> 数据已经全部返回
+
+      if(xhr.readyState!=4){
+         return;
+      }
+      //满足以下条件下 就可以处理数据了
+      if(xhr.status>=200 && xhr.status<300){
+         //这时数据放在了xhr.resposeText的属性中 类型数据是string
+         //querySelector()返回的是页面的第一个出现的元素
+         document.querySelector('h2').innerHTML = xhr.responseText;
+         var json = JSON.parse(xhr.responseText);
+         console.log(json)
+         console.log(json.data.length)
+         console.log(xhr.readyState)
+         console.log(xhr.status)
+
+      }else{
+         console.error('请求失败')
+         console.log(xhr.readyState)
+         console.log(xhr.status)
+      }
+   }
+   //2.打开对象
+   xhr.open('get','http://132.232.2.53:9000/api/persons',true)  //传入的参数是请求方式 请求资源的路径 发送方式：同步/异步 通常是异步(true) 
+   //3.发送请求  get请求就是把数据放入url中
+   xhr.send()
+</script>
+
+
+</body>
+</html>

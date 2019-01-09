@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <p class="h3">Promise</p>
+        <ol>
+            <li>Promise是一个构造函数，自身有all,resolve,reject这几个函数
+                类似于原型的then,catch函数
+            </li>
+            <li>
+                Promise的构造函数接收一个参数，是函数，并且传入两个参数：resolve，reject，
+                分别表示异步操作执行成功后的回调函数和异步操作执行失败后的回调函数。其实这里用“成功”和“失败”来描述并不准确，
+                按照标准来讲，resolve是将Promise的状态置为fullfiled，reject是将Promise的状态置为rejected。
+            </li>
+            <!-- <script>
+                var p = new Promise(function (resolve, reject) {
+                    //做一些异步操作
+                    setTimeout(function () {
+                        console.log('执行完成');
+                        resolve('随便什么数据');
+                    }, 2000);
+                });
+            </script> -->
+            <li>
+                在上面的代码中，我们执行了一个异步操作，也就是setTimeout，2秒后，输出“执行完成”，并且调用resolve方法。
+            </li>
+            <li>
+                运行代码，会在2秒后输出“执行完成”。注意！我只是new了一个对象，并没有调用它，我们传进去的函数就已经执行了，
+                这是需要注意的一个细节。所以我们用Promise的时候一般是包在一个函数中，在需要的时候去运行这个函数，如：
+            </li>
+            <!-- <script>
+                function runAsync() {
+                    var p = new Promise(function (resolve, reject) {
+                        //做一些异步操作
+                        setTimeout(function () {
+                            console.log('执行完成');
+                            resolve('随便什么数据');
+                        }, 2000);
+                    });
+                    return p;
+                }
+                // runAsync()
+                // 在runAsync()的返回上直接调用then方法，then接收一个参数，是函数，并且会拿到我们在runAsync中调用resolve时传的的参数。
+                // 运行这段代码，会在2秒后输出“执行完成”，紧接着输出“随便什么数据”。
+                // then里面的函数就跟我们平时的回调函数一个意思
+                runAsync().then(function (data) {
+                    console.log(data); //输出随便什么数据
+                    //后面可以用传过来的数据做些其他操作
+                    //......
+                });
+
+
+                //普通的回调  把callback传给data 
+                function runAsync22(callback) {
+                    setTimeout(function () {
+                        console.log('执行完成22');
+                        callback('随便什么数据22');
+                    }, 2000);
+                }
+
+                runAsync22(function (data) {
+                    console.log(data);
+                });
+            </script> -->
+            <li>
+                Promise的优势在于，可以在then方法中继续写Promise对象并返回，然后继续调用then来进行回调操作。
+            </li>
+            <script>
+                //链式调用
+                function runAsync1() {
+                    var p = new Promise(function (resolve, reject) {
+                        //做一些异步操作
+                        setTimeout(function () {
+                            console.log('异步任务1执行完成');
+                            resolve('随便什么数据1');
+                        }, 1000);
+                    });
+                    return p;
+                }
+
+                function runAsync2() {
+                    var p = new Promise(function (resolve, reject) {
+                        //做一些异步操作
+                        setTimeout(function () {
+                            console.log('异步任务2执行完成');
+                            resolve('随便什么数据2');
+                        }, 2000);
+                    });
+                    return p;
+                }
+
+                function runAsync3() {
+                    var p = new Promise(function (resolve, reject) {
+                        //做一些异步操作
+                        setTimeout(function () {
+                            console.log('异步任务3执行完成');
+                            resolve('随便什么数据3');
+                        }, 2000);
+                    });
+                    return p;
+                }
+
+
+                runAsync1().then(function (data) {
+                    console.log(data);
+                    return runAsync2(); //调用then()拿到runAsync2()对象的resolve()中的参数
+                }).then(function (data) {
+                    console.log(data); //随便什么数据2 
+                    // return runAsync3();
+                    return '直接返回数据'
+                }).then(function (data) {
+                    console.log(data);
+                });
+            </script>
+
+            <script>
+                function getNumber() {
+                    var p = new Promise(function (resolve, reject) {
+                        //做一些异步操作
+                        setTimeout(function () {
+                            var num = Math.ceil(Math.random() * 10); //生成1-10的随机数
+                            if (num <= 5) {
+                                resolve(num);
+                            } else {
+                                reject('数字太大了');
+                            }
+                        }, 2000);
+                    });
+                    return p;
+                }
+
+                getNumber().then(
+                        function (data) {
+                            console.log('resolved');
+                            console.log(data);
+                        },
+                        function (reason, data) {
+                            console.log('rejected');
+                            console.log(reason);
+                        }
+                    );
+            </script>
+        </ol>
+    </div>
+</body>
+
+</html>

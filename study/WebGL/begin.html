@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Three.js</title>
+    <script src="./three.js"></script>
+    <script src="./WebGL.js"></script>
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+
+    canvas {
+        width: 100%;
+        height: 100%
+    }
+</style>
+
+<body>
+    <h3>1.创建一个场景</h3>
+    <p>
+        怎么能够让一个场景借助three.js来显示 。
+        需要三个对象：场景 相机 和渲染器。
+        这样我们就能透过摄像机渲染出场景。
+    </p>
+    <h3>2.渲染场景</h3>
+    <p>
+        创建显示的物体，把它的材质 物体包装在一个网格中。
+        把网格放入场景中，然后渲染
+    </p>
+    <h3>3.使物体动起来</h3>
+    <p>改变物体的位置 或者改变相机的位置</p>
+    <h3>4.结果</h3>
+
+    <h2>浏览器的兼容：</h2>
+    <P>
+
+    </P>
+    <h2>画一条线</h2>
+</body>
+<script>
+    /* 创建所需的三个对象 */
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+    /* 创建显示的物体 */
+    var geometry = new THREE.BoxGeometry(1, 1, 1);
+    var material = new THREE.MeshBasicMaterial({
+        color: 0x00ff00
+    });
+    var cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    camera.position.z = 5;
+    /* 进行渲染 */
+    function animate() {
+        requestAnimationFrame(animate);
+
+        /* 动起来 */
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+    }
+    animate();
+</script>
+<script>
+    //如何画一条线
+    //定义三个部分 场景 相机 渲染器
+    var scene_line = new THREE.Scene();
+    var camera_line = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
+    camera_line.position.set(0, 0, 100);
+    camera_line.lookAt(0, 0, 0);
+    var renderer_line = new THREE.WebGLRenderer();
+    renderer_line.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer_line.domElement);
+
+    //定义材质
+    var material_line = new THREE.LineBasicMaterial({
+        color: 0x0000ff
+    });
+
+    //创建一个新的物体 （先线条就创建一个带有线条的几何）
+    var geometry_line = new THREE.Geometry();
+    //创建3个顶点
+    geometry_line.vertices.push(new THREE.Vector3(-10, 0, 0));
+    geometry_line.vertices.push(new THREE.Vector3(0, 10, 0));
+    geometry_line.vertices.push(new THREE.Vector3(10, 0, 0));
+
+    //连点成线
+    var line = new THREE.Line(geometry_line, material_line);
+    //加到场景中
+    scene_line.add(line);
+    //渲染 显示
+    renderer_line.render(scene_line, camera_line);
+
+
+</script>
+
+</html>

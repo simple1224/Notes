@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>promise</title>
+</head>
+
+<body>
+    <script>
+        //通过Promise这个构造函数，来创建一个对象
+        //这个Promise对象 有三种状态：pending、fulfill、reject
+        //Promise构造函数，有一个参数，这个参数是一个回调，这个回调接收两个参数，这两个参数，都能改变
+        //Promise对象的状态，第一个参数，可以将状态从pending===>fulfill 第二个参数，可以将pending===>reject
+
+        // var promise = new Promise(function(resolve,reject){
+        //     if(/*成功*/){
+        //         resolve()
+        //     }else{
+        //         reject()
+        //     }
+        // })
+
+        var promise = new Promise(function (resolve, reject) {
+            setTimeout(function(){
+                var num =Math.floor(Math.random()*100);
+                if(num % 2 ===0){
+                    resolve(num);
+                }else{
+                    reject(num);
+                }
+            }, 3000);
+        });
+
+        promise.then(function(num){
+            console.log('resolve:'+num);
+        }).catch(function(num){
+            console.log('reject:'+num);
+        })
+    </script>
+</body>
+
+</html>

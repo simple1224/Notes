@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX链式调用</title>
+</head>
+
+<body>
+    <p></p>
+
+    <script src="../../node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        var article = '';
+        $.get('./p1.txt', function () {
+            article += p1 + '<br>';
+            $.get('./p2.txt', function () {
+                article += p2 + '<br>';
+                $.get('./p3.txt', function () {
+                    article += p3 + '<br>';
+                    $.get('./p4.txt', function () {
+                        article += p4 + '<br>';
+                        $('p').html(article);
+                    })
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebGL</title>
+    <script src="./three.js"></script>
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+
+    canvas {
+        width: 100%;
+        height: 100%
+    }
+
+    div#canvas-frame {
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        height: 600px;
+        background-color: #EEEEEE;
+    }
+</style>
+
+<body onload="threeStart();">
+    <div class="container">
+        <h1>WebGL：一种3D绘图协议(Web Graphics Library)</h1>
+        <ol>什么是WebGL
+            <li>WebGL是在浏览器中实现三维效果的一套规范</li>
+        </ol>
+        <ol>
+            three.js
+            <li>
+                使用WebGL原生的API来写3D程序是一件非常痛苦的事情，幸好，有很多同行花业余时间写了一些WebGL开源框架，其中three.js就是非常优秀的一个，它掩
+                盖了很多麻烦的细节，那么，就让我们一起来看看，什么是three.js吧
+            </li>
+            <li>three.js就是使用javascript 来写3D程序的意思</li>
+        </ol>
+        <ol>
+            创建一个场景：
+            <li>利用three.js使得构建的场景显示</li>
+            <li>那么需要三个对象：场景、相机和渲染器。通过摄像机渲染场景</li>
+        </ol>
+        <ol>三大组件：
+            <li>
+                在Three.js中，要渲染物体到网页中，我们需要3个组建：场景（scene）、相机（camera）和渲染器（renderer）。
+                有了这三样东西，才能将物体渲染到网页中去。
+            </li>
+            <li>
+                场景就是所有物体的容器 要把要显示的内容放在场景中
+                场景只有一个 var scene = new THREE.Scene()
+            </li>
+            <li>
+                相机：决定了哪个角度的场景会显示出来。根据不同的参数 产生不同的效果
+            </li>
+            <li>
+                渲染器：决定了渲染的结果要渲染到页面的哪个元素，用什么方式绘制
+            </li>
+            <li>
+                添加物体到场景中：比如添加一个立方体到场景中 让它显示
+                var geometry = new THREE.CubeGeometry(1,1,1);
+                CubeGeometry(width, height, depth, segmentsWidth, segmentsHeight, segmentsDepth, materials, sides)
+            </li>
+            <li>
+                渲染：渲染应该使用渲染器
+                renderer.render(scene, camera);
+                渲染函数：render( scene, camera, renderTarget, forceClear )
+            <li>
+                renderTarget：渲染的目标，默认是渲染到前面定义的render变量中
+            </li>
+            <li>
+                forceClear：每次绘制之前都将画布的内容给清除，即使自动清除标志autoClear为false，也会清除
+            </li>
+            </li>
+            <li>
+                渲染方式：离线渲染和实时渲染
+            </li>
+            <li>
+                场景，相机，渲染器之间的关系：相机拍摄场景的景色 渲染器将相片显示
+            </li>
+        </ol>
+
+    </div>
+
+    <!-- <script>
+        // 我们现在建立了场景、相机和渲染器。
+        //1场景
+        var scene = new THREE.Scene(); //场景  
+        //three.js里有几种不同的相机，在这里，我们使用的是PerspectiveCamera（透视摄像机）。
+        // 第一个属性是视野角度（FOV）。视野角度就是无论在什么时候，你所能在显示器上看到的场景的范围，它的值是一个角度。
+        // 第二个值是长宽比（aspect ratio）。 也就是你用一个物体的宽除以它的高的比值。比如说，当你在一个宽屏电视上播放老电影时，可以看到图像仿佛是被压扁的。
+        /* 接下来的两个值是远剪切面和近剪切面。 也就是说当物体所在的位置比摄像机的远剪切面远或者所在位置比近剪切面近的时候，该物体超出的部分将不会被渲染到场景中。
+        现在你或许并不用担心这个值的影响，但未来为了获得更好的渲染性能，你将可以在你的应用程序里去设置它。 */
+        //2.相机
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000); //透视相机
+        // 接下来是渲染器。这里是施展魔法的地方。除了我们在这里用到的WebGLRenderer渲染器之外，Three.js同时提供了其他几种渲染器，当用户所使用的浏览器过于老旧，
+        //或者由于其他原因不支持WebGL时，可以使用这几种渲染器进行降级。
+        //3.渲染器
+        var renderer = new THREE.WebGLRenderer(); //渲染器
+        // 假设你的<canvas> 标签现在已经具有了100%的宽和高，调用setSize(window.innerWidth/2, window.innerHeight/2, false)将使得你的应用程序以一半的分辨率来进行渲染。
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        // 我们将renderer（渲染器）这个元素添加到我们的HTML文档中，这也就是渲染器使用<canvas>元素来将场景展现给我们。
+        //domElement表示渲染器中的画布 所有的渲染都是画在domElement 这里表示把画布挂载到body上面 页面显示出来
+        document.body.appendChild(renderer.domElement);
+
+        //4.把物体添加到场景中
+        // 要创建一个立方体，我们需要一个BoxGeometry（立方体）对象. 这个对象包含了一个立方体中所有的顶点（vertices）和面faces
+        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        // 对于这个立方体，我们需要给它一个材质，来让它有颜色。Three.js自带了几种材质，但在这里我们使用的是MeshBasicMaterial。所有的材质是都一个将会被应用于立方体的属性对象。
+        var material = new THREE.MeshBasicMaterial({
+            color: 0x00ff00
+        });
+        // 第三步，我们需要一个Mesh（网格）。 网格是包含有一个几何体以及应用在在此几何体上的材质的对象，我们可以直接将网格对象放入到我们的场景中，并让它在场景中自由移动。
+        var cube = new THREE.Mesh(geometry, material);
+        // 默认情况下，当我们调用scene.add()的时候，物体将会被添加到坐标为(0,0,0)的位置。
+        // 但这可能会使得摄像机的位置和立方体相互重叠（也就是摄像机位于立方体中）。为了防止这种情况的发生，我们只需要将摄像机稍微向外移动一些即可。
+        scene.add(cube);
+
+        camera.position.z = 5;
+
+        // “渲染”或者“动画循环”
+        // 在这里我们创建了一个循环——这使得渲染器能够在每次屏幕刷新时对场景进行绘制（在大多数屏幕上，刷新率一般是60次/秒）。
+        //6.渲染方式：离线渲染 和 实时渲染 下面是实时渲染
+        /* 其中一个重要的函数是requestAnimationFrame，这个函数就是让浏览器去执行一次参数中的函数，
+         这样通过上面render中调用requestAnimationFrame()函数，requestAnimationFrame()函数又让rander()再执行一次，
+         就形成了我们通常所说的游戏循环了。 */
+        function animate() {
+            // 相当于setInterval() 可定时刷新页面
+            requestAnimationFrame(animate);
+
+            // 这一段代码将在每一帧时被渲染时调用（正常情况下是60次/秒），这就让立方体有了一个看起来很不错的旋转动画。
+            // 基本上来说，当应用程序运行时，如果你想要移动或者改变任何场景中的东西，都必须要经过这个动画循环。
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            //5.渲染
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script> -->
+
+
+    <div class="3d">
+        <h2>3D世界</h2>
+        <ol>
+            3D的组成：两个点组成一条直线 三个不在一条直线的点就可以组成一个三角面
+            <li>
+                three.js中定义一个点
+                在三维空间中一个点用坐标系来表示。（xyz）
+                空间几何中用向量来表示。three.js中用向量来表示一个点
+            </li>
+            <li>
+                在Threejs中，一条线由点，材质和颜色组成
+            </li>
+            <li>
+                点由THREE.Vector3表示，Threejs中没有提供单独画点的函数，它必须被放到一个THREE.Geometry形状中，
+                这个结构中包含一个数组vertices，这个vertices就是存放无数的点（THREE.Vector3）的数组。
+            </li>
+            <li>
+                怎么让物体动起来
+                让照相机动 物体不动
+                camera.position.x =camera.position.x +1;
+            </li>
+        </ol>
+        <h2>物体运动后 怎么评估程序的性能</h2>
+        <ol>
+            性能：一般用帧数来判断
+            <li>
+                帧数：图形处理器每秒钟能够刷新几次，通常用fps（Frames Per Second）来表示。如下是每秒钟59次刷新的应用
+                毫无疑问，帧数越高，画面的感觉就会越好。所以大多数游戏都会有超过30的FPS
+            </li>
+            <li>
+                性能监视器Stats:在Three.js中，性能由一个性能监视器来管理.
+                其中FPS表示：上一秒的帧数，这个值越大越好，一般都为60左右。点击上面的图，就会变成下面的另一个视图.
+                MS表示渲染一帧需要的毫秒数，这个数字是越小越好。再次点击又可以回到FPS视图中。
+            </li>
+        </ol>
+        <div id="canvas-frame"></div>
+    </div>
+
+    <script>
+        //创建一个点
+        //当x为undefined或者null时 赋值为0
+        //THREE是一个全局变量  为和开发者代码区分 vector是向量
+        THREE.vector3 = function (x, y, z) {
+            this.x = x || 0;
+            this.y = y || 0;
+            this.z = z || 0;
+        }
+        //创建一个点 x=4,y=8,z=9
+        var point = new THREE.vector3(4, 8, 9)
+        //或者 
+        // var point2 = new THREE.vector3();
+        // point2.set(4, 8, 9);
+
+        //demo 画一条彩色的线
+        /*  var scene2 = new THREE.scene();
+         var camera2 = new THREE.PerspectiveCamera(75,1/1,.1,1000);
+         var randerer2 = new THREE.WebGLRenderer();
+         renderer2.setSize(window.innerWidth, window.innerHeight);
+         document.body.appendChild(renderer2.domElement);
+
+         var geometry = new THREE.Geometry();
+         var material2 = new THREE.LineBasicMaterial( { vertexColors: THREE.VertexColors } );
+         var color1 = new THREE.Color( 0x444444 ),
+         color2 = new THREE.Color( 0xFF0000 );
+         var p1 = new THREE.Vector3( -100, 0, 100 );
+         var p2 = new THREE.Vector3(  100, 0, -100 );
+
+         geometry.vertices.push(p1);
+         geometry.vertices.push(p2);
+
+         geometry.colors.push( color1, color2 );
+
+         var line = new THREE.Line( geometry, material, THREE.LinePieces );
+         scene.add(line);
+         renderer.render(scene, camera); */
+
+        var renderer;
+
+        function initThree() {
+            width = document.getElementById('canvas-frame').clientWidth;
+            height = document.getElementById('canvas-frame').clientHeight;
+            renderer = new THREE.WebGLRenderer({
+                antialias: true
+            });
+            renderer.setSize(width, height);
+            document.getElementById('canvas-frame').appendChild(renderer.domElement);
+            renderer.setClearColor(0xFFFFFF, 1.0);
+        }
+
+        var camera;
+
+        function initCamera() {
+            camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+            camera.position.x = 0;
+            camera.position.y = 1000;
+            camera.position.z = 0;
+            camera.up.x = 0;
+            camera.up.y = 0;
+            camera.up.z = 1;
+            camera.lookAt({
+                x: 0,
+                y: 0,
+                z: 0
+            });
+        }
+
+        var scene;
+
+        function initScene() {
+            scene = new THREE.Scene();
+        }
+
+        var light;
+
+        function initLight() {
+            light = new THREE.DirectionalLight(0xFF0000, 1.0, 0);
+            light.position.set(100, 100, 200);
+            scene.add(light);
+        }
+
+        var cube;
+        //创建一个点
+        function initObject() {
+            //1.首先，我们声明了一个几何体geometry
+            //几何体里面有一个vertices变量，可以用来存放点
+            var geometry = new THREE.Geometry();
+            //2.定义一种线条的材质 VertexColors这个属性是定义线条材质是否使用顶点颜色(boolean) 
+            //线条各部分的颜色会根据顶点的颜色来插值
+            var material = new THREE.LineBasicMaterial({
+                vertexColors: true
+            });
+            //3.定义两个端点的颜色
+            var color1 = new THREE.Color(0x444444),
+                color2 = new THREE.Color(0xFF0000);
+
+            // 线的材质可以由2点的颜色决定
+            //4.定义两个顶点的位置 并把它放入几何体内
+            /* 点是由Vector3表示  没有单独化点的函数
+                必须把点放入THREE.Geometry这个几何中 这个形状中包含一个数组vertices ,专门用来存放无数的点
+             */
+            var p1 = new THREE.Vector3(-100, 0, 100);
+            var p2 = new THREE.Vector3(100, 0, -100);
+            //用push的方法  把创建的点放进去（可以用push的原因是vertices是一个数组 vertices是顶点的意思）
+            geometry.vertices.push(p1);
+            geometry.vertices.push(p2);
+            //5.为定义的两个端点设置颜色
+            geometry.colors.push(color1, color2);
+            //6.定义一条线
+            var line = new THREE.Line(geometry, material, THREE.LinePieces);
+            //7.把线加到场景中去
+            scene.add(line);
+        }
+
+        function initObject2() {
+            var geometry = new THREE.Geometry();
+            //创建两个x轴的点
+            geometry.vertices.push(new THREE.Vector3(-500, 0, 0));
+            geometry.vertices.push(new THREE.Vector3(500, 0, 0));
+
+            for (var i = 0; i <= 20; i++) {
+
+                var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({
+                    color: 0x000000,
+                    opacity: 0.2
+                }));
+                line.position.z = (i * 50) - 500;
+                scene.add(line);
+
+                var line = new THREE.Line(geometry, new THREE.LineBasicMaterial({
+                    color: 0x000000,
+                    opacity: 0.2
+                }));
+                line.position.x = (i * 50) - 500;
+                line.rotation.y = 90 * Math.PI / 180;
+                scene.add(line);
+
+            }
+        }
+
+        function initObject3() {
+            var geometry = new THREE.CylinderGeometry(100, 150, 400);
+            var material = new THREE.MeshLambertMaterial({
+                color: 0xFFFF00
+            });
+            var mesh = new THREE.Mesh(geometry, material);
+            mesh.position = new THREE.Vector3(0, 0, 0);
+            scene.add(mesh);
+        }
+
+        function threeStart() {
+            initThree();
+            initCamera();
+            initScene();
+            initLight();
+            // initObject();
+            initObject2();
+            // initObject3();
+            renderer.clear();
+            renderer.render(scene, camera);
+        }
+
+        function animation() {
+            //renderer.clear();
+            camera.position.x = camera.position.x + 1;
+            renderer.render(scene, camera);
+            requestAnimationFrame(animation);
+            renderer.render(scene, camera);
+        }
+    </script>
+</body>
+
+</html>

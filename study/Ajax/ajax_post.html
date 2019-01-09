@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //b.发送post请求 表单姓名密码的验证
+   //1 创建xhr对象
+   var xhr2 = new XMLHttpRequest();
+   //5.监听数据返回
+   xhr2.onreadystatechange = function(){
+      if(xhr2.readyState !=4){
+         return;
+      }
+      if(xhr2.status >=200 && xhr2.status <=300){
+         //数据一般存放在 xhr2.responseText 这个字符串中
+         xhr2.responseText
+         //利用JSON.parse()将字符串转化为json的数据格式
+         JSON.parse()
+         // JSON.stringify()是js对象转json字符串
+
+         var resp = JSON.parse(xhr2.responseText);
+         //判断返回对象的属性是不是为true 因为result本身就是布尔类型 因此可以直接判断即==== true可以省略
+         if(resp.result === true){
+            alert('登录成功')
+         }else{}
+         alert('登录失败')
+      }else{
+         console.error('请求失败')
+      }
+   }
+   //2 配置对象
+   xhr2.open('post','login.php',ture);
+   //3.请求头 告诉服务器发送一个什么类型的数据  url编码方式的表单
+   xhr2.setRequestHeader('Content-Type','application-x-www-form-urlencoded')
+   //4 发送数据 post就是把数据放入body中
+   xhr2.send('user=gasp&password=123456')
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jsonp解决跨域问题</title>
+    <script src="../../node_modules/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+    <script>
+        function getData(data) {
+            console.log(data);
+        }
+        // var script = document.createElement('script');
+        // script.id = 'jsonp';
+        // script.src = './jsonp.js';
+        // document.body.appendChild(script);
+
+        $.ajax({
+            url: "http://localhost:9090/student",
+            type: "GET",
+            dataType: "jsonp", //指定服务器返回的数据类型
+            success: function (data) {
+                var result = JSON.stringify(data); //json对象转成字符串
+                $("#text").val(result);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

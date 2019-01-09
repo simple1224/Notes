@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>让场景动起来</title>
+    <script src="./three.js"></script>
+</head>
+<style type="text/css">
+    div#canvas-frame {
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        height: 600px;
+        background-color: #EEEEEE;
+    }
+</style>
+
+<body onload="threeStart();">
+    <div id="canvas-frame"></div>
+    <h3>怎么让场景动起来</h3>
+    <ol>有两种方法：
+        <li>让物体在坐标系移动 摄像机不动</li>
+        <li>让摄像机在坐标系移动 物体不动</li>
+    </ol>
+    <ol>
+        <li>主要的关键点是：要循环渲染 展示物体的每一个过程。改变了物体的位置 颜色等信息就要重新渲染调用rander()</li>
+        <li>渲染时使用renderer.render( scene, camera );</li>
+        <li>为了实现循环，我们需要javascript的一个特殊函数，这个函数是requestAnimationFrame。</li>
+        <li>调用requestAnimationFrame函数，传递一个callback参数，则在下一个动画帧时，会调用callback这个函数。</li>
+            <pre>
+                function animate() {
+                    render();
+                    requestAnimationFrame( animate );
+                }
+            </pre>
+        <ul>物体运动后的性能怎么判定：用帧数来判断
+            <li>帧数：图形处理器每秒钟能够刷新几次，通常用fps（Frames Per Second）来表示。</li>
+        </ul>
+    </ol>
+</body>
+<script>
+    var renderer;
+
+    function initThree() {
+        width = document.getElementById('canvas-frame').clientWidth;
+        height = document.getElementById('canvas-frame').clientHeight;
+        renderer = new THREE.WebGLRenderer({
+            antialias: true
+        });
+        renderer.setSize(width, height);
+        document.getElementById('canvas-frame').appendChild(renderer.domElement);
+        renderer.setClearColor(0xFFFFFF, 1.0);
+    }
+
+    var camera;
+
+    function initCamera() {
+        camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+        camera.position.x = 0;
+        camera.position.y = 0;
+        camera.position.z = 600;
+        camera.up.x = 0;
+        camera.up.y = 1;
+        camera.up.z = 0;
+        camera.lookAt({
+            x: 0,
+            y: 0,
+            z: 0
+        });
+    }
+
+    var scene;
+
+    function initScene() {
+        scene = new THREE.Scene();
+    }
+
+    var light;
+
+    function initLight() {
+        light = new THREE.AmbientLight(0xFFFFFF);
+        light.position.set(100, 100, 200);
+        scene.add(light);
+        light = new THREE.PointLight(0x00FF00);
+        light.position.set(0, 0, 300);
+        scene.add(light);
+    }
+
+    var cube;
+    var mesh;
+    function initObject() {
+        var geometry = new THREE.CylinderGeometry(100, 150, 400);
+        var material = new THREE.MeshLambertMaterial({
+            color: 0xFFFF00
+        });
+        mesh = new THREE.Mesh(geometry, material);
+        mesh.position = new THREE.Vector3(0, 0, 0);
+        scene.add(mesh);
+    }
+
+    function threeStart() {
+        initThree();
+        initCamera();
+        initScene();
+        initLight();
+        initObject();
+        animation();
+
+    }
+
+//将相机不断的沿着x轴移动1个单位，也就是相机向右移动。
+//相机向右移动，那么想一想相机中的物体，是怎么移动的呢？毫无疑问，它是反方向移动的，是向左移动的。
+    function animation() {
+        //renderer.clear();
+
+        //移动物体
+        // mesh.position.x-=1;
+        //移动相机
+        camera.position.x = camera.position.x + 1;
+        renderer.render(scene, camera);
+        requestAnimationFrame(animation);   
+    }
+</script>
+
+</html>

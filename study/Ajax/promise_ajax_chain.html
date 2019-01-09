@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAx中的promise</title>
+</head>
+
+<body>
+    <script src="../../node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        //用promise来解决ajax的链式调用 封装了4个函数
+        function getPara1() {
+            //promise对象接收一个回调 回调有两个参数
+            return new Promise(function (resolve, reject) {
+                //回调函数中返回p1
+                //$(selector).get(url,data,success(response,status,xhr),dataType)方法是jq中get请求的方式 
+                $.get('./p1.txt', function (p1) {
+                    resolve(p1);
+                })
+            })
+        }
+
+        function getPara2() {
+            return new Promise(function (resolve, reject) {
+                $.get('./p2.txt', function (p2) {
+                    resolve(p2);
+                })
+            })
+        }
+
+        function getPara3() {
+            return new Promise(function (resolve, reject) {
+                $.get('./p3.txt', function (p3) {
+                    resolve(p3);
+                })
+            })
+        }
+
+        function getPara4() {
+            return new Promise(function (resolve, reject) {
+                $.get('./p4.txt', function (p4) {
+                    resolve(p4);
+                })
+            })
+        }
+        var artical = '';
+        getPara1().then(function (p1) {
+            artical += p1 +'<br>'
+            //将getPara2()的promise返回给回调
+            return getPara2()
+        }).then(function(p2){
+            artical += p2 +'<br>'
+            //接收p3的返回值
+            return getPara3();
+        }).then(function(p3){
+            artical += p3 +'<br>'
+            //接收p3的返回值
+            return getPara4(); 
+        }).then(function(p4){
+            artical += p4 +'<br>'
+            $(p).html(artical);
+        })
+    </script>
+</body>
+
+</html>

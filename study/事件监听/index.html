@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件监听</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <ol>什么是事件监听：一个动作或状态的改变 做出相应的响应
+            <li>绑定事件的另一种方法是用 addEventListener() 或 attachEvent() 来绑定事件监听函数。</li>
+            <li>关于事件监听，W3C规范中定义了3个事件阶段，依次是捕获阶段、目标阶段、冒泡阶段。</li>
+            <li>element.addEventListener(event, function, useCapture) 其中event表示事件名
+                 function表示指定事件  useCapture指定事件是否在捕获或冒泡阶段执行。默认是false(冒泡) true(捕获))</li>
+            <li>事件监听的优点
+                <li class="common">常规的事件绑定是能绑定一个 只执行最后的一个绑定事件</li>
+            </li>
+        </ol>
+    </div>
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+        //常规绑定 
+        var btn = $('.common')
+        // btn.click(function(){
+        //     alert('hello1'); //不执行
+        // })
+        // btn.click(function(){
+        //     alert('hello2');
+        // })
+        // 事件监听
+        console.log(btn)
+        btn.addEventListener("click",hello3);
+        // btn.addEventListener('click',hello3)
+        btn.addEventListener('click',hello4)
+        function hello3(){
+            alert(事件监听绑定2)
+        }
+        function hello4(){
+            alert(事件监听绑定2)
+        }
+    </script>
+</body>
+</html>
