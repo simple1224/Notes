@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>三维空间</title>
+</head>
+
+<body>
+    <h3>三维空间的观察</h3>
+    <ol>认识相机
+        <li>three.js中相机的表示：three.camera.
+            <ul>有两种相机
+                <li>正投影相机THREE.OrthographicCamera</li>
+                <li>透视投影相机THREE.PerspectiveCamera</li>
+                <li>正投影和透视投影的区别是：透视投影有一个基本点，就是远处的物体比近处的物体小。</li>
+            </ul>
+        </li>
+        <li>正投影相机：其特点是，远近高低比例都相同。
+            <ul>
+                <li>OrthographicCamera( left, right, top, bottom, near, far )</li>
+                <li>
+                    left：左平面距离相机中心点的垂直距离。<br>
+                    right：右平面距离相机中心点的垂直距离。<br>
+                    top：顶平面距离相机中心点的垂直距离。<br>
+                    bottom：底平面距离相机中心点的垂直距离<br>
+                    near：近平面距离相机中心点的垂直距离。<br>
+                    far：远平面距离相机中心点的垂直距离。<br>
+                </li>
+            </ul>
+        </li>
+    </ol>
+</body>
+
+</html>

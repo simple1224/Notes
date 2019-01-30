@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="gbk">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>bootstrap</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-    <!-- HTML5 shim �� Respond.js ��Ϊ���� IE8 ֧�� HTML5 Ԫ�غ�ý���ѯ��media queries������ -->
-    <!-- ���棺ͨ�� file:// Э�飨����ֱ�ӽ� html ҳ����ק��������У�����ҳ��ʱ Respond.js �������� -->
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
@@ -18,108 +18,108 @@
 <body>
     <div class="container">
         <p class="h1 text-center">bootstrap</p>
-        <p class="h2">�ſ�</p>
-        <p class="h3">Ϊʲôʹ��bootstrap��
+        <p class="h2">概况</p>
+        <p class="h3">为什么使用bootstrap？
             <ol class="h4">
-                <li class="h4">����������Ӧʽ���ֵ�</li>
-                <li class="h4">�������ƶ��豸��</li>
+                <li class="h4">是适用于响应式布局的</li>
+                <li class="h4">是优先移动设备的</li>
             </ol>
         </p>
-        <p class="h3">bootstrap��ô�����ƶ��豸���ȵ�</p>
+        <p class="h3">bootstrap怎么做到移动设备优先的</p>
         <ol class="h4">
-            <li>mate��ǩ viewport��Ϊ�����䲻ͬsize����Ļ</li>
-            <li>"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" ��������</li>
-            <li>bootstrap�Ĳ��ȫ��������jQuery</li>
+            <li>mate标签 viewport是为了适配不同size的屏幕</li>
+            <li>"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" 禁用缩放</li>
+            <li>bootstrap的插件全部依赖于jQuery</li>
         </ol>
-        <p class="h3">viewport����������:</p>
-        <p class="h3">�Ű�������</p>
-        <ol class="h4">bootstrap���Ű����������ȫ����ʽ��
-            <li class="h4">Ϊbody������Ĭ�ϵı��� ��background-color:#fff</li>
-            <li class="h4">Ϊ����������������ɫ ������:hover״̬ʱ�����»��ߵ�Ч��</li>
-            <li class="h4">ʹ�� @font-family-base��@font-size-base �� @line-height-base ������Ϊ�Ű�Ļ�������</li>
+        <p class="h3">viewport的意义所在:</p>
+        <p class="h3">排版与链接</p>
+        <ol class="h4">bootstrap对排版和链接做了全局样式：
+            <li class="h4">为body设置了默认的背景 即background-color:#fff</li>
+            <li class="h4">为所有链接设置了颜色 当处于:hover状态时添加下划线的效果</li>
+            <li class="h4">使用 @font-family-base、@font-size-base 和 @line-height-base 变量作为排版的基本参数</li>
         </ol>
-        <p class="h3">��������</p>
+        <p class="h3">布局容器</p>
         <ol class="h4">
-            <li class="h4">bootstrapΪҳ���դ��ϵͳ������һ��.container������</li>
-            <p class="h5">.container ���ڹ̶����ȺͲ���֧����Ӧʽ���ֵ���(�������ʾ)</p>
-            <p class="h5">.container-fluid ����100%���� ռ��ȫ������(������ʾ)</p>
+            <li class="h4">bootstrap为页面和栅格系统创建了一个.container的容器</li>
+            <p class="h5">.container 用于固定宽度和并且支持响应式布局的类(会居中显示)</p>
+            <p class="h5">.container-fluid 用于100%宽度 占据全部窗口(满屏显示)</p>
         </ol>
-        <p class="h3">դ��ϵͳ</p>
-        <ol class="h4">Bootstrap �ṩ��һ����Ӧʽ���ƶ��豸���ȵ���ʽդ��ϵͳ��������Ļ���ӿڣ�viewport���ߴ������,
-            <br>ϵͳ���Զ���Ϊ���12�С�������������ʹ�õ�Ԥ�����࣬����ǿ���mixin �������ɸ�������Ĳ��֡�
-            <li class="h4">����֮���������к��е������ʵ��ҳ���Ű�</li>
-            <li class="h4">��rowֻ����container��container-fluid����Ч �����������Ӻ��ʵ����У�aligment�����ڲ���padding��</li>
-            <li class="h4">ͨ������ˮƽ��������һ���� Ҳ����˵����һ��д���У�column���� �����е�ֱ����Ԫ��</li>
-            <li class="h4">����ͨ��Ԥ������������ٴ���դ�񲼾� .row .col-xs-4</li>
-            <li class="h4">??? ͨ����������padding����������������ֱ�ӵļ��(gutter)
-                ͨ��Ϊ .row Ԫ�����ø�ֵ margin �Ӷ�������Ϊ .container Ԫ�����õ� padding��Ҳ�ͼ��Ϊ���У�row�����������ġ��У�column������������padding. </li>
-            <li class="h4">��ֵ�� margin���������ʾ��Ϊʲô������ͻ����ԭ����դ�����е������ų�һ�С�</li>
-            <li class="h4">դ��ϵͳ�е�����ͨ��ָ��1��12��ֵ����ʾ���Խ�ķ�Χ�����磬�����ȿ����п���ʹ������ .col-xs-4 ��������</li>
-            <li class="h4">���һ���У�row�����а����˵ġ��У�column�������� 12������ġ��У�column�������ڵ�Ԫ�ؽ�����Ϊһ����������һ�����С�</li>
-            <li class="h4">???դ��������������Ļ���ȴ��ڻ���ڷֽ���С���豸 �� �������С��Ļ�豸����դ���ࡣ ��ˣ���Ԫ����Ӧ���κ� .col-md-* դ����
-                ��������Ļ���ȴ��ڻ���ڷֽ���С���豸 �� �������С��Ļ�豸����դ���ࡣ ��ˣ���Ԫ����Ӧ���κ� .col-lg-* �����ڣ� ҲӰ�����Ļ�豸��</li>
+        <p class="h3">栅格系统</p>
+        <ol class="h4">Bootstrap 提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加,
+            <br>系统会自动分为最多12列。它包含了易于使用的预定义类，还有强大的mixin 用于生成更具语义的布局。
+            <li class="h4">简言之就是利用行和列的组合来实现页面排版</li>
+            <li class="h4">行row只有在container和container-fluid中生效 更方便于添加合适的排列（aligment）和内补（padding）</li>
+            <li class="h4">通过行在水平方向设置一组列 也就是说内容一般写在列（column）中 列是行的直接子元素</li>
+            <li class="h4">可以通过预定义的类来快速创建栅格布局 .row .col-xs-4</li>
+            <li class="h4">??? 通过给列设置padding属性来设置列与列直接的间隔(gutter)
+                通过为 .row 元素设置负值 margin 从而抵消掉为 .container 元素设置的 padding，也就间接为“行（row）”所包含的“列（column）”抵消掉了padding. </li>
+            <li class="h4">负值的 margin就是下面的示例为什么是向外突出的原因。在栅格列中的内容排成一行。</li>
+            <li class="h4">栅格系统中的列是通过指定1到12的值来表示其跨越的范围。例如，三个等宽的列可以使用三个 .col-xs-4 来创建。</li>
+            <li class="h4">如果一“行（row）”中包含了的“列（column）”大于 12，多余的“列（column）”所在的元素将被作为一个整体另起一行排列。</li>
+            <li class="h4">???栅格类适用于与屏幕宽度大于或等于分界点大小的设备 ， 并且针对小屏幕设备覆盖栅格类。 因此，在元素上应用任何 .col-md-* 栅格类
+                用于与屏幕宽度大于或等于分界点大小的设备 ， 并且针对小屏幕设备覆盖栅格类。 因此，在元素上应用任何 .col-lg-* 不存在， 也影响大屏幕设备。</li>
         </ol>
-        <p class="h3">ý���ѯ (media query)</p>
-        <ol class="h4">�����˽�ʲô��ý���ѯ��
-            <li>@media ��ǩ����˵����Ӧʽ��ҳ�Ŀ�������������Ҫ��ý�����ͣ�Media Type���� ý�����ԣ�Media Query����������ɡ�</li>
-            <li>media type:�趨���������Ч��չʾ���ͣ�����all��ȫ����,screen����Ļ��,print��ҳ���ӡ�����Ԥ��ģʽ���ȵ�</li>
-            <li>Media Query:���ú�����Ч������</li>
-            <li>CSS�﷨:
+        <p class="h3">媒体查询 (media query)</p>
+        <ol class="h4">首先了解什么是媒体查询：
+            <li>@media 标签可以说是响应式网页的开发基础。其主要由媒体类型（Media Type）和 媒体特性（Media Query）两部分组成。</li>
+            <li>media type:设定后面规则生效的展示类型，包括all（全部）,screen（屏幕）,print（页面打印或打邱预览模式）等等</li>
+            <li>Media Query:设置后面生效的条件</li>
+            <li>CSS语法:
                 <pre>
             @media Media Type and|not|only (Media Query) {
                 CSS-Code;
             }</pre>
             </li>
-            <li class="h4">���Բ�ͬ��ý��Ӧ�ò�ͬ��stylesheet: <code>&lt;link rel=&quot;stylesheet&quot; media=&quot;mediatype
+            <li class="h4">争对不同的媒体应用不同的stylesheet: <code>&lt;link rel=&quot;stylesheet&quot; media=&quot;mediatype
                     and|not|only (Media Query)&quot; href=&quot;mystylesheet.css&quot;&gt;</code></li>
-            <p class="h5 small">ע:��html�������Ӵ��� ����ʹ��pre��code��ǩ�����������ǩʱӦ��ʹ��ת���ַ� ��lt gt"��ʾһ�Լ����� "quot"��ʾ˫����</p>
-            <li class="h4">ý���ѯ������:all��screen��print��</li>
-            <li class="h4">ý�����ԣ�color,width,max-width,min-width,scan�Ⱥܶ�</li>
-            <li class="h4">ý���ѯһ�����ڴ����ֽ��ߵ���ֵ
+            <p class="h5 small">注:在html里面添加代码 可以使用pre和code标签。如果遇到标签时应该使用转义字符 “lt gt"表示一对尖括号 "quot"表示双引号</p>
+            <li class="h4">媒体查询类型有:all、screen、print等</li>
+            <li class="h4">媒体特性：color,width,max-width,min-width,scan等很多</li>
+            <li class="h4">媒体查询一般用于创建分界线的阈值
                 <ol>
-                    <li>�ֻ�:����С��768px���ֻ���Ļ û���ر����� (ԭ����bootstrap�������ƶ��豸��)</li>
-                    <li>С��Ļƽ��:@media (min-width: @screen-sm-min) { ... }</li>
-                    <li>����Ļ:@media (min-width: @screen-md-min) { ... }</li>
-                    <li>����Ļ:@media (min-width: @screen-lg-min) { ... }</li>
-                    <li>�����������ߴ�֮���:@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }</li>
+                    <li>手机:对于小于768px的手机屏幕 没有特别设置 (原因是bootstrap是优先移动设备的)</li>
+                    <li>小屏幕平板:@media (min-width: @screen-sm-min) { ... }</li>
+                    <li>中屏幕:@media (min-width: @screen-md-min) { ... }</li>
+                    <li>大屏幕:@media (min-width: @screen-lg-min) { ... }</li>
+                    <li>或者在两个尺寸之间的:@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }</li>
                 </ol>
             </li>
         </ol>
-        <p class="h2">ʵ��</p>
-        <p class="h3">�Ӷѵ���ˮƽ����</p>
+        <p class="h2">实例</p>
+        <p class="h3">从堆叠到水平排列</p>
         <ol class="h4">
-            <li class="h4">ʹ�õ�һ��դ����col-md-*�Ϳ��Դ���һ��������դ��ϵͳ����С��Ļ����ƽ������ʾ���Ƕѵ��� ���е���Ļ�豸�ǳ�ˮƽ���еġ�
-                ����˵���е���column����.row������š�
+            <li class="h4">使用单一的栅格类col-md-*就可以创建一个基本的栅格系统。在小屏幕或者平板中显示的是堆叠的 在中等屏幕设备是呈水平排列的。
+                所以说所有的列column都在.row里包裹着。
             </li>
             <li>
-                ʾ��:<div class="row">
-                    <p class="small">ע:դ��ϵͳ���ֻ����12����λ �����ܺͼ��������ܳ���12 ���ǳ�����������ʾ</p>
+                示例:<div class="row">
+                    <p class="small">注:栅格系统最多只能是12个单位 所以总和加起来不能超过12 若是超过了则换行显示</p>
                     <div class="col-md-4">col-md-4</div>
                     <div class="col-md-4">col-md-4</div>
                     <div class="col-md-4">col-md-4</div>
                 </div>
             </li>
             <li>
-                ʾ��2: <div class="row">
+                示例2: <div class="row">
                     <div class="col-md-2 text-center" style="background:lightblue;border-left: 1px solid black">col-md-2</div>
                     <div class="col-md-4" style="background:lightblue;border-left: 1px solid black">col-md-4</div>
                     <div class="col-md-6" style="background:lightblue;border-left: 1px solid black">col-md-6</div>
                 </div>
             </li>
         </ol>
-        <p class="h3">��ʽ��������</p>
+        <p class="h3">流式布局容器</p>
         <li class="h4">
-            ��������Ĳ���Ԫ��.container��Ϊ.container-fluid
+            将最外面的布局元素.container改为.container-fluid
         </li>
-        <p class="h3">�ƶ��豸��������Ļ</p>
+        <p class="h3">移动设备和桌面屏幕</p>
         <ul class="h4">
             <li>
-                �����ϣ����С��Ļ������ʾ��ʱ���Ƕѵ��� �Ǿ��ڶ���ʱʹ�����С������Ļ�豸��������ࡣ��.col-xs-* .col-md-*��
-                ��Գ�С��Ļ��:.col-xs-*,С��Ļ:.col-sm-*,����Ļ��:col-md-*,����Ļ������:.col-lg-*
+                如果不希望在小屏幕上列显示的时候是堆叠的 那就在定义时使用针对小、中屏幕设备所定义的类。即.col-xs-* .col-md-*。
+                针对超小屏幕是:.col-xs-*,小屏幕:.col-sm-*,中屏幕是:col-md-*,大屏幕的类是:.col-lg-*
             </li>
             <li>
-                ʾ��1:<div class="row">
-                    <p class="small">1��.col-xs-6��ʾ��С��Ļ�����դ��ռ����ʣ�µĲ���</p>
+                示例1:<div class="row">
+                    <p class="small">1个.col-xs-6表示在小屏幕中这个栅格占其余剩下的部分</p>
                     <div class="col-xs-12 col-md-8" style="background:lightblue;border-left: 1px solid black">.col-xs-12
                         .col-md-8</div>
                     <div class="col-xs-6 col-md-4" style="background:lightblue;border-left: 1px solid black">.col-xs-6
@@ -127,8 +127,8 @@
                 </div>
             </li>
             <li>
-                ʾ��2:<div class="row">
-                    <p class="small">3��.col-xs-6��ʾ��С��Ļ��ÿ��դ��ռ33.33%</p>
+                示例2:<div class="row">
+                    <p class="small">3个.col-xs-6表示在小屏幕中每个栅格占33.33%</p>
                     <div class="col-xs-6 col-md-4" style="background:lightblue;border-left: 1px solid black">.col-xs-6
                         .col-md-4</div>
                     <div class="col-xs-6 col-md-4" style="background:lightblue;border-left: 1px solid black">.col-xs-6
@@ -138,17 +138,17 @@
                 </div>
             </li>
             <li>
-                ʾ��3:<div class="row">
-                    <p class="small">2��.col-xs-6��ʾ��С��Ļ��ÿ��դ��ռ50%</p>
+                示例3:<div class="row">
+                    <p class="small">2个.col-xs-6表示在小屏幕中每个栅格占50%</p>
                     <div class="col-xs-6" style="background:lightblue;border-left: 1px solid black">.col-xs-6 .col-md-4</div>
                     <div class="col-xs-6" style="background:lightblue;border-left: 1px solid black">.col-xs-6 .col-md-4</div>
                 </div>
             </li>
         </ul>
-        <p class="h3">ʵ����������У�column��������һ������</p>
+        <p class="h3">实例：多余的列（column）将另起一行排列</p>
         <ul>
-            <li>�����һ��row���г���12���� �ǾͰѰ��������е�Ԫ����Ϊ���嵥Ԫ������һ��</li>
-            <li>ʾ��1:<div class="row">
+            <li>如果在一个row中有超过12个列 那就把包含对于列的元素作为整体单元被另起一行</li>
+            <li>示例1:<div class="row">
                     <div class="col-xs-9" style="background:lightblue;border-left: 1px solid black;border-bottom: 1px solid black">.col-xs-9</div>
                     <div class="col-xs-4" style="background:lightblue;border-left: 1px solid black">.col-xs-4<br>Since
                         9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
@@ -157,18 +157,18 @@
                 </div>
             </li>
         </ul>
-        <h3>��Ӧʽ������</h3>
-        <li class="h4">�ڽ���դ�񲼾�ʱ ���������������ĸ��� ���ǻ����ĳЩ���⣬����˵��Щ�еĸ߶ȳ����������еĸ߶ȡ���ʱ����ô�����?</li>
-        <h4>�����ʱ����ʹ��.clearfix����Ӧʽ��������</h4>
+        <h3>响应式列重置</h3>
+        <li class="h4">在进行栅格布局时 即便有了上述的四个类 还是会出现某些问题，比如说有些列的高度超出了其他列的高度。这时候怎么解决呢?</li>
+        <h4>在这个时候建议使用.clearfix和响应式工具类解决</h4>
         <li>
-            ʾ��1:<div class="row">
+            示例1:<div class="row">
                 <div class="col-xs-6 col-sm-3" style="background:lightblue;border-left: 1px solid black;">.col-xs-6
                     .col-sm-3 Resize your viewport or check it out on your phone for an example.</div>
                 <div class="col-xs-6 col-sm-3" style="background:lightblue;border-left: 1px solid black;">.col-xs-6
                     .col-sm-3</div>
 
                 <!-- Add the extra clearfix for only the required viewport -->
-                <!-- �������Ӧ -->
+                <!-- 即清除响应 -->
                 <div class="clearfix visible-xs-block"></div>
 
                 <div class="col-xs-6 col-sm-3" style="background:lightblue;border-left: 1px solid black;">.col-xs-6
@@ -178,7 +178,7 @@
             </div>
         </li>
         <li>
-            ʾ��2��<div class="row">
+            示例2：<div class="row">
                     <div class="col-sm-5 col-md-6" style="background:lightpink;border-left:1px solid black">.col-sm-5
                         .col-md-6</div>
                     <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0" style="background:lightpink;border-left:1px solid black">.col-sm-5
@@ -186,14 +186,14 @@
                         .col-md-offset-0</div>
                 </div>
         </li>
-        <li>�������ڷֽ�������Ӧ�� ��������Ҫ ����ƫ��, ���ƻ�ǰ��ĳ���С��뿴��դ��ʵ��������С��Ļʱ  �����������֮��Ŀ�϶
-            ʾ��3��<div class="row">
+        <li>除了列在分界点清除响应， 您可能需要 重置偏移, 后推或前拉某个列。请看此栅格实例。当在小屏幕时  会出现列与列之间的空隙
+            示例3：<div class="row">
                         <div class="col-sm-6 col-md-5 col-lg-6" style="background:lightpink;border-left:1px solid black">.col-sm-6 .col-md-5 .col-lg-6</div>
                         <div class="col-sm-6 col-md-5 col-md-offset-2 col-lg-6 col-lg-offset-0" style="background:lightpink;border-left:1px solid black">.col-sm-6 .col-md-5
                             .col-md-offset-2 .col-lg-6 .col-lg-offset-0</div>
                    </div>
         </li>
-        <h3>��ƫ��</h3>
+        <h3>列偏移</h3>
         <li class="h4"></li>    
     </div>
     <script src="../node_modules/jquery/dist/jquery.js"></script>

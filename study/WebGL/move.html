@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>让场景动起来</title>
     <script src="./three.js"></script>
+    <script src="./Stats.js"></script>
+    <script src="./Tween.js"></script>
 </head>
 <style type="text/css">
     div#canvas-frame {
@@ -30,7 +32,7 @@
         <li>渲染时使用renderer.render( scene, camera );</li>
         <li>为了实现循环，我们需要javascript的一个特殊函数，这个函数是requestAnimationFrame。</li>
         <li>调用requestAnimationFrame函数，传递一个callback参数，则在下一个动画帧时，会调用callback这个函数。</li>
-            <pre>
+        <pre>
                 function animate() {
                     render();
                     requestAnimationFrame( animate );
@@ -38,11 +40,73 @@
             </pre>
         <ul>物体运动后的性能怎么判定：用帧数来判断
             <li>帧数：图形处理器每秒钟能够刷新几次，通常用fps（Frames Per Second）来表示。</li>
+            <li>性能监视器：<br>
+                其中FPS表示：上一秒的帧数，这个值越大越好，一般都为60左右。<br>
+                MS表示渲染一帧需要的毫秒数，这个数字是越小越好。
+            </li>
+            <ul>性能监视器Stats的使用
+                <li>在Three.js中，性能监视器被封装在一个类中，这个类叫做Stats，下面是一段伪代码，表示Stats的使用。</li>
+                <pre>
+                        var stats = new Stats();
+                        stats.setMode(1); // 0: fps, 1: ms
+                        // 将stats的界面对应左上角
+                        stats.domElement.style.position = 'absolute';
+                        stats.domElement.style.left = '0px';
+                        stats.domElement.style.top = '0px';
+                        document.body.appendChild( stats.domElement );
+                        setInterval( function () {
+                            stats.begin();
+                            // 你的每一帧的代码
+                            stats.end();
+                        }, 1000 / 60 );
+                </pre>
+                <ol>
+                    <li>setMode函数:参数为0的时候，表示显示的是FPS界面，参数为1的时候，表示显示的是MS界面。</li>
+                    <li>stats的domElement:stats的domElement表示绘制的目的地（DOM），波形图就绘制在这上面。</li>
+                    <li>stats的begin函数:begin，在你要测试的代码前面调用begin函数，在你代码执行完后调用end()函数，这样就能够统计出这段代码执行的平均帧数了。</li>
+                    <li>
+                        Stats的begin和end 函数本质上是在统计代码执行的时间和帧数，然后用公式fps=帧数/时间，
+                        就能够得到FPS。Stats的这个功能，被封装成了一个更好的函数update，只需要在渲染循环中调用就可以了。
+                    </li>
+                </ol>
+            </ul>
         </ul>
+        <li>
+            <ul>使用动画引擎Tween.js来创建动画
+                <li>加载tween.js</li>
+                <li>构件一个Tween对象，对Tween进行初始化</li>
+                <pre>
+                        function initTween()
+                        {
+                            new TWEEN.Tween( mesh.position)
+                                    .to( { x: -400 }, 3000 ).repeat( Infinity ).start();
+                        }
+                </pre>
+                <p>TWEEN.Tween的构造函数接受的是要改变属性的对象，这里传入的是mesh的位置。
+                    Tween的任何一个函数返回的都是自身，所以可以用串联的方式直接调用各个函数。</p>
+                <p>to函数，接受两个参数，第一个参数是一个集合，里面存放的键值对，键x表示mesh.position的x属性，
+                    值-400表示，动画结束的时候需要移动到的位置。第二个参数，是完成动画需要的时间，这里是3000ms。</p>
+                <p>repeat( Infinity )表示重复无穷次，也可以接受一个整形数值，例如5次。</p>
+                <p>Start表示开始动画，默认情况下是匀速的将mesh.position.x移动到-400的位置。</p>
+                <li>需要在渲染函数中去不断的更新Tween</li>
+                <pre>
+                        function animation()
+                        {
+                            renderer.render(scene, camera);
+                            requestAnimationFrame(animation);
+                            stats.update();
+                            TWEEN.update();
+                        }
+                </pre>
+            </ul>
+        </li>
     </ol>
 </body>
 <script>
     var renderer;
+
+    //检测性能
+    var stats;
 
     function initThree() {
         width = document.getElementById('canvas-frame').clientWidth;
@@ -53,6 +117,13 @@
         renderer.setSize(width, height);
         document.getElementById('canvas-frame').appendChild(renderer.domElement);
         renderer.setClearColor(0xFFFFFF, 1.0);
+
+        //性能监视器
+        stats = new Stats();
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.left = '0px';
+        stats.domElement.style.top = '0px';
+        document.getElementById('canvas-frame').appendChild(stats.domElement);
     }
 
     var camera;
@@ -91,6 +162,7 @@
 
     var cube;
     var mesh;
+
     function initObject() {
         var geometry = new THREE.CylinderGeometry(100, 150, 400);
         var material = new THREE.MeshLambertMaterial({
@@ -108,20 +180,33 @@
         initLight();
         initObject();
         animation();
-
+        initTween();
+    }
+    //实现动画
+    function initTween() {
+        //x表示动画结束时要移动到的位置 3000表示动画执行完成的时间 start()表示开始动画
+        new TWEEN.Tween(mesh.position)
+            .to({
+                x: 400
+            }, 3000).repeat(Infinity).start();
     }
 
-//将相机不断的沿着x轴移动1个单位，也就是相机向右移动。
-//相机向右移动，那么想一想相机中的物体，是怎么移动的呢？毫无疑问，它是反方向移动的，是向左移动的。
+
+    //将相机不断的沿着x轴移动1个单位，也就是相机向右移动。
+    //相机向右移动，那么想一想相机中的物体，是怎么移动的呢？毫无疑问，它是反方向移动的，是向左移动的。
     function animation() {
         //renderer.clear();
 
         //移动物体
         // mesh.position.x-=1;
         //移动相机
-        camera.position.x = camera.position.x + 1;
+        // camera.position.x = camera.position.x + 1;
+
         renderer.render(scene, camera);
-        requestAnimationFrame(animation);   
+        requestAnimationFrame(animation);
+
+        stats.update();
+        TWEEN.update();
     }
 </script>
 

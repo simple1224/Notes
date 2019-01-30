@@ -1,688 +1,906 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=div, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Study</title>
+	<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+	<script src="../node_modules/jquery/dist/jquery.js"></script>
 </head>
+
 <body>
-	<div class="控制台">
-		进入某个磁盘 C:
-		查看磁盘下的文件 dir
-		进入某个文件夹 cd mode_modules
-		返回到上一级目录 cd ..
+	<div class="container">
+		<div class="控制台">
+			<ol>控制台
+				<li>进入某个磁盘 C:</li>
+				<li>查看磁盘下的文件 dir</li>
+				<li>进入某个文件夹 cd mode_modules</li>
+				<li>返回到上一级目录 cd ..</li>
+			</ol>
+		</div>
 
-	</div>
+		<div class="html">
+			<ol>html：
+				<li>z-index 改变元素的堆叠顺序.用于定位的元素:可以改变元素的层级 比如说 背景图片压住某个button可以</li>
+				<li>$(window)和$(document)获取到的对象不同。</li>
+				<li>Window 对象表示一个浏览器窗口或一个框架。在客户端 JavaScript 中，Window 对象是全局对象，所有的表达式都在当前的环境中计算.</li>
+				<li>Document 对象是 Window 对象的一部分,每个载入浏览器的 HTML 文档都会成为 Document 对象.</li>
+			</ol>
+		</div>
 
-	<div class="another">
-		其他;
-		1.http和https的区别：
-		  HTTP：超文本传输协议。是互联网上应用最为广泛的一种网络协议，是一个客户端和服务器端请求和应答的标准（TCP），用于从WWW服务器传输超文本到本地浏览器的传输协议，
-		        它可以使浏览器更加高效，使网络传输减少。
-		  HTTPS：是以安全为目标的HTTP通道，简单讲是HTTP的安全版，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。
-		  HTTPS协议的主要作用可以分为两种：一种是建立一个信息安全通道，来保证数据传输的安全；另一种就是确认网站的真实性。
-		  主要的区别是前者是明文传送  数据不安全。后者有公钥和私钥加密传输  更安全。但不是绝对安全。SEO方面搜索的排名更加靠前。
-		2.http://www.css88.com/tool/html-escape/  html文本转义网站
-		3.转义字符：&it;表示:
-	</div>
+		<div class="css">
+			<ol>css:
+				<li>!important 在元素样式的末尾加 表示最高的优先权 ie6不支持。</li>
+				<li>设置字与字之间的间隔：letter-space</li>
+				<li>设置文字加粗：font-weight：bold</li>
+				<li>设置下划线：a.加入s标签 b.设置text-decoration:underline</li>
+				<li>设置微软雅黑字体：font-family: "Microsoft YaHei"!important;</li>
+				<li>雪碧图的合成：https://www.toptal.com/developers/css/sprite-generator</li>
+				<li>把网页x轴的滚动条去掉实现改变浏览器的宽度内容背景跟着变化：给body添加overflow-x:hidden 或者为最大的div添加min-width:;</li>
+				<li>opacity改变透明度 1是正常显示 .1表示透明</li>
+				<li>一个div的居中 可以用left和margin-left实现<br>
+					e.g. 设置div的width:300px;left:50%;margin-left:-150px;就可以实现
+				</li>
+				<li>设置div倾斜显示
+					<pre>
+							transform: skew(-8deg,-11deg);
+							-webkit-transform: rotate(45deg); /* for Chrome || Safari */
+							-moz-transform: rotate(45deg); /* for Firefox */
+							-ms-transform: rotate(45deg); /* for IE */
+							-o-transform: rotate(45deg);
+							}
+						</pre>
+				</li>
+				<li>清除input的默认样式
+					<pre>
+							input{
+								display: block;
+								width: 234px;
+								outline: none;
+								border: 0px;
+								font-size: 48.01px;
+								color: #0d889c;
+								margin: 0 auto;
+								text-align: center;
+								background: rgba(0,0,0,.0);
+							}
+							input::-webkit-outer-spin-button,
+							input::-webkit-inner-spin-button {
+								-webkit-appearance: none;
+							}
+							input[type="number"]{
+								-moz-appearance: textfield;
+							}
+							
+							input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+								/* WebKit browsers */
+								color: #0d889c;
+							}
+							input:-moz-placeholder, textarea:-moz-placeholder {
+								/* Mozilla Firefox 4 to 18 */
+								color: #0d889c;
+							}
+							input::-moz-placeholder, textarea::-moz-placeholder {
+								/* Mozilla Firefox 19+ */
+								color: #0d889c;
+							}
+							input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+								/* Internet Explorer 10+ */
+								color: #0d889c;
+							}	
+						</pre>
+				</li>
+				<li>停止css动画： animation-play-state:paused !important;</li>
+				<li>-webkit-animation-play-state:paused !important;</li>
+				<li>.隐藏和显示：可以用display（none/block）和opacity(0/1)</li>
+				<li>filter: brightness(126%); 改变图片的亮度 filter函数可以修改很多东西 比如亮度 模糊 旋转 透明度等</li>
+				<li>解决h5图片显示问题：使图片百分百显示 ① background: url(../images/pic2.png) no-repeat center/100%; background:
+					url(../images/btn-sprite.png) no-repeat center/3.22rem 3.35rem;</li>
+				<li>lorem用于添加无用的代码</li>
+			</ol>
+		</div>
+		<div class="css layout">
+			<ol>flex布局：
+				<li>使元素垂直居中显示
+					<pre>
+						display: flex
+						flex-direction: column
+						justify-content: center
+					</pre>
+				</li>
+				<li>flex:1 表示元素由内容自动撑开</li>
+			</ol>
+		</div>
+		<div class="css3">
+			<ol>css3
+				<li><a href="https://www.w3cschool.cn/tools/index?name=circularbead">CSS3 圆角生成器</a></li>
+				<li>transform:rotate(30deg) 旋转30度</li>
+				<li>css3被划分为模块：包括选择器 框模型 背景和边框 文本效果 2D/3D转换 动画 多列布局 用户界面</li>
+				<li>边框： border-radius： 创建圆角边框 （border:2px solid;border-radius:25px;） transparent透明 <br>
+					border-radius:a b c d; 四个值依次是左上 右上 右下 左下；如果是三个值则表示左上 右上右下 左下；如果是两个值则表示左上右上 左下右下<br>
+					椭圆表示为：border-radius：50%； 如果给某个角弧度 border-top-left-radius：表示左上角 border-bottom-left-radius：表示左下角<br>
+					box-shadow: 给矩形添加阴影 (box-shadow: 10px 10px 5px #888888;) <br>
+					border-image 使用图片来绘制边框
+				</li>
+				<li>背景：background-size：设置背景图片的大小 （单位可以是px和百分比 所设置的高和宽是相对于父元素来说的）（background:url(bg_flower.gif);background-size:63px
+					100px;）
+					<ul>
+						<li> background-size: length|percentage|cover|contain;</li>
+						<li>background-origin:设置背景图片的定位区域（背景图片可以放置于 content-box、padding-box 或 border-box 区域。）</li>
+						<li>background-origin: padding-box|border-box|content-box;</li>
+						<li>background-clip:从指定位置开始绘制背景 （content-box、padding-box和border-box这个属性）</li>
+						<li>background-clip: border-box|padding-box|content-box;</li>
+						<li>background-image:添加背景图片 可以添加多个图片 最顶部显示第一张</li>
+						<li>eg:
+							<pre>
+									div{
+										background-position: right bottom, left top;
+										background-image: url(img_flwr.gif), url(paper.gif);
+										background-repeat: no-repeat, repeat;
+									}
+								</pre>
+						</li>
+					</ul>
+				</li>
+				<li>渐变：包括线性渐变和径向渐变
+					<ul>
+						<li>线性渐变（Linear Gradients）：向下/向上/向左/向右/对角方向</li>
+						<li>从上到下渐变：background: linear-gradient(red, blue);</li>
+						<li>从左到右渐变：background: linear-gradient(to right, red , blue);</li>
+						<li>对角渐变（左上到右下）：background: linear-gradient(to bottom right, red , blue);</li>
+						<li>角度渐变： background: linear-gradient(180deg, red, blue); （odeg是从上到下 180deg是从下到上 90deg是从左到右）</li>
+						<li>使用透明度渐变：background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));</li>
+						<li>重复的线性渐变： background: repeating-linear-gradient(red, yellow 10%, green 20%);</li>
+					</ul>
+					<ul>
+						<li>径向渐变（Radial Gradients）：有他们的中心定义 默认情况下，渐变的中心是 center（表示在中心点），渐变的形状是 ellipse（表示椭圆形），渐变的大小是
+							farthest-corner（表示到最远的角落）。</li>
+						<li>颜色分布均匀：background: radial-gradient(red, green, blue);</li>
+						<li>颜色分布不均匀： background: radial-gradient(red 5%, green 15%, blue 60%);</li>
+						<li>设置形状：可以是circle和ellipse background: radial-gradient(circle, red, yellow, green);</li>
+						<li>不同尺寸大小关键字的使用：closest-side farthest-side closest-corner farthest-corner(默认)</li>
+						<li>重复的径向渐变： background: repeating-radial-gradient(red, yellow 10%, green 15%);</li>
+					</ul>
+				</li>
+				<li>文本效果：
+					<ul>
+						<li>text-shadow：为文本添加阴影 text-shadow: h-shadow v-shadow blur color; (属性依次是水平阴影位置 垂直阴影位置 模糊的距离 颜色（前两个为必填）)</li>
+						<li>text-overflow：属性指定当文本溢出包含它的元素，应该发生什么。text-overflow: clip|ellipsis|string; （修剪文本 显示省略号来显示被修剪的文本
+							使用给定字符串来代表被修剪的文本）</li>
+						<li>box-shadow:用于盒子阴影 box-shadow: 10px 10px 5px grey;</li>
+						<li>css3的自动换行：word-wrap:break-word</li>
+						<li>word-break: normal|break-all|keep-all; （使用浏览器默认的换行规则 允许在单词内换行 只能在半角空格或连字符处换行）</li>
+					</ul>
+				</li>
+				<li>字体：引入自己要用的字体<br>
+					<pre>
+							@font-face{
+								font-family: myFirstFont;
+								src: url(sansation_light.woff);
+							}
+						</pre>
+				</li>
+				<li>2D转换： transform属性：用于2D或3D转换 transform-origin：允许转换元素的位置 <br>
+					translate() rotate() scale() skew() matrix()
+					<ul>
+						<li>rotate()方法，在一个给定度数顺时针旋转的元素。负值是允许的，这样是元素逆时针旋转。 transform: rotate(30deg);</li>
+						<li>translate()方法，根据左(X轴)和顶部(Y轴)位置给定的参数，从当前元素位置移动。transform: translate(50px,100px); 从元素的左边移动50px 从上边移动100px</li>
+						<li>scale()方法，该元素增加或减少的大小，取决于宽度（X轴）和高度（Y轴）的参数：transform: scale(2,4); 表示宽增加两倍 高增加4倍</li>
+						<li>skew() 方法：包含两个参数值，分别表示X轴和Y轴倾斜的角度，如果第二个参数为空，则默认为0，参数为负表示向相反方向倾斜。</li>
+						<li>skewX( );表示只在X轴(水平方向)倾斜。</li>
+						<li>skewY( );表示只在Y轴(垂直方向)倾斜。</li>
+						<li>skew(30deg,20deg) 是元素在X轴和Y轴上倾斜20度30度。</li>
+						<li>matrix 方法有六个参数，包含旋转，缩放，移动（平移）和倾斜功能。</li>
+						<li><a href="https://www.w3cschool.cn/tools/index?name=css3_transform">CSS3
+								transform(变形)和transform-origin(变形原点)调试工具</a></li>
+					</ul>
+				</li>
+				<li>3D转换：rotateX()方法，围绕其在一个给定度数X轴旋转的元素。
+					<ul>
+						<li>rotateY()方法，围绕其在一个给定度数Y轴旋转的元素。</li>
+						<li>translateZ(z):定义 3D 转化，仅使用用于 Z 轴的值。</li>
+						<li>scale3d(x,y,z):定义 3D 缩放转换。</li>
+						<li>scaleX(x):定义 3D 缩放转换，通过给定一个 X 轴的值。</li>
+						<li>scaleX(y):定义 3D 缩放转换，通过给定一个 Y 轴的值。</li>
+						<li>scaleX(z):定义 3D 缩放转换，通过给定一个 Z 轴的值。</li>
+						<li>rotate3d(x,y,z,angle):定义 3D 旋转。</li>
+						<li>rotateX(angle):定义沿 X 轴的 3D 旋转。</li>
+						<li>rotateY(angle):定义沿 Y 轴的 3D 旋转。</li>
+						<li>rotateZ(angle):定义沿 X 轴的 3D 旋转。</li>
+						<li>perspective(n):定义 3D 转换元素的透视视图。</li>
+						<li>matrix3d(n,n, n,n,n,n ,n,n,n ,n,n,n, n,n,n,n ):定义 3D 转换，使用 16 个值的 4x4 矩阵。</li>
+					</ul>
+				</li>
+				<li>css过渡：CSS3中，我们为了添加某种效果可以从一种样式转变到另一个的时候，无需使用Flash动画或JavaScript。<br>
+					<pre>
+							e.g. div {
+								width:300px;
+								height:200px;
+								transition: width 2s, height 2s, transform 2s;
+							}
+							div:hover{
+								width:200px;
+								height:100px;
+								transform: rotate(180deg);
+							}
+						</pre>
+				</li>
+				<li>css动画：CSS3，我们可以创建动画，它可以取代许多网页动画图像，Flash动画，和JavaScripts。
+					<ul>
+						<li>
+							CSS3 @keyframes 规则：@keyframes规则是创建动画。 @keyframes规则内指定一个CSS样式和动画将逐步从目前的样式更改为新的样式。
+						</li>
+						<li>写动画的分为两步：
+							<ol>
+								<li>规定动画的名称 时长 animation: myfirst 5s;</li>
+								<li>运用keyframes法则来规定变化的方式</li>
+							</ol>
+							<pre>
+									e.g. .box2{
+										width: 200px;
+										height: 200px;
+										animation: first 5s;
+										background: lightpink;
+									}
+									@keyframes first{
+										from{background: lightpink;}
+										to{background: lightgreen;}
+									}
+								</pre>
+						</li>
+						<li>动画的属性：
+							<ul>
+								<li>@keyframes 规定动画</li>
+								<li>animation 动画属性的简写形式</li>
+								<li>animation-name 动画的名称</li>
+								<li>animation-duration 规定动画完成一个周期的时间（秒/毫秒） 默认为0</li>
+								<li>animation-timing-functionm 规定动画的运动曲线（默认为ease 缓慢的开始 然后快 结束慢）linear 动画匀速进行</li>
+								<li>animation-delay 动画从何时开始 （默认为0）</li>
+								<li>animation-iteration-count 规定动画被播放的次数 （默认为1）</li>
+								<li>animation-direction （默认值normal 动画正常播放） alternate 先执行一遍动画 再反向执行一遍</li>
+								<li>animation-play-state 规定动画是否正在运行 或 暂停（默认为running）</li>
+							</ul>
+						</li>
+						<li>css多列：通过 CSS3，您能够创建多个列来对文本进行布局 - 就像报纸那样，您可以收藏文章，需要用到的时候看一看。
+							<ol>相应的属性有:
 
-	<div class="anthor2">
-		ES6:
-		常量 作用域 箭头函数 默认函数 对象代理
-		
-		************************************************************************************
-		
-		设置服务器
-		1.window下输入iis -> 选择网站，127.0.0.1 
-		2.然后选择右侧的基本设置 -> 连接具体的物理地址
-		
-		************************************************************************************
-		新建一个项目：
-		1.div.wrapper->div.bg+div.content->div.main
-		 设置背景为居中，使得改变窗口大小时不发生紊乱
-		 设置wrapper为相对定位 宽度为100%，设置content为绝对定位，top和left为0，使其与最外层的框齐平。为main设置一个宽度 使内容居中显示
-		2.无跳转地址时，<a href="javascript:;"></a>
-		3.为每一个a标签添加onclick="PTTSendClick('btn','wg_logo标签的作用','wegame跳转到的页面');"做按钮上报
-		4.在页面的最下面写页面详情
-			 <script>
-			//此段代码不能放到外链JS中，
-			var setSite={ //设置网站属性 
-			siteType:"a20180626gmcy", //必填项:"os"代表是官网，如果不是，则填写actName例如a20160701xxx 
-			pageType:"index", //必填项:本页面的定位；按照页面含义填写例如main||list||    detail||download||share||page1||pageN 
-			pageName:"首页", //必填项:页面中文名 
-			project:"", //选填项:如果是官网模块则是必填;按照模块内容，填写固定的对应值;原生官网base;微社区ingame;同人站doujin;赛事match;故事站story;文化站history;粉丝站fans;爆料站coming;论坛bbs;
-			osact:0, //选填项:是否是官网专题(在官网运营的专题)boolean；默认是0；可以在链接上加入参数osact=1来灵活设置
-			stayTime:0, //选填项:是否需要统计停留时长boolean；默认是0
-		};
-		if(typeof(pgvMain)=='function')pgvMain();//千万不能忘记！
-		</script>
-		5.//game.gtimg.cn/images/qhyx/cp/a20180627gmcy/
-	</div>
+								<li>column-count属性指定元素的列数应分为几列 column-count:3;</li>
+								<li>column-gap属性指定的列之间的差距 column-gap:40px;</li>
+								<li>column-rule属性设置列之间的宽度，样式和颜色。column-rule:3px outset #ff00ff;</li>
+								<li>column-fill属性规定如何填充 auto 列顺序填充，他们将有不同的长度 / balance 列长短平衡。浏览器应尽量减少改变列的长度</li>
+								<li>column-span指定一个元素应该横跨多少列 column-span:all;（默认是1 ）</li>
+								<li>column-width指定列的宽度 column-width：100px;</li>
+								<li>columns缩写属性设置列宽和列数 columns:100px 3;</li>
+							</ol>
+						</li>
+					</ul>
+				</li>
+				<li>css用户界面：属性有resize、box-sizing、outline-offset
+					<ul>
+						<li>resize:指定一个元素是否是由用户调整大小的。 resize: none|both|horizontal|vertical:</li>
+						<li>box-sizing 属性允许您以确切的方式定义适应某个区域的具体内容。box-sizing: content-box|border-box|inherit:</li>
+						<li>原来的盒子模型 所有的margin padding border都不算在整个的宽高内</li>
+						<li>box-sizing就是用来改变盒子模型宽高的计算模式 content-box就是默认和以前的盒子模型计算模式一样</li>
+						<li>border-box就是将padding border算到宽高里</li>
+						<li>inherit 指定box-sizing属性的值，应该从父元素继承</li>
+						<li>outline-offset 属性对轮廓进行偏移，并在超出边框边缘的位置绘制轮廓。(特点：轮廓不占用空间 可能是非矩形) outline-offset: length|inherit:</li>
+					</ul>
+				</li>
+				<li>css图片：圆角图片 img {border-radius: 8px;}
+					<ul>
+						<li>椭圆图片 img {border-radius: 50%;}</li>
+						<li>椭圆图片 img {border-radius: 8px;}</li>
+						<li>自适应图片img {max-width: 100%;height: auto;}</li>
+					</ul>
+				</li>
+				<li>css按钮：
+					<ul>
+						<li>鼠标悬停按钮 .button{transition-duration:0.4s;}
+							.button:hover{background-color:white;}</li>
+					</ul>
+				</li>
+				<li>css3多媒体查询：
+					<pre>
+							<link rel="stylesheet" media="mediatype and|not|only (expressions)" href="print.css">
+							<!-- 屏幕可视窗口大于480px时的背景 -->
+							@media screen and (min-width: 480px) {
+								body {
+									background-color: lightgreen;
+								}
+							<!-- 否则背景为粉色 -->
+								body {
+								background-color: pink;
+							}
+						</pre>
+				</li>
+			</ol>
+		</div>
+		<div class="css伪类">
+			<ol>css伪类
+				<li>css伪类分为:
+					<ul>
+						<li>锚伪类 a:link {color: #FF0000} /* 未访问的链接 */</li>
+						<li>a:visited {color: #00FF00} /* 已访问的链接 */</li>
+						<li>a:hover {color: #FF00FF} /* 鼠标移动到链接上 */</li>
+						<li>a:active {color: #0000FF} /* 选定的链接 */</li>
+						<li>注意：伪类的顺序应为link--visited--hover--focus--active。（即1.在CSS 定义中，a:hover 必须位于 a:link 和 a:visited 之后，这样才能生效！</li>
+					</ul>
+				</li>
+				<li>在 CSS 定义中，a:active 必须位于 a:hover 之后，这样才能生效！）</li>
+				<li>伪类与CSS类：a.red：visited{color:red;} <br>
+					&lt;div class=&quot;red&quot;&gt;&lt;a href=&quot;//baidu.com&quot;&gt;点击here&lt;/a&gt;&lt;/div&gt;
+					<!-- <div class="red"><a href="//baidu.com">点击here</a></div> -->
+				</li>
+				<li>:first-child伪类: 不是特指父元素下顺序第一的元素 而是所有出现第一次的元素<br>
+					要指定某个元素的第一个元素 <br>
+					p:first-child {font-weight: bold;}
+				</li>
+				<li>:lang 伪类使你有能力为不同的语言定义特殊的规则。在下面的例子中，:lang 类为属性值为 no 的 q 元素定义引号的类型：(可以加入特殊符号等)</li>
+				<li>:focus 向拥有键盘输入焦点的元素添加样式。</li>
+			</ol>
 
-	<div class="html">
-		html：
-		1.z-index 改变元素的堆叠顺序.用于定位的元素:可以改变元素的层级 比如说 背景图片压住某个button可以  
-		2.$(window)和$(document)获取到的对象不同。
-		1、Window 对象表示一个浏览器窗口或一个框架。在客户端 JavaScript 中，Window 对象是全局对象，所有的表达式都在当前的环境中计算.
-		2、Document 对象是 Window 对象的一部分,每个载入浏览器的 HTML 文档都会成为 Document 对象.	
-	</div>
+			<ol>css伪元素：
+				<li>:first-line 用于设置文本的首行 (注:只可以用于块元素)</li>
+				<li>:first-letter 伪元素用于向文本的首字母设置特殊样式：</li>
+				<li>font-variant:small-caps; /*改为小型的大写字母*/</li>
+				<li>多重伪元素：多个伪元素叠加利用
+					<ul>
+						<li>:before 在元素的内容前面插入一幅图片 h1:before{content:url(logo.gif);}</li>
+						<li>:after 在元素的内容后面插入一幅图片 h1:after{content:url(logo.gif);}</li>
+						<li>注：伪类对象不会出现在DOM中，所以不能通过js来操作，仅仅是在 CSS 渲染层加入</li>
+					</ul>
+				</li>
+			</ol>
+			<ol>:before和::before的区别
+				<li>相同点：
+					<ul>
+						<li>都是伪元素 用来设置对象前的内容</li>
+						<li>两者的写法是等效的</li>
+					</ul>
+				</li>
+				<li>不同点:
+					<ul>
+						<li>前者是css2的写法 后者是css3的写法</li>
+						<li>前者的兼容性更好 在H5开发中::before更适合</li>
+					</ul>
+				</li>
+				<li>注意：伪类对象要配合content属性使用</li>
+				<li>伪类元素不出现在DOM结构中 所以不可以用js控制</li>
+				<li>伪类对象的特效一般用:hover样式来激活 .test:hover::before { /* 这时animation和transition才生效 */ }</li>
+			</ol>
+		</div>
+		<div class="css hack">
+			<ol>CSS hack技术：不同的浏览器对于css样式的解析不同。为了实现在不同浏览器可以实现相同效果做的处理叫做hack.
+				<li>属性前缀法(即类内部Hack)
+					<ul>
+						<li>*html *前缀只对IE6生效</li>
+						<li>*+html *+前缀只对IE7生效</li>
+						<li>@media screen\9{...}只对IE6/7生效</li>
+						<li>@media \0screen {body { background: red; }}只对IE8有效</li>
+						<li>@media \0screen\,screen\9{body { background: blue; }}只对IE6/7/8有效</li>
+						<li>@media screen\0 {body { background: green; }} 只对IE8/9/10有效</li>
+						<li>@media screen and (min-width:0\0) {body { background: gray; }} 只对IE9/10有效</li>
+						<li>@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {body { background: orange; }}
+							只对IE10有效</li>
+					</ul>
+				</li>
+				<li>条件注释：
+					<ul>
+						<li>
+							<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+							------解决ie9以下浏览器对html5新增标签的不识别，并导致CSS不起作用的问题
+						</li>
+						<li>
+							<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>------让不支持css3?Media
+							Query的浏览器包括IE6-IE8等其他浏览器支持查询。
+						</li>
+					</ul>
+				</li>
+				<li>不同浏览器兼容的代码:
+					<pre>
+							/*Mozilla内核浏览器：firefox3.5+*/
+							? -moz-transform: rotate | scale | skew | translate ;
+				
+							?/*Webkit内核浏览器：Safari and Chrome*/
+							? -webkit-transform: rotate | scale | skew | translate ;
+				
+							?/*Opera*/
+							? -o-transform: rotate | scale | skew | translate ;
+				
+							?/*IE9*/
+							? -ms-transform: rotate | scale | skew | translate ;
+				
+							?/*W3C标准*/
+							? transform: rotate | scale | skew | translate ;
+						</pre>
+				</li>
+			</ol>
+		</div>
 
-	<div class="jquery">
-		JQuery:
-		<ul class="list1">
-		   <li>dhgdsgg</li>
-		   <li>dhgdsgg</li>
-		   <div class="mask">dvvdsa</div>
-		</ul>
-		<ul class="list2">
-		   <li>dhgdsgg</li>
-		   <li>dhgdsgg</li>
-		   <div class="mask">dvvdsa</div>
-		</ul>
-		
-		1.获取标签：$('div')
-		2.获取元素可以根据标签获取  类名获取 id获取
-		3.$('.list1')下的子元素有li和div  $(this).
-		4.JQuery的点击事件写法有两种  $(this).on("hover",function(){})  和  $(this).hover(function(){})
-		5.JQuery的引入方式：使用cdn引入  （百度静态资源库）；使用npm安装 npm install jquery
-		6.jquery的ready（）方法：当 DOM（文档对象模型） 已经加载，并且页面（包括图像）已经完全呈现时，会发生 ready 事件。
-		  注意不能与<body onload="">一起使用
-		  允许使用的三种使用方法 $(document).ready(function(){})  $().ready(function(){})  $(function)
-		7.
-	</div>
-
-	<div class="javascript">
-		JavaScript
-		1.Date():日期函数  Fri Aug 10 2018 10:28:01 GMT+0800 (中国标准时间)
-		2.您只能在 HTML 输出中使用 document.write。如果您在文档加载后使用该方法，会覆盖整个文档。（这种情况一般多出现在函数调用中）
-		  html输出流：当前数据形式是HTML格式的数据，这部分数据正被导出、传输或显示，所以称为”流“。
-		  javascript编写的代码只能通过html/xhtml文档才能执行，代码一行一行解析，文档在加载的过程中
-		  实际是一边加载一边用document.write写出内容到屏幕上，而加载完成后，document就关闭。如果再调用document.write往网页上写内容的话，就会重写document。
-		  e.g.
-		  <pre>
+		<div class="javascript">
+			<ol>JavaScript
+				<li>Date():日期函数 Fri Aug 10 2018 10:28:01 GMT+0800 (中国标准时间)</li>
+				<li>您只能在 HTML 输出中使用 document.write。如果您在文档加载后使用该方法，会覆盖整个文档。（这种情况一般多出现在函数调用中）</li>
+				<li>html输出流：当前数据形式是HTML格式的数据，这部分数据正被导出、传输或显示，所以称为”流“。</li>
+				<li>javascript编写的代码只能通过html/xhtml文档才能执行，代码一行一行解析，文档在加载的过程中 <br>
+					实际是一边加载一边用document.write写出内容到屏幕上，而加载完成后，document就关闭。如果再调用document.write往网页上写内容的话，就会重写document。
+				</li>
+				e.g.
+				<pre>
 			   <!DOCTYPE html>
 			   <html>
-			     <head>
-			   	<meta charset="UTF-8">
-			     </head>
-			   <body>
-			   
-			    <p>
-			      JavaScript 能够直接写入 HTML 输出流中：
-			    </p>
-			    <script>
-			     document.write("<h1>This is a heading</h1>");
-			     document.write("<p>This is a paragraph.</p>");
-			    </script>
-			   
-			    <p>
-			     您只能在 HTML 输出流中使用 <strong>document.write</strong>。
-			     如果您在文档已加载后使用它（比如在函数中），会覆盖整个文档。
-			    </p>
-			   
-			    <button onclick="myFunction()">点击这里</button>
-			   
-			     <script>
-			     function myFunction()
-			     {
-			     document.write("调用了函数，文档被重写");
-			     }
-			     </script>
-			   
-			   </body>
-			    </html>
+			     	<head>
+			   			<meta charset="UTF-8">
+			     	</head>
+			   		<body>
+			    		<p>JavaScript 能够直接写入 HTML 输出流中：</p>
+			    		<script>
+			    		 	document.write("<h1>This is a heading</h1>");
+			    		 	document.write("<p>This is a paragraph.</p>");
+			    		</script>
+			    		<p>
+			    	 		您只能在 HTML 输出流中使用 <strong>document.write</strong>。
+			    	 		如果您在文档已加载后使用它（比如在函数中），会覆盖整个文档。
+			    		</p>
+
+			   			<button onclick="myFunction()">点击这里</button>
+
+			    	 	<script>
+			    	 		function myFunction(){
+			    	 			document.write("调用了函数，文档被重写");
+			    			}
+			    	 	</script>
+			    	</body>
+				</html>
 		  </pre>
-		在以上这个例子中 代码一行行执行  在整个文档加载完毕时即document关闭了  并没有调用函数。因此在点击button时 调用document.write时就会重写document  
-		3.innerHTML：用于改变文档的内容
-		4.object.src=""  用于改变图片的地址
-		5.object.style.color="red" 用于改变元素的样式
-		6.javascript代码段可以写在header或者body中  二者之间的区别是：后者更能确保要更改的dom已经存在
-		7.获取元素的方式：getElementById,getElementByTagName,getElementByClassName,
-		8.极大或极小的数字表示方式： var y=123e5; // 12300000   var z=123e-5; // 0.00123
-		9.获取对象的属性值的方式有两种：object.属性名  或者 object["属性名"]               
-		10.undefined和null的区别：前者是定义了变量  变量的值为空也空可以通过null来置空属性值
-		11.javascript中所有变量都是对象  
-		   JavaScript 中的所有事物都是对象：字符串、数字、数组、日期，等等。
-		   在 JavaScript 中，对象是拥有属性和方法的数据。
-		12.函数：函数是由事件驱动的或者当它被调用时执行的可重复使用的代码块。
-		13.innerHTML和innerTEXT的区别：前者获取的是根元素包含的所有节点包括html标签，且兼容性较好；后者只是单纯的获取元素的文本内容 不兼容Firefox 所以尽量避免使用innerTEXT
-		   获取表单内容时，不可以用innerHYML获取， 一般用value来获取文本值、比如textarea，button，password，text等。
-		14.return语句：会停止执行函数  并返回返回值。或者使用return 可直接退出函数
-		15.变量：局部变量：用var关键字声明 只在函数域内有效  在函数执行完时 本地变量就会被删除
-				全局变量：在函数外声明的变量就是全局变量  网页上所有的脚本和函数都可以访问
-				如果把值赋给未声明的变量  该变量会自动设置为全局变量（即不使用var关键字声明）
-		16.变量的生存期：变量的生命期从声明开始
-						局部变量在函数运行以后被删除  全局变量在网页关闭后被删除       
-		17.用于字符串的+运算符 ： 数字和字符串相加，结果为字符串
-		18.比较和逻辑运算符用于测试false和true。 “==”判断的是值是否相等  “===”是全等，判断的是值和类型都相等时才是true
-		19.equals和==的区别：js中没有equals方法  比较字符串可以用== 和 is()
-		11.js消息框：警告框（alert()） 确认框（confirm()） 提示框（prompt()）
-		12.循环包括for(),while(),do{}while(),if(){}else if(){}
-		13.循环中的break和continue  前者是停止循环即跳出循环 后者是跳出本次循环，继续下一个条件的循环
-		14.for(变量 in 对象){}  一般用于数组遍历
-		15.事件： 事件一般搭配函数一起使用  
-				onload和onunload  用户进入或离开页面时触发
-				onFocus, onBlur 和 onChange 常用于验证表单  onchange=functionName function()  一旦内容改变就调用function函数
-				onSubmit 用于表单提交前的验证所有的表单域  如果表单域的内容是有效的  则提交
-				onMouseOver 和 onMouseOut  用来创建动态的效果
-				try...catch  用于捕获异常
-				throw 创建exception  配合try catch使用  
-				onerror 也用于捕获异常  谷歌火狐不可用 
-		16.javascript中特殊字符  反斜杠用来在文本字符串中插入省略号、换行符、引号和其他特殊字符。 比如一个“sdvsv”  document的时候不会输出 加上/"dsddf"  就会把双引号转化为字符串
-		17.javascript是面向对象的编程语言  对象是一种也特殊的数据  拥有对象和方法  
-		18.对象的类型有：字符串对象 var txt="hsgdhsgadsagdgj"  txt.length(lenth是字符串的属性  可以获得字符串的长度)  txt.toUpperCase()(toUpperCase()是一个方法  用来将字符串转化为大写的)
-						Date对象：getTime() 计算1970年到现在有多少年
-									 setFullYear()  得到精准的日期
-									 toUTCDtring()  将当前的日期转化为字符串
-								 getDay() 显示星期
-								 注意日期表示月份的参数是0~11 
-						数组对象：for...in  用来循环输出数组的内容
-								 concat()  将两个数组合并
-								 join()  将数组的所有元素转换为字符串
-								 sort()  将数据根据文字或者数值大小进行排序
-						Boolean对象：是一个产生逻辑值得对象包装器。逻辑对象用于将非逻辑值转化为逻辑值（true或false） 
-									var boolean = new Boolean;当默认值是空或者null,0,-0,"",false,undefined时,对象的值为false
-			
-						Math对象：执行普通的计算任务
-								 round() 数据四舍五入取整
-								 random() 随机返回一个0-10之间的数  
-								 min() 返回两个数中较小的一个
-								 max() 返回两个数中较大的一个\
-								 floor() 向下取整
-						RegExp对象：正则表达式的缩写  用于储存检索模式
-								   var patt1=new RegExp("e");定义了名为 patt1 的 RegExp 对象，其模式是 "e"：当您使用该 RegExp 对象在一个字符串中检索时，将寻找的是字符 "e"。
-								   RegExp对象有三个方法：test()、exec() 以及 compile()。
-								   test()用于检索字符串的指定值  有则返回true 无则返回false
-								   exrc()用于检索字符串中的指定值。返回值是被找到的值。如果没有发现匹配，则返回 null。 
-										 可以在RegExp对象中可以添加第二个参数  “g”-global  可以检索字符串中所有的匹配值  一直到没有返回null
-								   compile():用于改变RegExp compile()jiky改变检索模式 也可以增加或删除第二个参数
-						javascript对象: Window对象    表示浏览器窗口  是最顶层的对象， 当body、framese标签出现时自动创建
-										Navigator对象 包含客户端浏览器的信息
-										Screen对象    表示客户端显示端的信息
-										History对象   表示浏览器窗口访问过的url
-										Location对象  包含当前url的信息
-						HTML DOM：html文档对象模型  DOM：document object model
-									  document对象 通过它访问DOM的各个节点
-		19.javascript中var const let的区别：
-		  var定义的变量可以修改 如果不初始化会输出undefined 
-		  const定义的变量不可以修改 必须初始化
-		  let是块级作用域 函数内部使用let定义 对函数外部无影响
-	</div>
-	<div class="javascript2">
-		script高级语法：
-		1.navigator对象：包含访问者浏览器的所有信息。它的属性有:appName 保存浏览器类型  appVersion 存有浏览器的版本信息
-		<script>
-		var browser = navigator.appName;
-		var browser_version = navigator.appVersion;
-		document.write("browser is :"+browser+"<br/>") //browser is :Netscape
-		document.write("browser_version is :"+browser_version+"<br/>") //browser_version is :5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
-		document.write(parseFloat(browser_version)+"<br/>")
-		</script>	
-		2.cookie:作用是用于储存访问者的计算机中的变量  当同一台计算机访问页面时就会发送cookie。可以使用javascript来创建和取回cookie
-		3.cookie的类型有：名字cookie  比如同一页面在第二次登录时 会弹出“欢迎莫莫莫”  名字则是通过cookie取得的
-					 日期cookie  比如页面可以获取你每次的登陆时间 
-					 密码cookie  比如登录页面时密码框默认是上次输入的密码
-		4.何创建和获取cookie
-		<script>
-			//set cookie
-			function setCookie(c_name,value,expiredays)
-				{
-				var exdate=new Date()
-				exdate.setDate(exdate.getDate()+expiredays)
-				document.cookie=c_name+ "=" +escape(value)+
-				((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
-				}
-			//检测是否已设置cookie
-			function getCookie(c_name)
-				{
-				if (document.cookie.length>0)
-				  {
-				  c_start=document.cookie.indexOf(c_name + "=")
-				  if (c_start!=-1)
-					{ 
-					c_start=c_start + c_name.length+1 
-					c_end=document.cookie.indexOf(";",c_start)
-					if (c_end==-1) c_end=document.cookie.length
-					return unescape(document.cookie.substring(c_start,c_end))
-					} 
-				  }
-				return ""
-				}
-			//如果cookie已经设置好  则在打开页面的时候显示已储存的名字  否则打开输入框继续输入
-			function checkCookie()
-				{
-				username=getCookie('username')
-				if (username!=null && username!="")
-				  {alert('Welcome again '+username+'!')}
-				else 
-				  {
-				  username=prompt('Please enter your name:',"")
-				  if (username!=null && username!="")
-					{
-					setCookie('username',username,365)
-					}
-				  }
-				}
-		</script>
-		5.表单验证：javascript可以在数据送往服务器前对HTML中的数据进行验证
-				   验证的内容有：用户是否已填写表单中的必填项目  输入的邮箱地址是否合法  输入的日期是否合法 是否在数据域填写了文本等
-				   <!-- 必填项  检测是否为空 为空则显示弹窗 返回false 否则则返回true 数据正确 -->
-				   <script type="text/javascript">
-
-					function validate_required(field,alerttxt)
-					{
-					with (field)
-					  {
-					  if (value==null||value=="")
-						{alert(alerttxt);return false}
-					  else {return true}
-					  }
-					}
-					
-					function validate_form(thisform)
-					{
-					with (thisform)
-					  {
-					  if (validate_required(email,"Email must be filled out!")==false)
-						{email.focus();return false}
-					  }
-					}
-					</script>
-					<form action="submitpage.htm" onsubmit="return validate_form(this)" method="post">
-					Email: <input type="text" name="email" size="30">
-					<input type="submit" value="Submit"> 
-					</form>
-
-					<!-- 检测邮箱地址是否正确 -->
-					<script type="text/javascript">
-						function validate_email(field,alerttxt)
-						{
-						with (field)
-						{
-						apos=value.indexOf("@")
-						dotpos=value.lastIndexOf(".")
-						if (apos<1||dotpos-apos<2) 
-						  {alert(alerttxt);return false}
-						else {return true}
-						}
-						}
-						
-						function validate_form(thisform)
-						{
-						with (thisform)
-						{
-						if (validate_email(email,"Not a valid e-mail address!")==false)
-						  {email.focus();return false}
-						}
-						}
+				<li>在以上这个例子中 代码一行行执行 在整个文档加载完毕时即document关闭了 并没有调用函数。因此在点击button时 调用document.write时就会重写document</li>
+				<li>innerHTML：用于改变文档的内容</li>
+				<li>object.src="" 用于改变图片的地址</li>
+				<li>object.style.color="red" 用于改变元素的样式</li>
+				<li>javascript代码段可以写在header或者body中 二者之间的区别是：后者更能确保要更改的dom已经存在</li>
+				<li>获取元素的方式：getElementById,getElementByTagName,getElementByClassName,</li>
+				<li>极大或极小的数字表示方式： var y=123e5; // 12300000 var z=123e-5; // 0.00123</li>
+				<li>获取对象的属性值的方式有两种：object.属性名 或者 object["属性名"]</li>
+				<li>undefined和null的区别：前者是定义了变量 变量的值为空也空可以通过null来置空属性值</li>
+				<li>javascript中所有变量都是对象</li>
+				<li>JavaScript 中的所有事物都是对象：字符串、数字、数组、日期，等等。<br>
+					在 JavaScript 中，对象是拥有属性和方法的数据。
+				</li>
+				<li>函数：函数是由事件驱动的或者当它被调用时执行的可重复使用的代码块。</li>
+				<li>innerHTML和innerTEXT的区别：前者获取的是根元素包含的所有节点包括html标签，且兼容性较好；后者只是单纯的获取元素的文本内容 不兼容Firefox 所以尽量避免使用innerTEXT
+					获取表单内容时，不可以用innerHYML获取， 一般用value来获取文本值、比如textarea，button，password，text等。</li>
+				<li>return语句：会停止执行函数 并返回返回值。或者使用return 可直接退出函数</li>
+				<li>变量：局部变量：用var关键字声明 只在函数域内有效 在函数执行完时 本地变量就会被删除<br>
+					全局变量：在函数外声明的变量就是全局变量 网页上所有的脚本和函数都可以访问 <br>
+					如果把值赋给未声明的变量 该变量会自动设置为全局变量（即不使用var关键字声明）
+				</li>
+				<li>变量的生存期：变量的生命期从声明开始 <br>
+					局部变量在函数运行以后被删除 全局变量在网页关闭后被删除
+				</li>
+				<li>用于字符串的+运算符 ： 数字和字符串相加，结果为字符串</li>
+				<li>比较和逻辑运算符用于测试false和true。 “==”判断的是值是否相等 “===”是全等，判断的是值和类型都相等时才是true</li>
+				<li>equals和==的区别：js中没有equals方法 比较字符串可以用== 和 is()</li>
+				<li>js消息框：警告框（alert()） 确认框（confirm()） 提示框（prompt()）</li>
+				<li>循环包括for(),while(),do{}while(),if(){}else if(){}</li>
+				<li>循环中的break和continue 前者是停止循环即跳出循环 后者是跳出本次循环，继续下一个条件的循环</li>
+				<li>for(变量 in 对象){} 一般用于数组遍历</li>
+				<li>事件： 事件一般搭配函数一起使用
+					<ul>
+						<li>onload和onunload 用户进入或离开页面时触发</li>
+						<li>onFocus, onBlur 和 onChange 常用于验证表单 onchange=functionName function() 一旦内容改变就调用function函数</li>
+						<li>onSubmit 用于表单提交前的验证所有的表单域 如果表单域的内容是有效的 则提交</li>
+						<li>onMouseOver 和 onMouseOut 用来创建动态的效果</li>
+						<li>try...catch 用于捕获异常</li>
+						<li>throw 创建exception 配合try catch使用</li>
+						<li> onerror 也用于捕获异常 谷歌火狐不可用</li>
+					</ul>
+				</li>
+				<li>javascript中特殊字符 反斜杠用来在文本字符串中插入省略号、换行符、引号和其他特殊字符。 比如一个“sdvsv” document的时候不会输出 加上/"dsddf" 就会把双引号转化为字符串</li>
+				<li>javascript是面向对象的编程语言 对象是一种也特殊的数据 拥有对象和方法</li>
+				<li>对象的类型有：
+					<ul>
+						<li> 字符串对象 var txt="hsgdhsgadsagdgj" txt.length(lenth是字符串的属性 可以获得字符串的长度) <br>
+							txt.toUpperCase()(toUpperCase()是一个方法 用来将字符串转化为大写的)</li>
+						<li>Date对象：getTime() 计算1970年到现在有多少年
+							<ol>
+								<li>setFullYear() 得到精准的日期</li>
+								<li>toUTCDtring() 将当前的日期转化为字符串</li>
+								<li>getDay() 显示星期</li>
+								<li>注意日期表示月份的参数是0~11</li>
+							</ol>
+						</li>
+						<li>数组对象：
+							<ol>
+								<li>for...in 用来循环输出数组的内容</li>
+								<li>concat() 将两个数组合并</li>
+								<li>join() 将数组的所有元素转换为字符串</li>
+								<li>sort() 将数据根据文字或者数值大小进行排序</li>
+							</ol>
+						</li>
+						<li>Boolean对象：是一个产生逻辑值得对象包装器。逻辑对象用于将非逻辑值转化为逻辑值（true或false）<br>
+							var boolean = new Boolean;当默认值是空或者null,0,-0,"",false,undefined时,对象的值为false
+						</li>
+						<li>Math对象：执行普通的计算任务
+							<ol>
+								<li>round() 数据四舍五入取整</li>
+								<li> random() 随机返回一个0-10之间的数</li>
+								<li>min() 返回两个数中较小的一个</li>
+								<li>max() 返回两个数中较大的一个\</li>
+								<li>floor() 向下取整</li>
+							</ol>
+						</li>
+						<li>RegExp对象：正则表达式的缩写 用于储存检索模式
+							<ol>
+								<li>RegExp对象有三个方法：test()、exec() 以及 compile()。</li>
+								<li>var patt1=new RegExp("e");定义了名为 patt1 的 RegExp 对象，其模式是 "e"：当您使用该 RegExp 对象在一个字符串中检索时，将寻找的是字符 "e"。</li>
+								<li>test()用于检索字符串的指定值 有则返回true 无则返回false</li>
+								<li>exrc()用于检索字符串中的指定值。返回值是被找到的值。如果没有发现匹配，则返回 null。<br>
+									可以在RegExp对象中可以添加第二个参数 “g”-global 可以检索字符串中所有的匹配值 一直到没有返回null
+								</li>
+								<li>compile():用于改变RegExp compile()jiky改变检索模式 也可以增加或删除第二个参数</li>
+							</ol>
+						</li>
+						<li>javascript对象: Window对象 表示浏览器窗口 是最顶层的对象， 当body、framese标签出现时自动创建</li>
+						<li> Navigator对象 包含客户端浏览器的信息</li>
+						<li>Screen对象 表示客户端显示端的信息</li>
+						<li> History对象 表示浏览器窗口访问过的url</li>
+						<li>Location对象 包含当前url的信息</li>
+						<li>HTML DOM：html文档对象模型 DOM：document object model</li>
+						<li>document对象 通过它访问DOM的各个节点</li>
+					</ul>
+				</li>
+				<li>javascript中var const let的区别：
+					<ul>
+						<li>var定义的变量可以修改 如果不初始化会输出undefined</li>
+						<li>const定义的变量不可以修改 必须初始化</li>
+						<li>let是块级作用域 函数内部使用let定义 对函数外部无影响</li>
+					</ul>
+				</li>
+				<li>js中的map遍历
+					<ul>
+						<li> map() 方法返回一个由原数组中的每个元素调用一个指定方法后的返回值组成的新数组。</li>
+						<li>map方法的作用不难理解，“映射”嘛，也就是原数组被“映射”成对应新数组。下面这个例子是数值项求平方：</li>
+						<li>
+							<pre>
+								var data = [1, 2, 3, 4];
+								var arrayOfSquares = data.map(function (item) {  return item * item;});
+								alert(arrayOfSquares);// 1, 4, 9, 16
+							</pre>
+						</li>
+					</ul>
+				</li>
+			</ol>
+		</div>
+		<div class="javascript2">
+			<ol>script高级语法：
+				<li>navigator对象：包含访问者浏览器的所有信息。它的属性有:appName 保存浏览器类型 appVersion 存有浏览器的版本信息</li>
+				<li>
+					<pre>
+						<script>
+							var browser = navigator.appName;
+							var browser_version = navigator.appVersion;
+							document.write("browser is :" + browser + "<br/>") //browser is :Netscape
+							document.write("browser_version is :" + browser_version + "<br/>") //browser_version is :5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+							document.write(parseFloat(browser_version) + "<br/>")
 						</script>
-						
-						<form action="submitpage.htm"onsubmit="return validate_form(this);" method="post">
-						Email: <input type="text" name="email" size="30">
-						<input type="submit" value="Submit"> 
+					</pre>
+				</li>
+				<li>cookie:作用是用于储存访问者的计算机中的变量 当同一台计算机访问页面时就会发送cookie。可以使用javascript来创建和取回cookie</li>
+				<li>cookie的类型有：名字cookie 比如同一页面在第二次登录时 会弹出“欢迎莫莫莫” 名字则是通过cookie取得的 <br>
+					日期cookie 比如页面可以获取你每次的登陆时间<br>
+					密码cookie 比如登录页面时密码框默认是上次输入的密码
+				</li>
+				<li>如何创建和获取cookie</li>
+				<li>demo
+					<pre>
+						<!-- <script> -->
+							//set cookie
+							function setCookie(c_name, value, expiredays) {
+								var exdate = new Date()
+								exdate.setDate(exdate.getDate() + expiredays)
+								document.cookie = c_name + "=" + escape(value) +
+									((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+							}
+							//检测是否已设置cookie
+							function getCookie(c_name) {
+								if (document.cookie.length > 0) {
+									c_start = document.cookie.indexOf(c_name + "=")
+									if (c_start != -1) {
+										c_start = c_start + c_name.length + 1
+										c_end = document.cookie.indexOf(";", c_start)
+										if (c_end == -1) c_end = document.cookie.length
+										return unescape(document.cookie.substring(c_start, c_end))
+									}
+								}
+								return ""
+							}
+							//如果cookie已经设置好  则在打开页面的时候显示已储存的名字  否则打开输入框继续输入
+							function checkCookie() {
+								username = getCookie('username')
+								if (username != null && username != "") {
+									alert('Welcome again ' + username + '!')
+								} else {
+									username = prompt('Please enter your name:', "")
+									if (username != null && username != "") {
+										setCookie('username', username, 365)
+									}
+								}
+							}
+						<!-- </script> -->
+					</pre>
+				</li>
+				<li>表单验证：javascript可以在数据送往服务器前对HTML中的数据进行验证<br>
+					验证的内容有：用户是否已填写表单中的必填项目 输入的邮箱地址是否合法 输入的日期是否合法 是否在数据域填写了文本等<br>
+					<pre>
+						<!-- 必填项  检测是否为空 为空则显示弹窗 返回false 否则则返回true 数据正确 -->
+						<script type="text/javascript">
+							function validate_required(field, alerttxt) {
+								with(field) {
+								if (value == null || value == "") {
+									alert(alerttxt);
+									return false
+								} else {
+									return true
+								}
+							}
+						}
+
+							function validate_form(thisform) {
+								with(thisform) {
+									if (validate_required(email, "Email must be filled out!") == false) {
+										email.focus();
+										return false
+									}
+								}
+							}
+						</script>
+						<form action="submitpage.htm" onsubmit="return validate_form(this)" method="post">
+							Email: <input type="text" name="email" size="30">
+							<input type="submit" value="Submit">
 						</form>
-		6.javascript动画:使用onmouseover onmouseout来调用不同的图片  利用document.pic.src=""来切换
-		7.javascript图像地图：把一幅图像分成多个区域，每个区域指向不同的URL地址。例如，将一幅中国地图的图像按照省市划分为若干个区域，这些区域就被称为热点，
-							 单击热点区域，就可以连接到与相应的省市有关的页面，这就是图像地图。
-		  如何制作图像地图：1、首先必须定义出图像上的各个热点区域的形状，位置坐标，及其指向的URL地址等信息，这个过程叫图像热点映射。
-		  					 图像热点映射需要使用<map name=mapname></map>标签对进行说明，其中的name属性为该图像热点映射指定了一个名称。
-						  2、图像热点映射中的各个区域用<area>标签说明，<area>标签的格式为：<area shape="形状" coords="坐标" href="URL">，
-							 href部分也可以用nohref替换，表示在该区域单击鼠标无效。<area>标签还可以有一个target属性，用来指明浏览器在哪个窗口或者帧中显示href属性所指向的网页资源。
-						  3、定义好了图像热点之后，接着就要在<img> 图像标签中增加一个名为usemap的属性设置，usemap属性指定该图像被用作图像地图，其设置值为所使用的图像热点映射名称，
-							 格式为：在<map>标签中的name属性设置值前多加一个"#"字符。例如，<img src="china.jpg" usemap="#mymap">
-		8.javascript计时：setTimeout("javascript语句",毫秒) 延迟n秒执行代码  clearTimeout()用来取消setTimeout()
-						  1000ms=1s
-		9.javascript创建自己的对象：<pre>
-										personObj=new Object()
-										personObj.firstname="John"
-										personObj.lastname="Doe"
-										personObj.age=50
-										personObj.eyecolor="blue"
-									</pre>				  
-	    10.创建对象的模板：<pre>
-							function person(firstname,lastname,age,eyecolor)
-							{
+
+						<!-- 检测邮箱地址是否正确 -->
+						<script type="text/javascript">
+							function validate_email(field, alerttxt) {
+								with(field) {
+									apos = value.indexOf("@")
+									dotpos = value.lastIndexOf(".")
+									if (apos < 1 || dotpos - apos < 2) {
+										alert(alerttxt);
+										return false
+									} else {
+										return true
+									}
+								}
+							}
+
+							function validate_form(thisform) {
+								with(thisform) {
+									if (validate_email(email, "Not a valid e-mail address!") == false) {
+										email.focus();
+										return false
+									}
+								}
+							}
+						</script>
+
+						<form action="submitpage.htm" onsubmit="return validate_form(this);" method="post">
+							Email: <input type="text" name="email" size="30">
+							<input type="submit" value="Submit">
+						</form>
+					</pre>
+				</li>
+				<li>javascript动画:使用onmouseover onmouseout来调用不同的图片 利用document.pic.src=""来切换</li>
+				<li>javascript图像地图：把一幅图像分成多个区域，每个区域指向不同的URL地址。例如，将一幅中国地图的图像按照省市划分为若干个区域，这些区域就被称为热点，
+					单击热点区域，就可以连接到与相应的省市有关的页面，这就是图像地图。</li>
+				<li>如何制作图像地图：1、首先必须定义出图像上的各个热点区域的形状，位置坐标，及其指向的URL地址等信息，这个过程叫图像热点映射。
+					图像热点映射需要使用&lt;map name=mapname&gt;&lt;/map&gt;标签对进行说明，其中的name属性为该图像热点映射指定了一个名称。</li>
+				<!-- <map name=mapname></map> -->
+				<li>图像热点映射中的各个区域用&lt;area&gt;标签说明，&lt;area&gt;标签的格式为：&lt;area shape=&quot;形状&quot; coords=&quot;坐标&quot;
+					href=&quot;URL&quot;&gt;,
+					<!-- <area shape="形状" coords="坐标" href="URL">， <area>-->
+					href部分也可以用nohref替换，表示在该区域单击鼠标无效。&lt;area&gt;标签还可以有一个target属性，用来指明浏览器在哪个窗口或者帧中显示href属性所指向的网页资源。</li>
+				<li>定义好了图像热点之后，接着就要在&lt;img&gt;图像标签中增加一个名为usemap的属性设置，usemap属性指定该图像被用作图像地图，其设置值为所使用的图像热点映射名称，
+					格式为：在&lt;map&gt;标签中的name属性设置值前多加一个"#"字符。例如，&lt;img src=&quot;china.jpg&quot; usemap=&quot;#mymap&quot;&gt;
+					<!-- <img src="china.jpg" usemap="#mymap"> -->
+				</li>
+				<li>javascript计时：setTimeout("javascript语句",毫秒) 延迟n秒执行代码 clearTimeout()用来取消setTimeout()
+					1000ms=1s</li>
+				<li>javascript创建自己的对象：<br>
+					<pre>
+						personObj=new Object()
+						personObj.firstname="John"
+						personObj.lastname="Doe"
+						personObj.age=50
+						personObj.eyecolor="blue"
+					</pre>
+				</li>
+				<li>创建对象的模板：<br>
+					<pre>
+						function person(firstname,lastname,age,eyecolor){
 							this.firstname=firstname
 							this.lastname=lastname
 							this.age=age
 							this.eyecolor=eyecolor
-							}
+						}
+					</pre>
+				</li>
+			</ol>
+		</div>
+
+		<div class="jquery">
+			JQuery Demo:
+			<ul class="list1">
+				<li>dhgdsgg</li>
+				<li>dhgdsgg</li>
+				<div class="mask">dvvdsa</div>
+			</ul>
+			<ul class="list2">
+				<li>dhgdsgg</li>
+				<li>dhgdsgg</li>
+				<div class="mask">dvvdsa</div>
+			</ul>
+
+			<ol>
+				<li>获取标签：$('div')</li>
+				<li>获取元素可以根据标签获取 类名获取 id获取</li>
+				<li>$('.list1')下的子元素有li和div $(this).</li>
+				<li>JQuery的点击事件写法有两种 $(this).on("hover",function(){}) 和 $(this).hover(function(){})</li>
+				<li>JQuery的引入方式：使用cdn引入 （百度静态资源库）；使用npm安装 npm install jquery</li>
+				<li>jquery的ready（）方法：当 DOM（文档对象模型） 已经加载，并且页面（包括图像）已经完全呈现时，会发生 ready 事件。
+					注意不能与&lt;body onload=&quot;&quot;&gt;一起使用</li>
+				<!-- <body onload=""></body> -->
+				<li>允许使用的三种使用方法 $(document).ready(function(){}) 、$().ready(function(){})、 $(function)</li>
+			</ol>
+		</div>
+
+		<div class="git">
+			<ol>git
+				<li>
+					<pre>
+						git
+						git remote add origin git@github.com:simple1224/study_note.git
+						git push -u origin master
+				
+						echo "# test-" >> README.md
+						git init
+						git add README.md
+						git commit -m "first commit"
+						git remote add origin git@github.com:simple1224/study_notes.git
+						git push -u origin master
+						*************************************************************************************
+						vscode 插件
+						1.snippet-creator 代码片段
+						2.background 设置背景
+						*************************************************************************************
+						git的常用命令：git log 可以查看git的提交次数已经提交时间
+						git reset --hard HEAD^ (HEAD表示git中的版本号 HEAD^表示回滚到上一个版本 HEAD^^表示回滚到上上个版本 以此类推。前一百个版本是HEAD~100)
+						git branch home 创建并切换到home分支
+						git checkout master 切换到主分支
+						git checkout -b home 创建并切换到home分支
+						git push origin home 提交到home分支
+						git merge home 把home分支合并到主分支上
 						</pre>
+				</li>
+			</ol>
+		</div>
+
+		<div class="ps">
+			<ol>PS：
+				<li>alt+shift 设置整体图片放大缩小</li>
+				<li>ctrl+n 新建一个窗口</li>
+				<li>ctrl+shifit+alt+s 保存图片</li>
+				<li>crtl+shift+c 复制图片</li>
+				<li>截取不规整的图片时，设置规格为png-24，可以不带背景的显示</li>
+				<li>截取大的背景图片时，选择格式为jpeg 降低品质可以压缩图片,每张图片的大小不能超过150k</li>
+				<li>撤销多步：ctrl+alt+z</li>
+				<li>取消撤销：ctrl+shift+z</li>
+				<li>.压缩图片：https://tinypng.com/</li>
+
+				常用快捷键：
+				<li>v 是移动模式</li>
+				<li>t 文字编辑模式</li>
+				<li>c 切片模式</li>
+				<li>i 吸管模式</li>
+				<li>m 矩形选择模式</li>
+				<li>alt+拖动 可以复制图层</li>
+				<li>ctrl+e 合并图层</li>
+				<li>alt+delete 填充背景色（黑）</li>
+				<li>ctrl+delete 填充背景色（白）</li>
+				<li>ctrl+T 对选中的图层进行缩放 按住shift即可等比缩放</li>
+			</ol>
+		</div>
+
+		<div class="another">
+			<ol>其他
+				<li>http和https的区别：
+					<ul>
+						<li>HTTP：超文本传输协议。是互联网上应用最为广泛的一种网络协议，是一个客户端和服务器端请求和应答的标准（TCP），用于从WWW服务器传输超文本到本地浏览器的传输协议，
+							它可以使浏览器更加高效，使网络传输减少。</li>
+						<li>
+							HTTPS：是以安全为目标的HTTP通道，简单讲是HTTP的安全版，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。
+						</li>
+						<li>HTTPS协议的主要作用可以分为两种：一种是建立一个信息安全通道，来保证数据传输的安全；另一种就是确认网站的真实性。</li>
+						<li>主要的区别是前者是明文传送 数据不安全。后者有公钥和私钥加密传输 更安全。但不是绝对安全。SEO方面搜索的排名更加靠前。</li>
+					</ul>
+				</li>
+				<li>http://www.css88.com/tool/html-escape/ html文本转义网站</li>
+				<li>转义字符：&it;表示:</li>
+			</ol>
+		</div>
+
+		<div class="anthor2">
+			<ol>其他2
+				<li> ES6:
+					<ul>
+						<li>常量 作用域 箭头函数 默认函数 对象代理</li>
+					</ul>
+				</li>
+				<li>设置服务器
+					<ul>
+						<li>window下输入iis -> 选择网站，127.0.0.1</li>
+						<li>然后选择右侧的基本设置 -> 连接具体的物理地址</li>
+					</ul>
+				</li>
+				<li>新建一个项目：
+					<ol>
+						<li>div.wrapper->div.bg+div.content->div.main <br>
+							设置背景为居中，使得改变窗口大小时不发生紊乱 <br>
+							设置wrapper为相对定位 宽度为100%，设置content为绝对定位，top和left为0，使其与最外层的框齐平。为main设置一个宽度 使内容居中显示 <br>
+						</li>
+						<li>无跳转地址时，&lt;a href=&quot;javascript:;&quot;&gt;&lt;/a&gt;
+							<!-- <a href="javascript:;"></a> -->
+						</li>
+						<li>为每一个a标签添加onclick="PTTSendClick('btn','wg_logo标签的作用','wegame跳转到的页面');"做按钮上报</li>
+						<li>在页面的最下面写页面详情</li>
+						<li>//game.gtimg.cn/images/qhyx/cp/a20180627gmcy/</li>
+					</ol>
+				</li>
+			</ol>
+			<pre>
+				<!-- <script> -->
+					//此段代码不能放到外链JS中，
+					var setSite = { //设置网站属性
+						siteType: "a20180626gmcy", //必填项:"os"代表是官网，如果不是，则填写actName例如a20160701xxx
+						pageType: "index", //必填项:本页面的定位；按照页面含义填写例如main||list||    detail||download||share||page1||pageN
+						pageName: "首页", //必填项:页面中文名
+						project: "", //选填项:如果是官网模块则是必填;按照模块内容，填写固定的对应值;原生官网base;微社区ingame;同人站doujin;赛事match;故事站story;文化站history;粉丝站fans;爆料站coming;论坛bbs;
+						osact: 0, //选填项:是否是官网专题(在官网运营的专题)boolean；默认是0；可以在链接上加入参数osact=1来灵活设置
+						stayTime: 0, //选填项:是否需要统计停留时长boolean；默认是0
+					};
+					if (typeof (pgvMain) == 'function') pgvMain(); //千万不能忘记！
+				<!-- </script> -->
+				</pre>
+		</div>
+
+		<!-- 打字技巧 -->
+		<div class="write">
+			<ol>write
+				<li>用左手小指键入“Q”，“A”和“Z”，并用小指按tab键，大写锁定键和shift键。</li>
+				<li>用左手无名指键入“W”，“S”和“X”键。</li>
+				<li>用左手中指键入“E”，“D”和“C”键。</li>
+				<li>用左手食指键入“R”，“F”，“V”，“B”，“G”和“T”键。</li>
+				<li>你的大拇指绝不能离开空格键。</li>
+				<li>用右手食指键入“U”，“J”，“N”，“M”，“H”和“Y”键。</li>
+				<li>用右手用中指输入“I”，“K”以及带有“，”和“<”的键。 用右手无名指键入“O”，“L”以及带有“>”和“。”的键。</li>
+				<li>你的右手小指用来打出“P”，“；”，“：”，““，””（引号），“/”，“？”，“[”，“{”，“]”，“}”，“\”，“|”，并用于键入shift键、回车键和退格键。</li>
+				<!-- asdfjkl、 ASSSSDFJKL?ASDFAasASSDFASDFASDADFkASDFASDFASDFASDFASDFJKL：
+					A quick brown fox jumps over the lazy dog
+					A quick brow n fox jum ps over the lazy dog
+					A quick brown fox jumps over the l az dog
+					womebfhi sdshihhs
+					1015 -->
+			</ol>
+
+		</div>
 	</div>
 
-	<div class="css">
-		css:
-		1.!important 在元素样式的末尾加 表示最高的优先权  ie6不支持。
-		2.设置字与字之间的间隔：letter-space
-		3.设置文字加粗：font-weight：bold
-		4.设置下划线：a.加入s标签 b.设置text-decoration:underline
-		5.设置微软雅黑字体：font-family: "Microsoft YaHei"!important;
-		6.雪碧图的合成：https://www.toptal.com/developers/css/sprite-generator
-		7.把网页x轴的滚动条去掉实现改变浏览器的宽度内容背景跟着变化：
-		  给body添加overflow-x:hidden  或者为最大的div添加min-width:;
-		8.opacity改变透明度 1是正常显示  .1表示透明 
-		9.一个div的居中 可以用left和margin-left实现
-		e.g. 设置div的width:300px;left:50%;margin-left:-150px;就可以实现
-		10.设置div倾斜显示 
-			transform: skew(-8deg,-11deg);；
-			 -webkit-transform: rotate(45deg);    /* for Chrome || Safari */
-			-moz-transform: rotate(45deg);       /* for Firefox */
-			-ms-transform: rotate(45deg);        /* for IE */
-			-o-transform: rotate(45deg);
-		}
-		11.清除input的默认样式
-		input{
-			display: block;
-			width: 234px;
-			outline: none;
-			border: 0px;
-			font-size: 48.01px;
-			color: #0d889c;
-			margin: 0 auto;
-			text-align: center;
-			background: rgba(0,0,0,.0);
-		}
-		input::-webkit-outer-spin-button,
-		input::-webkit-inner-spin-button {
-		  -webkit-appearance: none;
-		}
-		input[type="number"]{
-		  -moz-appearance: textfield;
-		}
-		
-		input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
-			/* WebKit browsers */ 
-		   color: #0d889c; 
-		   } 
-		   input:-moz-placeholder, textarea:-moz-placeholder { 
-		   /* Mozilla Firefox 4 to 18 */ 
-		   color: #0d889c; 
-		   } 
-		   input::-moz-placeholder, textarea::-moz-placeholder { 
-			/* Mozilla Firefox 19+ */ 
-		   color: #0d889c; 
-		   } 
-		   input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
-			/* Internet Explorer 10+ */ 
-		   color: #0d889c; 
-		   } 
-		12.停止css动画： animation-play-state:paused !important;
-						-webkit-animation-play-state:paused !important;
-		13.隐藏和显示：可以用display（none/block）和opacity(0/1)
-		14.filter: brightness(126%);  改变图片的亮度 filter函数可以修改很多东西 比如亮度 模糊 旋转 透明度等
-		15.解决h5图片显示问题：使图片百分百显示   ① background: url(../images/pic2.png) no-repeat center/100%;      background: url(../images/btn-sprite.png) no-repeat center/3.22rem 3.35rem;
-	</div>
-
-	<div class="css3">
-		lorem用于添加无用的代码
-			<a href="https://www.w3cschool.cn/tools/index?name=circularbead">CSS3 圆角生成器</a>
-		1.transform:rotate(30deg) 旋转30度
-		2.css3被划分为模块：包括选择器 框模型  背景和边框  文本效果	2D/3D转换  动画 多列布局  用户界面
-		3.边框： border-radius： 创建圆角边框 （border:2px solid;border-radius:25px;） transparent透明
-				border-radius:a b c d; 四个值依次是左上 右上 右下 左下；如果是三个值则表示左上 右上右下 左下；如果是两个值则表示左上右上 左下右下 
-				椭圆表示为：border-radius：50%； 如果给某个角弧度 border-top-left-radius：表示左上角 border-bottom-left-radius：表示左下角
-				box-shadow: 给矩形添加阴影 (box-shadow: 10px 10px 5px #888888;)
-				border-image 使用图片来绘制边框
-		4.背景：background-size：设置背景图片的大小 （单位可以是px和百分比  所设置的高和宽是相对于父元素来说的）（background:url(bg_flower.gif);background-size:63px 100px;）
-								background-size: length|percentage|cover|contain;
-				background-origin:设置背景图片的定位区域（背景图片可以放置于 content-box、padding-box 或 border-box 区域。）
-								background-origin: padding-box|border-box|content-box;
-				background-clip:从指定位置开始绘制背景 （content-box、padding-box和border-box这个属性）
-								background-clip: border-box|padding-box|content-box;
-				background-image:添加背景图片  可以添加多个图片 最顶部显示第一张
-				e.g.div{
-					background-image: url(img_flwr.gif), url(paper.gif); 
-					background-position: right bottom, left top; 
-					background-repeat: no-repeat, repeat; 
-				}
-		5.渐变：包括线性渐变和径向渐变
-				线性渐变（Linear Gradients）：向下/向上/向左/向右/对角方向
-											从上到下渐变：background: linear-gradient(red, blue); 
-											从左到右渐变：background: linear-gradient(to right, red , blue); 
-											对角渐变（左上到右下）：background: linear-gradient(to bottom right, red , blue);
-											角度渐变： background: linear-gradient(180deg, red, blue); （odeg是从上到下 180deg是从下到上 90deg是从左到右）
-											使用透明度渐变：background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));
-											重复的线性渐变：  background: repeating-linear-gradient(red, yellow 10%, green 20%); 
-				径向渐变（Radial Gradients）：有他们的中心定义  默认情况下，渐变的中心是 center（表示在中心点），渐变的形状是 ellipse（表示椭圆形），渐变的大小是 farthest-corner（表示到最远的角落）。
-											颜色分布均匀：background: radial-gradient(red, green, blue); 
-											颜色分布不均匀： background: radial-gradient(red 5%, green 15%, blue 60%);
-											设置形状：可以是circle和ellipse   background: radial-gradient(circle, red, yellow, green); 
-											不同尺寸大小关键字的使用：closest-side farthest-side closest-corner farthest-corner(默认)
-											重复的径向渐变： background: repeating-radial-gradient(red, yellow 10%, green 15%); 
-		6.文本效果：text-shadow：为文本添加阴影 text-shadow: h-shadow v-shadow blur color; (属性依次是水平阴影位置 垂直阴影位置 模糊的距离 颜色（前两个为必填）)	
-					text-overflow：属性指定当文本溢出包含它的元素，应该发生什么。text-overflow: clip|ellipsis|string; （修剪文本 显示省略号来显示被修剪的文本 使用给定字符串来代表被修剪的文本）
-					box-shadow:用于盒子阴影 box-shadow: 10px 10px 5px grey;								
-					css3的自动换行：word-wrap:break-word 
-								   word-break: normal|break-all|keep-all; （使用浏览器默认的换行规则  允许在单词内换行 只能在半角空格或连字符处换行）
-		7.字体：引入自己要用的字体
-		@font-face{
-		   font-family: myFirstFont;
-		   src: url(sansation_light.woff);
-		}
-		8.2D转换： transform属性：用于2D或3D转换 transform-origin：允许转换元素的位置
-				 translate() rotate() scale() skew() matrix()
-				 rotate()方法，在一个给定度数顺时针旋转的元素。负值是允许的，这样是元素逆时针旋转。  transform: rotate(30deg); 
-				 translate()方法，根据左(X轴)和顶部(Y轴)位置给定的参数，从当前元素位置移动。transform: translate(50px,100px); 从元素的左边移动50px 从上边移动100px
-				 scale()方法，该元素增加或减少的大小，取决于宽度（X轴）和高度（Y轴）的参数：transform: scale(2,4); 表示宽增加两倍 高增加4倍
-				 skew() 方法：包含两个参数值，分别表示X轴和Y轴倾斜的角度，如果第二个参数为空，则默认为0，参数为负表示向相反方向倾斜。
-							   skewX( );表示只在X轴(水平方向)倾斜。
-							   skewY( );表示只在Y轴(垂直方向)倾斜。 
-							   skew(30deg,20deg) 是元素在X轴和Y轴上倾斜20度30度。
-							   matrix 方法有六个参数，包含旋转，缩放，移动（平移）和倾斜功能。
-				<a href="https://www.w3cschool.cn/tools/index?name=css3_transform">CSS3 transform(变形)和transform-origin(变形原点)调试工具</a>
-		9.3D转换：rotateX()方法，围绕其在一个给定度数X轴旋转的元素。
-				 rotateY()方法，围绕其在一个给定度数Y轴旋转的元素。
-				 translateZ(z):定义 3D 转化，仅使用用于 Z 轴的值。
-				 scale3d(x,y,z):定义 3D 缩放转换。
-				 scaleX(x):定义 3D 缩放转换，通过给定一个 X 轴的值。
-				 scaleX(y):定义 3D 缩放转换，通过给定一个 Y 轴的值。
-				 scaleX(z):定义 3D 缩放转换，通过给定一个 Z 轴的值。
-				 rotate3d(x,y,z,angle):定义 3D 旋转。
-				 rotateX(angle):定义沿 X 轴的 3D 旋转。
-				 rotateY(angle):定义沿 Y 轴的 3D 旋转。
-				 rotateZ(angle):定义沿 X 轴的 3D 旋转。
-				 perspective(n):定义 3D 转换元素的透视视图。
-				 matrix3d(n,n, n,n,n,n ,n,n,n ,n,n,n, n,n,n,n ):定义 3D 转换，使用 16 个值的 4x4 矩阵。
-		10.css过渡：CSS3中，我们为了添加某种效果可以从一种样式转变到另一个的时候，无需使用Flash动画或JavaScript。
-			e.g. div { 
-					width:300px;
-					height:200px;
-					transition: width 2s, height 2s, transform 2s; 
-				 }  
-				 div:hover{
-					 width:200px;
-					 height:100px;
-					 transform: rotate(180deg);
-				 }
-		11.css动画：CSS3，我们可以创建动画，它可以取代许多网页动画图像，Flash动画，和JavaScripts。
-			CSS3 @keyframes 规则：@keyframes规则是创建动画。 @keyframes规则内指定一个CSS样式和动画将逐步从目前的样式更改为新的样式。
-			写动画的分为两步：1规定动画的名称 时长 animation: myfirst 5s;
-						 2运用keyframes法则来规定变化的方式
-						 e.g.  .box2{
-							width: 200px;
-							height: 200px;
-							animation: first 5s;
-							background: lightpink;
-						}
-						@keyframes first{
-							from{background: lightpink;}
-							to{background: lightgreen;}
-						}
-			动画的属性：@keyframes 规定动画
-						animation 动画属性的简写形式
-						animation-name 动画的名称
-						animation-duration 规定动画完成一个周期的时间（秒/毫秒） 默认为0
-						animation-timing-functionm 规定动画的运动曲线（默认为ease 缓慢的开始 然后快 结束慢）linear 动画匀速进行
-						animation-delay 动画从何时开始 （默认为0）
-						animation-iteration-count 规定动画被播放的次数 （默认为1）
-						animation-direction （默认值normal 动画正常播放） alternate 先执行一遍动画 再反向执行一遍
-						animation-play-state 规定动画是否正在运行 或 暂停（默认为running）
-		12.css多列：通过 CSS3，您能够创建多个列来对文本进行布局 - 就像报纸那样，您可以收藏文章，需要用到的时候看一看。
-					相应的属性有:
-					column-count属性指定元素的列数应分为几列 column-count:3;
-					column-gap属性指定的列之间的差距 column-gap:40px;
-					column-rule属性设置列之间的宽度，样式和颜色。column-rule:3px outset #ff00ff;
-					column-fill属性规定如何填充 auto 列顺序填充，他们将有不同的长度 / balance 列长短平衡。浏览器应尽量减少改变列的长度
-					column-span指定一个元素应该横跨多少列 column-span:all;（默认是1 ）
-					column-width指定列的宽度 column-width：100px;
-					columns缩写属性设置列宽和列数 columns:100px 3;
-		13.css用户界面：属性有resize、box-sizing、outline-offset 
-						resize:指定一个元素是否是由用户调整大小的。	resize: none|both|horizontal|vertical:
-						box-sizing 属性允许您以确切的方式定义适应某个区域的具体内容。box-sizing: content-box|border-box|inherit:
-						原来的盒子模型 所有的margin padding border都不算在整个的宽高内
-						box-sizimg就是用来改变盒子模型宽高的计算模式 content-box就是默认和以前的盒子模型计算模式一样
-																  border-box就是将padding border算到宽高里 
-																  inherit 指定box-sizing属性的值，应该从父元素继承
-						outline-offset 属性对轮廓进行偏移，并在超出边框边缘的位置绘制轮廓。(特点：轮廓不占用空间 可能是非矩形) outline-offset: length|inherit:
-		14.css图片：圆角图片 img {border-radius: 8px;}
-				    椭圆图片 img {border-radius: 50%;}
-					椭圆图片 img {border-radius: 8px;}
-					自适应图片img {max-width: 100%;height: auto;}
-		15.css按钮：鼠标悬停按钮 .button{transition-duration:0.4s;}
-								.button:hover{background-color:white;}
-		16.css3多媒体查询：<link rel="stylesheet" media="mediatype and|not|only (expressions)" href="print.css">
-							<!-- 屏幕可视窗口大于480px时的背景 -->
-							@media screen and (min-width: 480px) {
-								body {
-								   background-color: lightgreen;
-								}
-							<!-- 否则背景为粉色 -->
-							body {
-								background-color: pink;
-							}
-		
-	</div>
-	<div class="css伪类">
-		1.css伪类分为：锚伪类  a:link {color: #FF0000}		/* 未访问的链接 */
-							 a:visited {color: #00FF00}	/* 已访问的链接 */
-							 a:hover {color: #FF00FF}	/* 鼠标移动到链接上 */
-							 a:active {color: #0000FF}	/* 选定的链接 */
-							注意：伪类的顺序应为link--visited--hover--focus--active。（即1.在CSS 定义中，a:hover 必须位于 a:link 和 a:visited 之后，这样才能生效！
-								  2.在 CSS 定义中，a:active 必须位于 a:hover 之后，这样才能生效！）
-					  伪类与CSS类：a.red：visited{color:red;}
-								  <div class="red"><a href="//baidu.com">点击here</a></div>
-					  :first-child伪类: 不是特指父元素下顺序第一的元素 而是所有出现第一次的元素 
-					  					要指定某个元素的第一个元素
-					  					p:first-child {font-weight: bold;}
-					  :lang 伪类使你有能力为不同的语言定义特殊的规则。在下面的例子中，:lang 类为属性值为 no 的 q 元素定义引号的类型：(可以加入特殊符号等)
-					  ：focus 向拥有键盘输入焦点的元素添加样式。
-		2.css伪元素： 
-					:first-line 用于设置文本的首行 (注:只可以用于块元素)
-					:first-letter 伪元素用于向文本的首字母设置特殊样式：
-					font-variant:small-caps;  /*改为小型的大写字母*/
-					多重伪元素：多个伪元素叠加利用
-					:before 在元素的内容前面插入一幅图片 h1:before{content:url(logo.gif);}
-					:after 在元素的内容后面插入一幅图片 h1:after{content:url(logo.gif);}
-					注：伪类对象不会出现在DOM中，所以不能通过js来操作，仅仅是在 CSS 渲染层加入
-		3.:before和::before的区别 
-				相同点：1都是伪元素 用来设置对象前的内容
-					   2两者的写法是等效的
-				不同点：前者是css2的写法 后者是css3的写法 
-					   前者的兼容性更好 在H5开发中::before更适合
-				注意：伪类对象要配合content属性使用
-					 伪类元素不出现在DOM结构中 所以不可以用js控制
-					 伪类对象的特效一般用:hover样式来激活  .test:hover::before { /* 这时animation和transition才生效 */ }
-	</div>
-	<div class="hack">
-		CSS hack技术：不同的浏览器对于css样式的解析不同。为了实现在不同浏览器可以实现相同效果做的处理叫做hack.
-		1.属性前缀法(即类内部Hack)  *html *前缀只对IE6生效
-								  *+html *+前缀只对IE7生效
-								  @media screen\9{...}只对IE6/7生效
-								  @media \0screen {body { background: red; }}只对IE8有效
-								  @media \0screen\,screen\9{body { background: blue; }}只对IE6/7/8有效
-								  @media screen\0 {body { background: green; }} 只对IE8/9/10有效
-								  @media screen and (min-width:0\0) {body { background: gray; }} 只对IE9/10有效
-								  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {body { background: orange; }} 只对IE10有效
-	2.条件注释：
-	<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.js"></script> ------解决ie9以下浏览器对html5新增标签的不识别，并导致CSS不起作用的问题
-	<script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>------让不支持css3?Media Query的浏览器包括IE6-IE8等其他浏览器支持查询。
-	3.不同浏览器兼容的代码:
-	/*Mozilla内核浏览器：firefox3.5+*/
-	? -moz-transform: rotate | scale | skew | translate ;
-
-	?/*Webkit内核浏览器：Safari and Chrome*/
-	? -webkit-transform: rotate | scale | skew | translate ;
-
-	?/*Opera*/
-	? -o-transform: rotate | scale | skew | translate ;
-
-	?/*IE9*/
-	? -ms-transform: rotate | scale | skew | translate ;
-	
-	?/*W3C标准*/
-	? transform: rotate | scale | skew | translate ;
-							  
-	</div>
-	<div class="ps">
-		PS：
-		1.alt+shift 设置整体图片放大缩小
-		2.ctrl+n 新建一个窗口
-		3.ctrl+shifit+alt+s 保存图片
-		4.crtl+shift+c 复制图片
-		5.截取不规整的图片时，设置规格为png-24，可以不带背景的显示
-		6.截取大的背景图片时，选择格式为jpeg 降低品质可以压缩图片,每张图片的大小不能超过150k
-		7.撤销多步：ctrl+alt+z
-		9.取消撤销：ctrl+shift+z
-		10.压缩图片：https://tinypng.com/
-		
-		常用快捷键：
-				  v 是移动模式
-				  t 文字编辑模式
-				  c 切片模式
-				  i 吸管模式
-				  m 矩形选择模式
-				  alt+拖动  可以复制图层
-				  ctrl+e 合并图层
-				  alt+delete 填充背景色（黑）
-				  ctrl+delete 填充背景色（白）
-				  ctrl+T 对选中的图层进行缩放  按住shift即可等比缩放
-			
-	</div>
-
-	<div class="git">
-		git
-		git remote add origin git@github.com:simple1224/study_note.git
-		git push -u origin master
-		
-		echo "# test-" >> README.md
-		git init
-		git add README.md
-		git commit -m "first commit"
-		git remote add origin git@github.com:simple1224/study_notes.git
-		git push -u origin master 
-		*************************************************************************************
-		vscode 插件
-		1.snippet-creator  代码片段
-		2.background  设置背景 
-		*************************************************************************************
-		git的常用命令：git log 可以查看git的提交次数已经提交时间
-					  git reset --hard HEAD^ (HEAD表示git中的版本号 HEAD^表示回滚到上一个版本 HEAD^^表示回滚到上上个版本 以此类推。前一百个版本是HEAD~100)
-					  
-	</div>
-	<!-- 打字技巧 -->
-	<div class="write">
-		用左手小指键入“Q”，“A”和“Z”，并用小指按tab键，大写锁定键和shift键。
-		用左手无名指键入“W”，“S”和“X”键。
-		用左手中指键入“E”，“D”和“C”键。
-		用左手食指键入“R”，“F”，“V”，“B”，“G”和“T”键。
-		你的大拇指绝不能离开空格键。
-		用右手食指键入“U”，“J”，“N”，“M”，“H”和“Y”键。
-		用右手用中指输入“I”，“K”以及带有“，”和“<”的键。
-		用右手无名指键入“O”，“L”以及带有“>”和“。”的键。
-		你的右手小指用来打出“P”，“；”，“：”，““，””（引号），“/”，“？”，“[”，“{”，“]”，“}”，“\”，“|”，并用于键入shift键、回车键和退格键。
-		 asdfjkl、 ASSSSDFJKL?ASDFAasASSDFASDFASDADFkASDFASDFASDFASDFASDFJKL：：
-		 A quick brown fox jumps over the lazy dog
-		 A quick  brow n  fox jum ps over the lazy dog
-		 A quick brown fox jumps over the l  az dog
-		womebfhi sdshihhs
-		1015
-	</div>
+	<script>
+		$('ol').addClass('h3')
+		$('li').addClass('h4')
+	</script>
 </body>
+
 </html>
-
-
-
-
-
-
