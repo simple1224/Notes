@@ -46,9 +46,58 @@
             </li>
             <li>每个组件都必须声明在（且只能声明在）一个 NgModule 中。在app.module.ts导入各个组件，在@NgModule.declarations 数组中声明。</li>
             <li>
-                路由：1import路由的包2.创建路由对象3.调用对象 实现跳转  this.router.navigateByUrl("work") 4.配置路由的路径 app-routing.module.js
+                路由：1import路由的包2.创建路由对象3.调用对象 实现跳转 this.router.navigateByUrl("work") 4.配置路由的路径 app-routing.module.js
             </li>
         </ol>
+
+        <ol>angular项目文件夹的作用
+            <li>e2e:测试目录 做测试</li>
+            <li>scr:应用源代码目录</li>
+            <li>editorconfig:代码编辑器的配置文件</li>
+            <li>gitiggnore:git的配置文件 哪些文件不提交到git仓库</li>
+            <li>angular.json:是angualr命令行的配置文件。引入第三方的文件 要在这里配置</li>
+            <li>package.json:标准的npm工具的配置文件 写明了项目所需的所有依赖文件</li>
+            <li>tsconfig.json：typescript编译器配置 </li>
+        </ol>
+
+        <ol>src目录
+            <li>app:包含应用的组件和模块</li>
+            <li>assets:存放静态资源（图片）</li>
+            <li>environments:环境配置 angular是支持多环境开发。可以在开发环境/测试环境/生产环境共用一套代码
+                把接口地址等写在这里配置
+            </li>
+            <li>favicon.ico：图标文件</li>
+            <li>karma.conf.js：集成测试</li>
+            <li>index.html：是整个应用的根HTML。 是项目启动访问的第一个文件</li>
+            <li>main.js:整个Web应用的入口点 脚本的执行的入口点 </li>
+            <li>ployfills.ts:导入一些库 是angular可以运行在一些老版本上</li>
+            <li>styles.css：放应用于全局的样式</li>
+            <li>test.ts:自动化测试 跟karma类似</li>
+        </ol>
+
+        <ol>
+            <li>组成一个angular项目 ：至少需要一个模块和一个组件 </li>
+            <li>app.module.ts:是一个模块</li>
+            <li>app.component.ts：是一个组件。是整个应用的基础 </li>
+            <li>组件包括：
+            <li>组件元数据装饰器（@Component）：告知angular怎么处理一个ts类.他有多个属性 叫做元数据。
+                angular根据元数据的值渲染组件并执行组件的逻辑</li>
+            <li>Template：用模版定义组件的外观 以html的形式存在 告诉angular怎么渲染组件
+                可以通过命令和控制器进行数据绑定
+            </li>
+            <li>控制器：一个普通的typescript类 包括所有的属性和方法</li>
+            </li>
+        </ol>
+
+        <ol>安装类型描述文件：(在package.json中引入jquery后 ts文件不识别$)
+            <li>npm install @types/jquery --save-dev</li>
+            <li>npm install @types/bootstrap --save-dev</li>
+        </ol>
+        
+        <ol>常用命令
+            <li>ng g component navbar :新建一个导航组件</li>
+        </ol>
+
     </div>
 </body>
 

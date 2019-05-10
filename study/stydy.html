@@ -99,6 +99,38 @@
 				<li>解决h5图片显示问题：使图片百分百显示 ① background: url(../images/pic2.png) no-repeat center/100%; background:
 					url(../images/btn-sprite.png) no-repeat center/3.22rem 3.35rem;</li>
 				<li>lorem用于添加无用的代码</li>
+				<li>清除input type为number的小三角 
+					<pre>
+						input::-webkit-outer-spin-button,
+						input::-webkit-inner-spin-button {
+							-webkit-appearance: none;
+						}
+						input[type="number"] {
+							-moz-appearance: textfield;
+						}
+					</pre>
+				</li>
+				<li>">>>"深度选择器</li>
+			</ol>
+			<ol>css文字超出显示
+				<li>
+					文字一行展示，多余显示....
+					<pre>
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					</pre>
+				</li>
+				<li>
+					设置文字显示几行，多余....显示
+					<pre>
+						overflow: hidden;
+						text-overflow: ellipsis;
+						display: -webkit-box;
+						-webkit-line-clamp: 2;
+						-webkit-box-orient: vertical;
+					</pre>
+				</li>
 			</ol>
 		</div>
 		<div class="css layout">

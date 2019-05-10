@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      About 表单组件
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<!-- 表单组件 -->
+<ion-list>
+    <ion-item>
+      <ion-label>标签德国和使得公司电话</ion-label>
+      <ion-input type="number" value="123"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label fixed>next打算啥时候的事</ion-label>
+        <ion-input type="text" value="请输入文本"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>next[2</ion-label>
+        <ion-input type="number" pattern="[0-9]*" value="请输入0~9的数字"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label floating>Website</ion-label>
+    <ion-input type="number" pattern="[0-9]*" value="请输入0~9的数字"></ion-input>
+    </ion-item>
+ </ion-list>
+
+<!-- 单选按钮 -->
+<!-- 在 ion-list 标签上使用 radio-group 指令，表示其内部的 ion-radio 为同一组。
+借助 ion-list-header 放置这一组选项的标题。 -->
+<!-- 主要属性与 input[type=radio] 一样，有 checked、disabled和value这三个属性。 -->
+ <ion-list radio-group>
+  <ion-list-header>请选择：</ion-list-header>
+  <ion-item>
+    <ion-label>选项1</ion-label>
+    <ion-radio value="1" checked></ion-radio>
+  </ion-item>
+  <ion-item>
+    <ion-label>选项2</ion-label>
+    <ion-radio value="2"></ion-radio>
+  </ion-item>
+</ion-list>
+</ion-content>
+

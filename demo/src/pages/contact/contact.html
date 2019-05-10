@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Contact
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div *ngFor="let item of data">{{item}}</div>
+    <div *ngFor="let item of data1">{{item.name}}</div>
+	<!-- 列表渲染 指令 item-end 将指定的元素渲染在条目的尾部 -->
+	<!-- 在angular中，*ngFor 和 *ngIf 不能放置在同一个标签上(Vue之类的框架则可以)，
+		因此在 ion-item 外加上一个“虚拟”的标签 ng-container, 它自身不会被渲染到DOM中,
+		只会渲染它包裹的内容 -->
+    <ion-list>
+		<ng-container *ngFor="let item of data1">
+        	<ion-item  *ngIf="item.gender===1">
+            	<!-- <ion-avatar  item-start>
+            	    <img src="{{item.avatar}}">
+            	</ion-avatar> -->
+          		<h2> {{item.name}}</h2>
+          		<p>{{item.description}}</p>
+          		<p item-end>{{item.gender?'男':'女'}}, {{2018 - item.birthYear}} 岁</p>
+			</ion-item>
+		</ng-container>
+      </ion-list>
+</ion-content>

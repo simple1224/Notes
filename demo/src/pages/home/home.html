@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- ion-button 是一个内置指令 -->
+  <!-- [navPush] 指令 实现简单的页面跳转-->
+  <button ion-button [navPush]="testPage">喜欢我就点我呀</button>
+  <!-- 方式2的步骤2 -->
+  <button ion-button (click)="pushTestPage()">喜欢我就点我呀</button>
+</ion-content>

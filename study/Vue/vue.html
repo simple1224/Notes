@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Vue的学习笔记</title>
+</head>
+
+<body>
+	<ol>
+		vue如何创建新项目
+		<li>vue create new-project </li>
+	</ol>
+	<ol>vue中如何使用less
+		<li>安装less:
+			npm install less
+			npm install less less-loader
+		</li>
+		<li>在webpack.base.conf.js中添加rules对象：
+			{
+			test: /\.less$/,
+			loader: "style-loader!css-loader!less-loader"
+			}
+		</li>
+		<li>
+			或者在webpack.base.conf.js中添加
+			{
+			test: /\.less$/,
+			loader: ["vue-loader", "css-loader", "less-loader"]
+			},
+			{
+			test: /\.less$/,
+			loader: 'vue-loader',
+			options: vueLoaderConfig
+			}
+		</li>
+		<li>在html文件内添加 lang="less"</li>
+	</ol>
+	<ol>
+		VScode中快捷键(vue vscode snippets)
+		<li>创建基本代码框架:vbase</li>
+	</ol>
+</body>
+
+</html>

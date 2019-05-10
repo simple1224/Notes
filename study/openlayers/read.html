@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>openlayers文档</title>
+</head>
+
+<body>
+    <h2>地图的组成</h2>
+    <ol>
+        <li>地图：ol.Map 所有代码的包裹层</li>
+        <li>视图：ol.View 控制地图显示的中心，范围，层级</li>
+        <li>图层：每一个图层实现都对应一个类 放在包ol.layers下</li>
+    </ol>
+    <ol>地图如何显示
+        <li>首先需要明白的一点是，Source和Layer是一对一的关系，有一个Source，
+            必然需要一个Layer，然后把这个Layer添加到Map上，就可以显示出来了。</li>
+        <li>ol.source的类型归纳起来有三类：ol.source.Tile，ol.source.Image和ol.source.Vector。</li>
+        <li>ol.source.Tile对应的是瓦片数据源，现在网页地图服务中，绝大多数都是使用的瓦片地图，
+            而OpenLayers 3作为一个WebGIS引擎，理所当然应该支持瓦片。</li>
+        <li>ol.source.Image对应的是一整张图，而不像瓦片那样很多张图，从而无需切片，也可以加载一些地图，适用于一些小场景地图。</li>
+        <li>ol.source.Vector对应的是矢量地图源，点，线，面等等常用的地图元素(Feature)，就囊括到这里面了。这样看来，只要这两种Source就可以搞定80%的需求了。</li>
+    </ol>
+    <ol>如何隐藏放大缩小button
+        <li>在map对象中加入
+            controls: defaults({
+            attribution: false,
+            rotate: false,
+            zoom: false
+            }),
+            在js中引入import { defaults } from 'ol/control/util';
+        </li>
+        <li>用css控制
+            // $(".ol-overlaycontainer-stopevent").css("display", "none");
+        </li>
+    </ol>
+    <ol>
+        如何禁止页面旋转
+        <li>在js里引入import { defaults as def } from 'ol/interaction';</li>
+        <li>在map中加入interactions: def({
+            altShiftDragRotate: false,
+            pinchRotate: false
+            }),</li>
+    </ol>
+</body>
+
+</html>

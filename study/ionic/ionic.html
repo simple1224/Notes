@@ -25,6 +25,7 @@
                 <li>super：具有超过14个即用型页面设计的入门项目</li>
                 <li>tutorial：一个引导启动项目</li>
             </ul>
+            <li>在页面新增一个文件夹 ionic g page mypage </li>
             <li>src/index.html是应用程序的主要入口点，但其目的是设置脚本，CSS包含和引导程序，或者开始运行我们的应用程序。</li>
             <li>src/app/app.module.ts 是我们的应用程序的入口点。</li>
             <li>解决刷新 关掉服务器的问题：删除node_module下的ws文件夹，安装npm install ws@3.3.2</li>
@@ -97,37 +98,57 @@
                     <li>ionViewWillUnload会在每次离开页面后触发</li>
                 </ol>
             </li>
-            <ol>常用指令
-                <li>重复指令ngFor:将批量的数据（数组）结合HTML元素添加到页面DOM中。
-                    语法*ngFor="let item of data"</li>
-                <li>es6:for (let i of [1,2,3,4,5,6]) { ... }</li>
-                <li>对象的渲染：<div *ngFor="let item of data">{{item.name}}</div>
-                </li>
-                <li>列表渲染：其中 ion-list 是列表容器， ion-item 是列表中的一个条目，
-                    当把 ion-item 和 ngFor 指令结合使用，就可以渲染出一个多条目的列表：
-                    <pre>
-                        <ion-list>
-                            <ion-item></ion-item>
-                        </ion-list>
-                    </pre>
-                <li>指令 item-end 将指定的元素渲染在条目的尾部</li>
-                </li>
-                <li>有条件地渲染：ngIf 指令。通过一个表达式来判断元素是否会被添加到模板中。
-                    这一指令同样也是动态的：当表达式的值变为真，元素便会添加；当表达式的值变为假，元素会从模版中被移除。
-                    注：在angular中，*ngFor 和 *ngIf 不能放置在同一个标签上(Vue之类的框架则可以)，
-                    因此在 ion-item 外加上一个“虚拟”的标签 ng-container, 它自身不会被渲染到DOM中,
-                    只会渲染它包裹的内容
-                </li>
-                <li>
-                    <ul>
-                         表单组件
-                         <li>文本输入：Input 组件</li>
-                         <li>在移动应用开发时，input的type和其调出的手机键盘是紧密相连的，因此在开发时应该根据input的实际功能，
-                             细致地区分它们的 type，你也可以利用它们来验证这些值的合法性，常用的有：email、tel、url、number</li>
-                    </ul>
-                </li>
+            <li>
+                <ol>常用指令
+                    <li>重复指令ngFor:将批量的数据（数组）结合HTML元素添加到页面DOM中。
+                        语法*ngFor="let item of data"</li>
+                    <li>es6:for (let i of [1,2,3,4,5,6]) { ... }</li>
+                    <li>对象的渲染：<div *ngFor="let item of data">{{item.name}}</div>
+                    </li>
+                    <ol>列表渲染：其中 ion-list 是列表容器， ion-item 是列表中的一个条目，
+                        当把 ion-item 和 ngFor 指令结合使用，就可以渲染出一个多条目的列表：
+                        <pre>
+                            <ion-list>
+                                <ion-item></ion-item>
+                            </ion-list>
+                        </pre>
+                        <li>指令 item-end 将指定的元素渲染在条目的尾部</li>
+                    </ol>
+                </ol>
+            </li>
+            <li>有条件地渲染：ngIf 指令。通过一个表达式来判断元素是否会被添加到模板中。
+                这一指令同样也是动态的：当表达式的值变为真，元素便会添加；当表达式的值变为假，元素会从模版中被移除。
+                注：在angular中，*ngFor 和 *ngIf 不能放置在同一个标签上(Vue之类的框架则可以)，
+                因此在 ion-item 外加上一个“虚拟”的标签 ng-container, 它自身不会被渲染到DOM中,
+                只会渲染它包裹的内容
+            </li>
+            <li>
+                <ul>
+                    表单组件
+                    <li>文本输入：Input 组件</li>
+                    <li>在移动应用开发时，input的type和其调出的手机键盘是紧密相连的，因此在开发时应该根据input的实际功能，
+                        细致地区分它们的 type，你也可以利用它们来验证这些值的合法性，常用的有：email、tel、url、number</li>
+                </ul>
+            </li>
+        </ol>
 
-            </ol>
+        <ol class="h4">ionic1的生命周期函数
+            <li>$ionicView.beforeEnter</li>
+            <li>$ionicView.enter</li>
+            <li>$ionicView.afterEnter</li>
+            <li>$ionicView.afterLeave</li>
+            <li>$ionicView.leave</li>
+            <li>$ionicView.afterLeave</li>
+            <li>$ionicView.clearCache</li>
+            <li>$ionicView.loaded</li>
+            <li>$ionicView.unloaded</li>
+            <li>用法：
+                <pre>
+                $scope.$on('$ionicView.afterEnter', function() {
+                    do something...
+                }
+            </pre>
+            </li>
         </ol>
     </div>
 </body>
