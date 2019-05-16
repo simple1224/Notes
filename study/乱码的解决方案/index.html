@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <meta http-equiv="content-type" content="text/html; charset=utf-8"> -->
+    <title>乱码的解决方式</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <ol class="h4">&#的编码转化为中文
+           <li>unescape(str.replace(/\\u/g, '%u'))</li>
+           <pre>
+            var str = "&#24827;&#21516;";
+            document.write(unescape(str.replace(/\\u/g, '%u'))); 
+           </pre>
+           <li>在head中加入
+               <code>
+                    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+               </code>
+           </li>
+           <li>注：是倒序方式</li>
+        </ol>
+        <ol class="h4">&#x的编码转化为中文
+            <!-- 大大 -->
+            <li>unescape("&#x5927;&#x5927;".replace(/&#x/g,'%u').replace(/;/g,'')) </li> 
+            <!-- "&#x5927;&#x5927;" -->
+            <li>"大大".replace(/[^\u0000-\u00FF]/g,function(a){return escape(a).replace(/(%u)(\w{4})/gi,"&#x$2;")})  
+                </li>
+        </ol>
+        <ol class="h4">前后端编码转码的方式
+            <li>js中encodeURIComponent()是对统一资源标识符（URI）的组成部分进行编码的方法。
+                它使用一到四个转义序列来表示字符串中的每个字符的UTF-8编码（只有由两个Unicode代理区字符组成的字符才用四个转义字符编码）。</li>
+            <li>用法：encodeURIComponent(str);</li>
+            <li></li>
+        </ol>
+        <ol class="h4">JavaScript中有三个可以对字符串编码的函数
+            <li>escape:后端对应的解码函数unescape</li>
+            <li>encodeURI:后端相对应的解码函数decodeURI</li>
+            <li>encodeURIComponent:相对应的解码函数decodeURIComponent</li>
+        </ol>
+    </div>
+    <script type="text/javascript">
+        // var str = "\u7434\u5fc3\u5251\u9b44\u4eca\u4f55\u5728\uff0c\u6c38\u591c\u521d\u6657\u51dd\u78a7\u5929\u3002";
+        var str = "&#24847;&#21516;" //   显示为同意
+        document.write(unescape(str.replace(/\\u/g, '%u'))); //琴心剑魄今何在，永夜初晗凝碧天。
+    </script>
+</body>
+
+</html>
