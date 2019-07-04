@@ -40,6 +40,156 @@
 		VScode中快捷键(vue vscode snippets)
 		<li>创建基本代码框架:vbase</li>
 	</ol>
+	<ol>npm run dev报错的解决方式
+		<li>提示下载chromedriver
+			npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver
+		</li>
+	</ol>
+	<ol>vue中带参数跳转
+		<li>
+			<pre>
+				getEditor(item) {
+					console.log("push的参数",item)
+					  this.$router.push({
+						name: "editor",
+						params: {
+						  item: item
+						}
+					  });
+					}
+			</pre>
+		</li>
+		<li>
+			this.data = this.$route.params.item;
+		</li>
+	</ol>
+	<ol>vue中返回上一页
+		<li>用axios的方法会改变this指向，用axios方法前，缓存this指针</li>
+		<li>
+			<pre>
+				cancel() {
+					this.$router.go(-1);
+				  },
+			</pre>
+		</li>
+	</ol>
+	<ol>vue中使用省市县的选择
+		<li>使用插件：https://distpicker.pigjian.com/</li>
+		<li>安装
+			<pre>
+				npm install v-distpicker --save
+			</pre>
+		</li>
+		<li>在main.js中导入
+			<pre>
+				import Distpicker from 'v-distpicker'
+				Vue.component('v-distpicker', Distpicker)
+			</pre>
+		</li>
+		<li>在需要调用的页面 js中定义引入
+			<pre>
+				import VDistpicker from "v-distpicker";
+				components: { VDistpicker }
+			</pre>
+			<pre>
+				<el-form-item label="地区">
+					<v-distpicker
+					  :province="form.province"
+					  :city="form.city"
+					  :area="form.county"
+					  @province="onChangeProvince"
+					  @city="onChangeCity"
+					  @area="onChangeArea"
+					></v-distpicker>
+					<el-input
+					  type="textarea"
+					  v-model="form.area"
+					  placeholder="请输入详细门牌号"
+					  style="margin-top: 10px;"
+					></el-input>
+				  </el-form-item>
+			</pre>
+			<pre>绑定值
+				//地区选择----省
+    			onChangeProvince(data) {
+    			  this.form.province = data.value;
+    			},
+    			//地区选择----市
+    			onChangeCity(data) {
+    			  this.form.city = data.value;
+    			},
+    			//地区选择----县
+    			onChangeArea(data) {
+    			  this.form.county = data.value;
+    			},
+			</pre>
+		</li>
+	</ol>
+	<ol>vue中Token失效返回登陆页
+		<li>
+			<pre>
+				/**
+				 * 响应拦截
+				 */
+				http.interceptors.response.use(response => {
+				  console.log(response)
+				  if (response.data && response.data.code === 401) { // 401, token失效
+				    Vue.cookie.delete('token')
+				    router.options.isAddDynamicMenuRoutes = false
+				    // router.push({ name: 'logIn' }) 
+				    parent.location.href ='/login.html';
+				  }
+				  return response
+				}, error => {
+				  return Promise.reject(error)
+				})
+			</pre>
+		</li>
+	</ol>
+	<ol>vue的键盘回车时间
+		<li>如果是原生的input，使用 @keyup.enter就可以，若是使用了element-ui，
+			则要加上native限制符，因为element-ui把input进行了封装，原事件就不起作用了</li>
+		<li>
+			<pre>
+				<el-input v-model="form.name" placeholder="昵称" @keyup.enter.native="submit"></el-input>
+				<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" @keyup.enter.native="submitForm('ruleForm')">
+			</pre>
+		</li>
+		<li>
+			<pre>
+				<input v-model="form.name" placeholder="昵称" @keyup.enter="submit">
+			</pre>
+		</li>
+	</ol>
+	<ol>vue ElementUI弹窗
+		<li>删除之前有确定弹框
+			<pre>
+				this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+					confirmButtonText: '确定',
+					cancelButtonText: '取消',
+					type: 'warning'
+				  }).then(() => {
+					this.$message({
+					  type: 'success',
+					  message: '删除成功!'
+					});
+				  }).catch(() => {
+					this.$message({
+					  type: 'info',
+					  message: '已取消删除'
+					});          
+				  });
+			</pre>
+		</li>
+		<li>ElementUI 警告弹窗
+			<pre>
+				this.$message.error(data.msg);
+			</pre>
+		</li>
+	</ol>
+	<ol>IE不兼容es6写法 vue中安装插件
+		<li>npm install --save babel-polyfill</li>
+	</ol>
 </body>
 
 </html>

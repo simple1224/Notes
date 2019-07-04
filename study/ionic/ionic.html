@@ -150,6 +150,114 @@
             </pre>
             </li>
         </ol>
+
+        <ol class="h4">ionic3的折叠
+            <pre>
+                public isShow:any= true;
+                <ion-item>
+                    添加偕行人员
+                    <ion-icon name="ios-arrow-down" item-right *ngIf="isShow" (click)="isShow=!isShow"></ion-icon>
+                    <ion-icon name="ios-arrow-forward" item-right *ngIf="!isShow" (click)="isShow=!isShow"></ion-icon>
+                </ion-item>
+                <ion-list *ngIf="isShow">
+                            <ion-item>
+                                <ion-label>偕行人员：</ion-label>
+                                <ion-select [(ngModel)]="Apply.WITHPEOPLE" multiple="true" class="change" placeholder="{{selectOptions.placeholder}}"
+                                    okText="{{selectOptions.okText}}" cancelText="{{selectOptions.cancelText}}">
+                                    <ion-option *ngFor="let item of BasicsData.HANDOVER" value="{{item.LOV_VALUE}}">{{item.LOV_TEXT}}
+                                    </ion-option>
+                                </ion-select>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label>工作移交人：</ion-label>
+                                <ion-select [(ngModel)]="Apply.WORKPEOPLE" multiple="true" class="change" placeholder="{{selectOptions.placeholder}}"
+                                    okText="{{selectOptions.okText}}" cancelText="{{selectOptions.cancelText}}">
+                                    <ion-option *ngFor="let item of BasicsData.HANDOVER" value="{{item.LOV_VALUE}}">{{item.LOV_TEXT}}
+                                    </ion-option>
+                                </ion-select>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label>重大或特殊事项移交情况：</ion-label>
+                            </ion-item>
+                            <ion-item>
+                                <ion-textarea [(ngModel)]="Apply.CONTENT" placeholder="请输入移交内容" rows="5"></ion-textarea>
+                            </ion-item>
+                </ion-list>
+            </pre>
+
+        </ol>
+        <ol class="h4">select的选择框
+            <pre>
+                <ion-item [ngClass]="{'required': Apply.SPECIALTY =='出差'}">
+                    <ion-label>交通方式：</ion-label>
+                    <ion-select [(ngModel)]="Apply.TRANSPORTATION" class="change" placeholder="{{selectOptions.placeholder}}"
+                        okText="{{selectOptions.okText}}" cancelText="{{selectOptions.cancelText}}">
+                        <ion-option *ngFor="let item of BasicsData.TRANSPORTATION" value="{{item.LOV_VALUE}}">{{item.LOV_TEXT}}
+                        </ion-option>
+                    </ion-select>
+                </ion-item>
+                //ion-select配置
+	            public selectOptions: any = {
+	            	placeholder: "请选择",
+	            	okText: "确定",
+	            	cancelText: "取消"
+	            };
+	            //ion-datetime配置
+	            public datetimeOptions: any = {
+	            	placeholder: "请选择",
+	            	doneText: "确定",
+	            	cancelText: "取消"
+	            };
+            </pre>
+        </ol>
+        <ol>日期选择插件
+            <pre>
+                <ion-item class="required">
+                    <ion-label>汇报日期</ion-label>
+                    <ion-datetime displayFormat="YYYY-MM-DD HH:mm:ss" pickerFormat="YYYY-MM-DD HH:mm:ss"
+                        placeholder="{{datetimeOptions.placeholder}}" doneText="{{datetimeOptions.doneText}}"
+                        cancelText="{{datetimeOptions.cancelText}}">
+                    </ion-datetime>
+                </ion-item>
+                js:
+                import { DatePipe } from "@angular/common";
+                constructor(private datePipe: DatePipe) { };
+            </pre>
+        </ol>
+        <ol>ionic3中的日期插件的用法：https://blog.csdn.net/qingdatiankong/article/details/79226105</ol>
+        <ol>ionic3中创建当前时间：
+            <li>ts:
+                <pre>
+                    this.queryData.DATE = this.datePipe.transform(new Date(), "YYYY-MM-DD HH:mm:ss");//当前创建时间
+                </pre>
+            </li>
+        </ol>
+        <ol>ionic3中点击button调用日期插件
+            <pre>
+                <ion-datetime displayFormat="YYYY-MM-DD HH:mm:ss" pickerFormat="YYYY-MM-DD HH:mm:ss"
+                    placeholder="完工" doneText="{{datetimeOptions.doneText}}"
+                    cancelText="{{datetimeOptions.cancelText}}" (ionCancel)="Finish();" (ionChange)="Finish()">
+                </ion-datetime>
+            </pre>
+            <li>ionCancel：点击取消时调用的方法</li>
+            <li>ionChange：点击确认时调用的方法</li>
+        </ol>
+        <ol>常见core.js:1350 ERROR Error: Uncaught (in promise): invalid link: TabsPage
+            <li>TabsPage中module.ts里export class LoginPageModule { };的名字是否正确</li>
+            <li>tabs.ts中是否引入<code>import { IonicPage, NavController, NavParams } from "ionic-angular";</code></li>
+            <li>使用@IonicPage()</li>
+        </ol>
+        <ol>ios12.2以上系统 页面出现死锁，滚动失效的问题
+            <li><a href="https://github.com/ionic-team/ionic-v3/issues/984"></a></li>
+            <li>全局样式中添加
+                <pre>
+                    ion-app.platform-ios12 ion-content { pointer-events: auto; /*fix scroll lock on ios12.2*/ }
+                    .ios ion-content {
+                        pointer-events: auto;
+                     }
+                </pre>
+            </li>
+        </ol>
     </div>
 </body>
 
