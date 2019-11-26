@@ -644,6 +644,39 @@
 					</pre>
 
 				</li>
+				<li>js函数中的return
+					<ul>
+						<li>JavaScriptreturn语句，表示从被调函数返回到主调函数继续执行，
+							返回时可附带一个返回值，由return后面的参数指定。
+							return通常是必要的，因为函数调用的时候计算结果通常是通过返回值带出的。
+							如果函数执行不需要返回计算结果，也经常需要返回一个状态码来表示函数执行的顺利与否（-1和0就是最常用的状态码），
+							主调函数可以通过返回值判断被调函数的执行情况。
+						</li>
+					</ul>
+				</li>
+				<li>闭包
+					<ul>
+						<li>为什么需要闭包？
+							局部变量无法共享和长久的保存，而全局变量可能造成变量污染，所以我们希望有一种机制既可以长久的保存变量又不会造成全局污染。</li>
+						<li>特点：
+							1.占用更多内存
+							2.不容易被释放</li>
+						<li>何时使用？
+							变量既想反复使用，又想避免全局污染。</li>
+						<li>如何使用？
+							1.定义外层函数，封装被保护的局部变量。
+
+							2.定义内层函数，执行对外部函数变量的操作。
+
+							3.外层函数返回内层函数的对象，并且外层函数被调用，结果保存在一个全局的变量中。
+
+							总得来说就是，当function里嵌套function时，内部的function可以访问外部function里的变量
+						</li>
+					</ul>
+				</li>
+				<li>形参和实参的区别
+					<ul></ul>
+				</li>
 			</ol>
 		</div>
 		<div class="javascript2">
@@ -855,7 +888,7 @@
 			</ol>
 		</div>
 
-		<div class="git">
+		<div class="	">
 			<ol>git
 				<li>
 					<pre>
@@ -881,8 +914,10 @@
 						git checkout -b home 创建并切换到home分支
 						git push origin home 提交到home分支
 						git merge home 把home分支合并到主分支上
+						git branch --set-upstream-to=develop 建立develop和后台的关系
 						</pre>
 				</li>
+				<li>查看本机密钥：start .</li>
 			</ol>
 		</div>
 

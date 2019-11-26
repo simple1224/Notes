@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>git的使用</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <ol class="h4">
+            <ul>工作区、暂存区和版本库的区别
+                <li>工作区：就是在电脑里能看到的目录。</li>
+                <li>暂存区：英文叫stage, 或index。一般存放在 ".git目录下" 下的index文件（.git/index）中，所以我们把暂存区有时也叫作索引（index）</li>
+                <li>版本库：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库</li>
+                <li>版本库里包括暂存区，分支， Git的对象库</li>
+            </ul>
+            <ul>git的常用命令
+                <li>git add -A 暂存区与工作区一致</li>
+                <li>git add -u 暂存区删除文件及更改文件</li>
+                <li>git add . 把更改的全部代码add到暂存区</li>
+                <li>git add 1.txt 2.txt  add多个文件 用空格隔开</li>
+                <li>git add *.txt 通配符 add所有txt文件</li>
+                <li>git commit -m "" 提交更改,把暂存区的所有内容提交到当前分支</li>
+                <li>git commot --amend 更改之前一次commit的描述信息</li>
+                <li>git commot -a -m "<message>" 把暂存区的所有被修改或者已删除的且已经被git管理的文档提交提交到分支，须输入描述信息（可省略 git add 过程）</li>
+                <li>git push 提交到远程仓库</li>
+                <li>git status 查看文件更改状态</li>
+                <li>git diff 查看工作区和暂存区的区别</li>
+                <li>git rm <file> 工作区删除文件，暂存区也需要删除 多个文件删除用空格隔开</li>
+                <li>git reset HEAD 删除已git add的所有文件</li>
+                <li>git reset HEAD <file> 删除已git add的所有文件</li>
+                <li>git stash 遇到本地有冲突文件 将工作区的修改暂时缓存起来 然后pull代码 再git stash pop 命令恢复之前缓存的工作目录</li>
+                <li>git stash list 查看提交到暂存区的文件列表</li>
+                <li>git stash clear 清空你所有的内容</li>
+                <li>git stash drop stash@{0}  这是删除第一个队列</li>
+                <li>git stash show 查看stash文件的增减记录</li>
+                <li>git stash show -p/--patch 可以查看特定stash的全部diff</li>
+            </ul>
+            <ul>git常见冲突
+                <li>Please enter a commit message to explain why this merge is necessary.</li>
+                <li>这个意思是你要填写合并的原因，按insert键，随便写点东西，#注释 下面步骤就ok了。</li>
+                <ul>
+                    <li>按键盘字母 i 进入insert模式</li>
+                    <li>修改最上面那行黄色合并信息,可以不修改</li>
+                    <li>按键盘左上角"Esc"</li>
+                    <li>输入":wq",注意是冒号+wq,按回车键即可</li>
+                </ul>
+            </ul>
+        </ol>
+    </div>
+</body>
+
+</html>

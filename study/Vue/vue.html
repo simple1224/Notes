@@ -190,6 +190,174 @@
 	<ol>IE不兼容es6写法 vue中安装插件
 		<li>npm install --save babel-polyfill</li>
 	</ol>
+	<ol>vue启动报错：CALL_AND_RETRY_LAST Allocation failed-process out of memory
+		<ul>方式1：（亲测可用）
+			<li>安装increase-memory-limit插件</li>
+			<li> npm install -g increase-memory-limit</li>
+			<li>运行 increase-memory-limit</li>
+			<li>在nodemodule中webpack.cmd文件生成node --max-old-space-size=10240 "%~dp0\..\webpack\bin\webpack.js" %*</li>
+		</ul>
+		<ul>方式2：
+			<li>在package.json文件中通过手动给"build"设置 --max_old_space_size=4096 来增加内存
+			<li>build:node --max_old_space_size=4096 build/build.js</li>
+		</ul>
+
+		</li>
+	</ol>
+	<ol>vue Element table的用法
+		<li>增加index索引
+			<pre><el-table-column type="index" align="center" width="50"></el-table-column></pre>
+		</li>
+		<li>多选：
+			<pre><el-table-column type="selection" :reserve-selection="true"></el-table-column></pre>
+		</li>
+		<li>点击行实现复选
+			<pre>
+			<el-table
+            	border
+            	ref="multipleTable"
+            	:data="inviteMemberList.list" //绑定的数据
+            	style="width: 100%"
+            	tooltip-effect="dark"
+            	@selection-change="selectionChange" //选择发生改变时
+            	@row-click="clickRow" //行点击事件  实现复选
+            	:row-key="getRowKeys" //实现行点击复选必写
+          ></el-table>
+			</pre>
+		</li>
+		<li>清除所有已复选
+			<pre>this.$refs.multipleTable.clearSelection()</pre>
+		</li>
+	</ol>
+	<ol>父与子的传值
+		<li>一般来说自定义出来复用的组件称为子组件，调用子组件的vue称为父组件</li>
+		<li>父组件中引入子组件：
+			<pre>
+				ts:
+				import PersonList from '../../components/PersonList'
+				components: {
+					PersonList
+				},
+				html:
+				<person-list
+        			@change="handlePersonListChange"
+        			@cancel="cancel" //监听子组件传来的方法
+        			:multipleSelectionList1="multipleSelectionList1" //传向子组件
+        			:formType="formType"
+        			ref="PersonList"
+      			></person-list>
+			</pre>
+		</li>
+		<li>子组件中拿到父组件传来的值
+			<pre>
+				props: {
+					multipleSelectionList1: Array,
+					formType: String
+				  },
+				<!-- 触发父组件@change的事件并传值给父组件 -->
+				this.$emit('change', this.multipleSelectionList, this.formType)
+			</pre>
+		</li>
+		<li>父组件调用子组件的方法：this.$refs.PersonList.cancelSelect()</li>
+	</ol>
+	<ol>select的用法
+		<li>拿到选中的option的这条信息
+			<pre>
+				<el-select
+					class="input-width-edit"
+					placeholder="请选择检查标准"
+					@focus="queryStrdandFileList('updateForm')"
+					v-model="updateForm.checkStandard"
+					@change="selectDoc($event)"
+				  >
+				  <el-option
+              		v-for="item in checkStandardFileList"
+              		:key="item.id"
+              		:label="item.fileName"
+              		:value="item.id"
+            	  ></el-option>
+			</pre>
+			<pre>
+				selectDoc ($event) {
+					let obj = {}
+					obj = this.checkStandardFileList.find((item) => { // 这里的userList就是上面遍历的数据源
+					  return item.id === $event // 筛选出匹配数据
+					})
+					console.log(obj) // 我这边的name就是对应label的
+					this.createForm.downloadUrl = obj.fileUrl
+				},
+			</pre>
+		</li>
+	</ol>
+	<ol>MVP设计模式
+		<li>M:model层 指的是数据层（即通过ajax获取的数据）</li>
+		<li>V:view层 视图层 指的是通过dom渲染呈现的视图</li>
+		<li>P: presenter层 呈现层 指的是业务逻辑的的控制层 </li>
+		<li>流程一般为：视图层发生一个事件交给控制器，控制器去调用ajax获取数据或者直接操作dom，根据视图发生的事件，控制器自己的逻辑去决定dom怎么重新修改
+			precenter层是MVP中最核心的一层，它里面放的逻辑是视图和控制之间的中转站
+		</li>
+	</ol>
+	<ol>vue采用的是MVVM设计模式
+		<li>M：model</li>
+		<li>VM:ViewModel</li>
+		<li>M</li>
+	</ol>
+	<ol>Vue版本的安装和卸载
+		<li>卸载2使用 npm uninstall vue-cli -g </li>
+		<li>卸载3使用 npm uninstall -g @vue/cli</li>
+		<li>卸载4使用 npm uninstall -g @vue/cli</li>
+		<li>安装2使用 npm install vue-cli -g</li>
+	</ol>
+	<ol>npm命令
+		<li>npm cache clean --force</li>
+	</ol>
+	<ol>vue Element中table中添加expand展开行
+		<li>
+			<pre>
+				<el-table
+            		ref="multipleTable"
+            		:data="constructionUnitList.list" // 绑定数据
+            		style="width: 100%"
+            		v-loading="tableLoading" // 显示加载中	
+            		@expand-change="acquireUserId" // 点击展开行三角图标
+            		:expand-row-keys="expands" // 结合row-key使用 给每一行一个唯一标识
+            		:row-key="getRowKeys"
+				  >
+				  <el-table-column :show-overflow-tooltip="true" type="expand">
+						<template slot-scope="props"> // 插入props模版
+							<div>
+								<el-tabs
+								  v-model="props.row.activeName" // 给table每一行绑定activeName
+								  @tab-click="handleClick" // 行点击事件
+								>
+									<el-tab-pane label="tab1" name="first"></el-tab-pane>
+									<el-tab-pane label="tab2" name="second"></el-tab-pane>
+								</el-tabs>	
+							</div>
+						</template>
+				  </el-table-column>
+				</el-table>
+				<!-- data -->
+				expands: [], // 施工记录展开行
+      			getRowKeys (row) {
+        			return row.id
+				  },
+				<!-- methods -->
+				acquireUserId (row, expandedRows) {
+					var that = this
+					if (expandedRows.length) {
+					  that.expands = []
+					  if (row) {
+						that.expands.push(row.id)
+					  }
+					} else {
+					  that.expands = []
+					}
+					Do Something....
+				},
+			</pre>
+		</li>
+	</ol>
 </body>
 
 </html>

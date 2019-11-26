@@ -258,6 +258,258 @@
                 </pre>
             </li>
         </ol>
+        <ol>ionic3的下拉加载
+            <li>
+                <pre>
+                <ion-infinite-scroll (ionInfinite)="getPatrolCheck($event);" [enabled]="hasMore[0]">
+                    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多数据...">
+                    </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
+             </pre>
+            </li>
+        </ol>
+        <ol>ionic3的tab
+            <li>
+                <pre>
+                    <ion-header>
+                        <ion-toolbar>
+                            <div class="tabs">
+                                <div class="tab" (click)="slideTo(0);" [ngClass]="{'active' : slideIndex == 0}">值长</div>
+                                <div class="tab" (click)="slideTo(1);" [ngClass]="{'active' : slideIndex == 1}">#1机主值</div>
+                                <div class="tab" (click)="slideTo(2);" [ngClass]="{'active' : slideIndex == 2}">#2机主值</div>
+                            </div>
+                        </ion-toolbar>
+                    </ion-header>
+                    <ion-content>
+                        <ion-slides (ionSlideDidChange)="slideChanged();">
+                            <ion-slide>
+                                <ion-content *ngIf="slideIndex == 0">
+                                    <ion-card class="search_warp">
+                                        <ion-card-content>
+                                            <div class="search">
+                                                <ion-item>
+                                                    <ion-input class="icon ion-search" name="search" type="search" placeholder="支持按照编号、班次搜索"
+                                                        clearInput [(ngModel)]="search[slideIndex].value"></ion-input>
+                                                </ion-item>
+                                                <div class="search_text" (click)="getSearchInfo()">查询</div>
+                                            </div>
+                                        </ion-card-content>
+                                    </ion-card>
+                    
+                                    <ion-card class="showinfo" *ngFor="let item of data[0]" (click)="toDetailsPage(item,'值长');">
+                                        <ion-card-content>
+                                            <div class="logs_number">
+                                                <span>编号：{{item.EVENT_NO}}</span>
+                                                <span>【{{item.STATE}}】</span>
+                                            </div>
+                                            <div class="logs_content">
+                                                <span>记录人：{{item.PERSON_NAME}}</span>
+                                                <span>班次：{{item.WORK_SEQ}}</span>
+                                            </div>
+                                            <div class="logs_classification">
+                                                <span>值别：{{item.OPER_GROUP}}</span>
+                                            </div>
+                                        </ion-card-content>
+                                    </ion-card>
+                    
+                                    <div class="no_msg" *ngIf="(data[0]&&data[0].length<=0)">
+                                        <ion-icon name="ios-information-circle-outline"></ion-icon>
+                                        暂无数据信息！
+                                    </div>
+                                    <ion-infinite-scroll (ionInfinite)="getMore($event);" [enabled]="hasMore[0]">
+                                        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多数据...">
+                                        </ion-infinite-scroll-content>
+                                    </ion-infinite-scroll>
+                                </ion-content>
+                            </ion-slide>
+                            <ion-slide>
+                                <ion-content *ngIf="slideIndex == 1">
+                                    <ion-card class="search_warp">
+                                        <ion-card-content>
+                                            <div class="search">
+                                                <ion-item>
+                                                    <ion-input class="icon ion-search" name="search" type="search" placeholder="支持按照编号、班次搜索"
+                                                        clearInput [(ngModel)]="search[slideIndex].value"></ion-input>
+                                                </ion-item>
+                                                <div class="search_text" (click)="getSearchInfo()">查询</div>
+                                            </div>
+                                        </ion-card-content>
+                                    </ion-card>
+                    
+                                    <ion-card class="showinfo" *ngFor="let item of data[1]" (click)="toDetailsPage(item,'值长');">
+                                        <ion-card-content>
+                                            <div class="logs_number">
+                                                <span>编号：{{item.EVENT_NO}}</span>
+                                                <span>【{{item.STATE}}】</span>
+                                            </div>
+                                            <div class="logs_content">
+                                                <span>记录人：{{item.PERSON_NAME}}</span>
+                                                <span>班次：{{item.WORK_SEQ}}</span>
+                                            </div>
+                                            <div class="logs_classification">
+                                                <span>值别：{{item.OPER_GROUP}}</span>
+                                            </div>
+                                        </ion-card-content>
+                                    </ion-card>
+                    
+                                    <div class="no_msg" *ngIf="(data[1]&&data[1].length<=0)">
+                                        <ion-icon name="ios-information-circle-outline"></ion-icon>
+                                        暂无数据信息！
+                                    </div>
+                                    <ion-infinite-scroll (ionInfinite)="getMore($event);" [enabled]="hasMore[1]">
+                                        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多数据...">
+                                        </ion-infinite-scroll-content>
+                                    </ion-infinite-scroll>
+                                </ion-content>
+                            </ion-slide>
+                            <ion-slide>
+                                <ion-content *ngIf="slideIndex == 2">
+                                    <ion-card class="search_warp">
+                                        <ion-card-content>
+                                            <div class="search">
+                                                <ion-item>
+                                                    <ion-input class="icon ion-search" name="search" type="search" placeholder="支持按照编号、班次搜索"
+                                                        clearInput [(ngModel)]="search[slideIndex].value"></ion-input>
+                                                </ion-item>
+                                                <div class="search_text" (click)="getSearchInfo()">查询</div>
+                                            </div>
+                                        </ion-card-content>
+                                    </ion-card>
+                    
+                                    <ion-card class="showinfo" *ngFor="let item of data[2]" (click)="toDetailsPage(item,'值长');">
+                                        <ion-card-content>
+                                            <div class="logs_number">
+                                                <span>编号：{{item.EVENT_NO}}</span>
+                                                <span>【{{item.STATE}}】</span>
+                                            </div>
+                                            <div class="logs_content">
+                                                <span>记录人：{{item.PERSON_NAME}}</span>
+                                                <span>班次：{{item.WORK_SEQ}}</span>
+                                            </div>
+                                            <div class="logs_classification">
+                                                <span>值别：{{item.OPER_GROUP}}</span>
+                                            </div>
+                                        </ion-card-content>
+                                    </ion-card>
+                    
+                                    <div class="no_msg" *ngIf="(data[2]&&data[2].length<=0)">
+                                        <ion-icon name="ios-information-circle-outline"></ion-icon>
+                                        暂无数据信息！
+                                    </div>
+                                    <ion-infinite-scroll (ionInfinite)="getMore($event);" [enabled]="hasMore[2]">
+                                        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多数据...">
+                                        </ion-infinite-scroll-content>
+                                    </ion-infinite-scroll>
+                                </ion-content>
+                            </ion-slide>
+                        </ion-slides>
+                    </ion-content>
+                </pre>
+            </li>
+        </ol>
+        <ol>ionic3的tab
+            <li>
+                <pre>
+                    <ion-content>
+                        <div class="tabs">
+                          <ion-segment [(ngModel)]="tabs">
+                            <ion-segment-button value="commodity">
+                              <span>待办</span>
+                            </ion-segment-button>
+                            <ion-segment-button value="details">
+                              <span>已办</span>
+                            </ion-segment-button>
+                          </ion-segment>
+                        </div>
+                        <div [ngSwitch]="tabs">
+                          <ion-list *ngSwitchCase="'commodity'">
+                            <!-- 商品页面 -->
+                          </ion-list>
+                      
+                          <ion-list *ngSwitchCase="'details'">
+                            详情页面
+                          </ion-list>
+                        </div>
+                    </ion-content>
+                </pre>
+            </li>
+        </ol>
+        <ol>ionic的回调函数
+            <li>
+                父组件
+                <pre>
+                    public searchMonthTrad(index): void {
+                        this.navCtrl.push("SearchMonthTradPage", {
+                          index: index,
+                          callback: this.getData
+                        }
+                        );
+                      };
+                      // 回调函数 必须写箭头函数
+                      getData = (data) => {
+                        return new Promise((resolve, reject) => {
+                          console.log(data);
+                          this.queryMonth = data;
+                          resolve();
+                        });
+                      };
+                </pre>
+            </li>
+            <li>
+                子组件
+                <pre>
+                    constructor(public navCtrl: NavController, public navParams: NavParams) {
+                        this.callback = this.navParams.get('callback');
+                      }
+                      //查询
+                    public search(queryData): void {
+                      console.log("查询条件", queryData)
+                      this.callback(this.queryData).then(() => { this.navCtrl.pop() });
+                    };
+                </pre>
+            </li>
+        </ol>
+        <ol>ionic3打包
+            <li>下载sdk</li>
+            <li>配置sdk环境变量
+                <ul>
+                    <li>系统变量中增加ANDROID_HOME：F:\environment\Android\android-sdk-windows</li>
+                    <li>系统变量中的path中增加%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools</li>
+                </ul>
+            </li>
+            <li>命令行中输入android -h
+                adb 判断platform-tools是否配置成功
+            </li>
+            <li>ionic cordova platform add android(增加android模版)</li>
+            <li>ionic cordova platform rm android(删除android模版)</li>
+            <li>在项目下运行 ionic cordova build android --release （生成未签名的apk）</li>
+            <li>执行jarsigner -verbose -keystore gzyd.keystore jyed.apk gzyd （生成签名）</li>
+            <li>打包成功后 无法连接服务器 无法登陆
+                <ul>方法1
+                    <li>cordova plugin remove cordova-plugin-whitelist</li>
+                    <li>cordova plugin add cordova-plugin-whitelist</li>
+                </ul>
+                <ul>方法2
+                    <li>1、在platforms/android/res目录下新建一个xml目录（一般都已经有该目录了），在xml目录中新建network_security_config.xml 文件
+                        ，编辑文件内容如下：
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <network-security-config>
+                            <base-config cleartextTrafficPermitted="true" />
+                        </network-security-config>
+                    </li>
+                    <li>
+                        在platforms/android目录下的AndroidManifest.xml文件中application标签内声明文件，如下
+                        <application android:hardwareAccelerated="true" android:icon="@mipmap/icon"
+                            android:label="@string/app_name"
+                            android:networkSecurityConfig="@xml/network_security_config" --此行为添加内容
+                            android:supportsRtl="true"></application>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <ol>QRScanner卸载
+            <li>npm uninstall @ionic-native/qr-scanner</li>
+        </ol>
     </div>
 </body>
 
