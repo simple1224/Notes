@@ -1,12 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TypeScript</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="const">
+            <ol>const和let
+                <li>ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。</li>
+                <li>const声明一个只读的常量。一旦声明，常量的值就不能改变。const一旦声明变量，就必须立即初始化，不能留到以后赋值。</li>
+                <li>
+                    <code>const本质是不可以改变变量指向的内存地址
+                        const foo = {};
+
+                        // 为 foo 添加一个属性，可以成功
+                        foo.prop = 123;
+                        foo.prop // 123
+                            
+                        // 将 foo 指向另一个对象，就会报错
+                        foo = {}; // TypeError: "foo" is read-only
+                    </code>
+                </li>
+                <li>不存在变量提升: var命令会发生“变量提升”现象，即变量可以在声明之前使用，值为undefined
+                    let命令改变了语法行为，它所声明的变量一定要在声明后使用，否则报错。
+                </li>
+                <li>暂时性死区:在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）</li>
+                <code>
+                    var tmp = 123; // 全局变量
+                    if (true) {
+                    tmp = 'abc'; // ReferenceError 因为上面已经定义了tmp 所以代码块中不可以用let/const再次定义
+                    let tmp;
+                    }
+                </code>
+                <li>不允许重复声明：let不允许在相同作用域内，重复声明同一个变量</li>
+                <code>
+                    function func(arg) {
+                    let arg;
+                    }
+                    func() // 报错 不能在函数内部重新声明参数
+
+                    function func(arg) {
+                    {
+                    let arg;
+                    }
+                    }
+                    func() // 不报错
+                </code>
+            </ol>
+            <ol>为什么要加块级作用域
+                <li>ES5 只有全局作用域和函数作用域，没有块级作用域,这带来很多不合理的场景。
+                    <ul>
+                        <li>情景1：内层变量可能会覆盖外层变量。
+                            <code>
+                                var tmp = new Date();
+
+                                function f() {
+                                console.log(tmp); // undefined
+                                if (false) {
+                                var tmp = 'hello world';
+                                }
+                                }
+
+                                f(); // undefined 原因在于变量提升，导致内层的tmp变量覆盖了外层的tmp变量。
+                            </code>
+                        </li>
+                        <li>情景2：用来计数的循环变量泄露为全局变量。
+                            <code>
+                                    var s = 'hello';
+                                    for (var i = 0; i < s.length; i++) {
+                                      console.log(s[i]);
+                                    }
+                                    console.log(i); // 5 变量i只用来控制循环，但是循环结束后，它并没有消失，泄露成了全局变量。
+                            </code>
+                        </li>
+                    </ul>
+                </li>
+                <li>ES6中let实际上为 JavaScript 新增了块级作用域。
+                    <ul>
+                        <li>外层不受内层代码块的影响
+                            <code>
+                                function f1() {
+                                    let n = 5;
+                                    if (true) {
+                                      let n = 10;
+                                    }
+                                    console.log(n); // 5 外层不受内层代码块的影响
+                                }
+                            </code>
+                        </li>
+                        <li>ES6 允许块级作用域的任意嵌套。
+                            <code>
+                                    {{{{
+                                        {let insane = 'Hello World'}
+                                        console.log(insane); // 报错 这是一个五层的块级作用域，每一层都是一个单独的作用域
+                                    }}}};
+                            </code>
+                        </li>
+                        <li>
+                            块级作用域的出现，实际上使得获得广泛应用的匿名立即执行函数表达式（匿名 IIFE）不再必要了。
+                            <code>
+                                // IIFE 写法
+                                (function () {
+                                  var tmp = ...;
+                                  ...
+                                }());
+                                
+                                // 块级作用域写法
+                                {
+                                  let tmp = ...;
+                                  ...
+                                }
+                            </code>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <ol>声明变量
+                <li>ES5只有两种变量声明：var和function</li>
+                <li>ES6有6种声明方式：var functiona let const import class</li>
+            </ol>
+            <ol>顶层对象的属性
+                <li>什么是顶层对象
+                    JavaScript 语言存在一个顶层对象，它提供全局环境（即全局作用域），所有代码都是在这个环境中运行。但是，顶层对象在各种实现里面是不统一的。
+                    <ul>
+                        <li>浏览器里面，顶层对象是window，但 Node 和 Web Worker 没有window。</li>
+                        <li>浏览器和 Web Worker 里面，self也指向顶层对象，但是 Node 没有self。</li>
+                        <li>Node 里面，顶层对象是global，但其他环境都不支持</li>
+                    </ul>
+                    <ul>同一段代码为了能够在各种环境，都能取到顶层对象，现在一般是使用this变量，但是有局限性
+                        <li>全局环境中，this会返回顶层对象。但是，Node 模块和 ES6 模块中，this返回的是当前模块</li>
+                        <li>函数里面的this，如果函数不是作为对象的方法运行，而是单纯作为函数运行，this会指向顶层对象。但是，严格模式下，这时this会返回undefined。</li>
+                        <li>不管是严格模式，还是普通模式，new Function('return this')()，总是会返回全局对象。但是，如果浏览器用了 CSP（Content Security Policy，内容安全策略），那么eval、new Function这些方法都可能无法使用。</li>
+                    </ul>
+                </li>
+                <li>顶层对象，在浏览器环境指的是window对象，在 Node 指的是global对象。ES5 之中，顶层对象的属性与全局变量是等价的。</li>
+                <li>顶层对象的属性与全局变量挂钩，被认为是 JavaScript 语言最大的设计败笔之一</li>
+                <li>ES6 为了改变这一点，一方面规定，为了保持兼容性，var命令和function命令声明的全局变量，依旧是顶层对象的属性；
+                    另一方面规定，let命令、const命令、class命令声明的全局变量，不属于顶层对象的属性</li>
+                <li>
+                    <code>
+                        var a = 1; // 全局变量a由var命令声明，所以它是顶层对象的属性
+                        // 如果在 Node 的 REPL 环境，可以写成 global.a
+                        // 或者采用通用方法，写成 this.a
+                        window.a // 1
+                        
+                        let b = 1;
+                        window.b // undefined
+                    </code>
+                </li>
+            </ol>
+            <ol>globalThis 对象
+                <li>ES2020 在语言标准的层面，引入globalThis作为顶层对象。
+                    也就是说，任何环境下，globalThis都是存在的，都可以从它拿到顶层对象，指向全局环境下的this</li>
+                <li>下述方法可以获取顶层对象
+                    <code>
+                        // 方法一
+                        (typeof window !== 'undefined'
+                           ? window
+                           : (typeof process === 'object' &&
+                              typeof require === 'function' &&
+                              typeof global === 'object')
+                             ? global
+                             : this);
+                        
+                        // 方法二
+                        var getGlobal = function () {
+                          if (typeof self !== 'undefined') { return self; }
+                          if (typeof window !== 'undefined') { return window; }
+                          if (typeof global !== 'undefined') { return global; }
+                          throw new Error('unable to locate global object');
+                        };
+                    </code>
+                </li>
+            </ol>
+            <ol>什么是typescript？
+                <li>TypeScript 是 JavaScript 的一个超集，主要提供了类型系统和对 ES6 的支持</li>
+            </ol>
+            <ol>为什么选择TypeScript
+                <li>增加了代码的可读性和可维护性
+                    <ul>
+                        <li>大部分的函数变量看看类型的定义就可以知道如何使用</li>
+                        <li>可以在编译阶段就发现大部分错误，比在运行时出错好</li>
+                        <li>增强了编译器和IDE的功能 包括代码补全，接口提示，跳转到定义，重构等</li>
+                    </ul>
+                </li>
+                <li>TypeScript非常包容
+                    <ul>
+                        <li>TypeScript是JavaScript的超集，.js文件可以直接重命名为.ts</li>
+                        <li>即使不显示的定义类型，也可以自动做出类型推论</li>
+                        <li>可以定义从简单到复杂的几乎一切类型</li>
+                        <li>即使TypeScript编译报错，也可以生成js文件</li>
+                        <li>兼容第三方库，即使第三方库不是Typescript写的，也可以编写单独的文件供Typescript读取</li>
+                    </ul>
+                </li>
+                <li>TypeScript拥有活跃的社区
+                    <ul>
+                        <li>大部分的三方库都提供给Typescript的类型定义文件</li>
+                        <li>Goole开发的Angular2就是使用Typescript写的</li>
+                        <li>TypeScript拥抱了ES6规范，也支持ESNext草案的规范</li>
+                    </ul>
+                </li>
+                <li>TypeScript的缺点
+                    <ul>
+                        <li>有一定的学习成本，需要理解接口(interface)，泛型(Generics),类(class),枚举(Enums)等前端不熟悉的概念</li>
+                        <li>短期可能会增加一些开发成本，毕竟要多写一些类型的定义，不过对于一个需要长期维护的项目，TypeScript 能够减少其维护成本</li>
+                        <li>集成到构建流程需要一些工作量</li>
+                        <li>可能和一些库结合的不是很完美</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
 </body>
+
 </html>

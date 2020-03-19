@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<html lang="en">
+
+	<!-- begin::Head -->
+	<head>
+		<meta charset="utf-8" />
+		<title>国智云鼎 | 人脸识别</title>
+		<meta name="description" content="Latest updates and statistic charts">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+
+		<!--end::Web font -->
+
+		<!--begin::Global Theme Styles -->
+		<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+
+		<!--RTL version:<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
+		<link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+
+		<!--RTL version:<link href="assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
+
+		<!--end::Global Theme Styles -->
+
+		<!--begin::Page Vendors Styles -->
+		<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+
+		<!--RTL version:<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
+
+		<!--end::Page Vendors Styles -->
+		<link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
+		<style>
+			.dg.ac{
+				display: none;
+			}
+			#videoWebcam{
+			    height: 500px;
+                width: 880px;
+                object-fit: fill;
+			}
+			#canvasDetection{
+			    width: 880px;
+				height: 500px;
+				top: 0;
+				left: 0;
+				position: absolute;
+			}
+			#masking{
+			    width: 880px;
+				height: 500px;
+				top: 0;
+				left: 0;
+				position: absolute;
+			}
+			.m-widget27 .m-widget27__pic:before {
+				opacity: 0.2 !important;
+			}
+			
+			body{
+				width: 880px;
+				margin: auto;
+			}
+        </style>
+	</head>
+
+	<!-- end::Head -->
+
+	<!-- begin::Body -->
+	<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+
+		<!-- begin:: Page -->
+		<div class="m-grid m-grid--hor m-grid--root m-page">
+
+			<!-- begin::Body -->
+			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop">
+
+				<!-- END: Left Aside -->
+				<div class="m-grid__item m-grid__item--fluid m-wrapper" style="margin: 0;">
+					<!-- END: Subheader -->
+					<div class="m-content">
+
+						<!--Begin::Section-->
+						<div class="row" style="padding: 0; margin: 0;">
+							<div class="col-xl-12" style="padding: 0; margin: 0;">
+
+								<!--begin:: Widgets/Blog-->
+								<div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded-force" style=" margin-bottom: 0rem;">
+									<div class="m-portlet__head m-portlet__head--fit">
+										<div class="m-portlet__head-caption">
+											<div class="m-portlet__head-action">
+												<button type="button" class="btn btn-sm m-btn--pill  btn-brand">国智云鼎 Face Recognition </button>
+											</div>
+										</div>
+									</div>
+									<div class="m-portlet__body" style="padding: 0rem 2.2rem;">
+										<div class="m-widget19 m-widget27 m-widget28">
+											<div class="m-widget19__pic m-widget27__pic m-portlet-fit--top m-portlet-fit--sides" style="min-height-: 286px">
+												<video id="videoWebcam" preload autoplay loop muted></video>
+                                                <canvas id="canvasDetection"></canvas>
+												<canvas id="face" style="display: none"></canvas>
+												<img id="masking" src="./build/masking.png">
+												<h3 class="m-widget19__title m--font-light">
+													视频捕获 Capture Camera
+												</h3>
+												<div class="m-widget19__shadow"></div>
+											
+												<div class="m-widget27__btn">
+													<button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--bolder">识别结果 Recognition Result</button>
+												</div>
+											</div>
+											<div class="m-widget19__content">
+												<div class="m-widget19__header">
+													<div class="m-widget19__user-img">
+														<img id="img" class="m-widget19__img" src="assets/app/media/img//users/user1.jpg" alt="">
+													</div>
+													<div class="m-widget19__info">
+														<span class="m-widget19__username" id="name">
+															XX XX
+														</span><br>
+														<span class="m-widget19__time">
+															国智云鼎人脸识别系统 @V1.0
+														</span>
+													</div>
+													<div class="m-widget19__stats">
+														<span class="m-widget19__number m--font-brand" id="rate">
+															XX%
+														</span>
+														<span class="m-widget19__comment">
+															匹配率
+														</span>
+													</div>
+												</div>
+											</div>
+											
+											<div class="m-widget28__container">
+                                                <div class="m-widget28__tab tab-content">
+													<div id="menu11" class="m-widget28__tab-container tab-pane active">
+														<div class="m-widget28__tab-items">
+															<div class="m-widget28__tab-item">
+																<span>身份证号</span>
+																<span id="idCard">XXXXXXXXXXXXXXX</span>
+															</div>
+															<div class="m-widget28__tab-item">
+																<span>性别</span>
+																<span id="sex">X</span>
+															</div>
+															<div class="m-widget28__tab-item">
+																<span>出生年月</span>
+																<span id="birthday">XXXXXXX</span>
+															</div>
+															<div class="m-widget28__tab-item">
+																<span>住址</span>
+																<span id="address">XXXXXXXXXXXXX</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!--end:: Widgets/Blog-->
+							</div>
+						</div>
+
+						<!--End::Section-->
+					</div>
+				</div>
+			</div>
+			<audio src="https://fanyi.baidu.com/gettts?lan=zh&text=识别成功&spd=3&source=web" id="audio">
+			Your browser does not support the audio element.
+			</audio>
+			<audio src="https://fanyi.baidu.com/gettts?lan=zh&text=抱歉，识别度过低&spd=3&source=web" id="audio2">
+			Your browser does not support the audio element.
+			</audio>
+
+			<!-- end:: Body -->
+	</body>
+	<!-- end::Body -->
+	
+<!-- Insert this line above script imports  -->
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+<script src="./build/jquery.min.js"></script>
+
+<!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+
+<script src="./build/jquery.facedetection.js"></script>
+<script src="./build/tracking.js"></script>
+<script src="./build/data/face-min.js"></script>
+<script>
+
+$(function(){
+
+    //访问用户媒体设备的兼容方法
+	function getUserMedia(constraints, success, error) {
+		if (navigator.mediaDevices.getUserMedia) {
+			//最新的标准API
+			navigator.mediaDevices.getUserMedia(constraints).then(success).catch(error);
+		} else if (navigator.webkitGetUserMedia) {
+			//webkit核心浏览器
+			navigator.webkitGetUserMedia(constraints,success, error)
+		} else if (navigator.mozGetUserMedia) {
+			//firfox浏览器
+			navigator.mozGetUserMedia(constraints, success, error);
+		} else if (navigator.getUserMedia) {
+			//旧版API
+			navigator.getUserMedia(constraints, success, error);
+		}
+	}
+	
+	let video = document.querySelector('#videoWebcam');
+	/*let canvas = document.getElementById('canvasDetection');
+    let context = canvas.getContext('2d');
+	*/
+	function success(stream) {
+		//兼容webkit核心浏览器
+		let CompatibleURL = window.URL || window.webkitURL;
+		//video.src = CompatibleURL.createObjectURL(stream);
+		video.srcObject = stream;
+		video.play();
+	}
+ 
+	function error(error) {
+		alert('访问用户媒体设备失败,请尝试更换浏览器')
+	}
+
+	//请求摄像头
+    function init() {
+        if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
+            //调用用户媒体设备, 访问摄像头
+            getUserMedia({video : {width: 880, height: 500}}, success, error);
+        } else {
+            alert('不支持访问用户媒体');
+        }
+    }
+	
+	var img = document.querySelector('#img');
+	
+	init();
+	var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    var width = 390;
+    var height = 390;
+	
+	let is_recognition = false;
+	
+	var requestId;
+    var requestAnimationFrame_ = function() {
+      requestId = window.requestAnimationFrame(function() {
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+          try {
+            // Firefox v~30.0 gets confused with the video readyState firing an
+            // erroneous HAVE_ENOUGH_DATA just before HAVE_CURRENT_DATA state,
+            // hence keep trying to read it until resolved.
+			canvas.width = width;
+            canvas.height = height;
+            context.height = height;
+			context.width = width;
+			context.clearRect(0,0, width, height);
+			context.drawImage(video, 241, 37, width, height, 0, 0, width, height);
+			
+			var snapData = canvas.toDataURL('image/png');
+			var imgSrc = "data:image/png;" + snapData;
+			if(!is_recognition){
+				$.post({
+					url: 'https://face.bjgzyd.com:9205/recognition',
+					data: {
+						pic: imgSrc
+					},
+					method: 'POST',
+					success: function(rest){
+						let res = JSON.parse(rest);
+						if(res['status']){
+							let result = res['result'];	
+							let rate = (1- res['rate']).toFixed(2) * 100;
+							
+							if(rate < 55){
+								$('#audio2')[0].play();
+							}else{
+								$('#audio')[0].play();
+								$('#name').html(result.split("_")[0]);	
+								$('#sex').html(result.split("_")[1]);	
+								$('#birthday').html(result.split("_")[2]);	
+								$('#idCard').html(result.split("_")[3]);
+								$('#address').html(result.split("_")[4]);	
+								$('#rate').html(rate + "%");
+							    img.src = imgSrc;
+								
+								$.post({
+									url: 'http://192.168.2.161:8701/citizen/receive',
+									contentType: 'application/json',
+									dataType:'json',
+									data: JSON.stringify({
+										compareResult: '1',
+										number: result.split("_")[3]
+									}),
+									method: 'POST',
+									success: function(rest){
+									
+									    if(rest.status == true){
+										
+										    console.log('推送成功');
+										}else{
+										    console.log('推送失败');
+										}
+									}
+								})
+							}
+						}else{
+							console.log('识别失败');
+						}
+						is_recognition = false;
+					}
+				})
+			}
+			is_recognition = true;	
+          } catch (err) {}
+        }
+        requestAnimationFrame_();
+      });
+    };
+	
+	function stop(requestId) {
+      window.cancelAnimationFrame(requestId);
+    };
+	
+	function run(requestId) {
+      requestAnimationFrame_();
+    };
+	
+	run();
+})
+</script>
+
+</html>

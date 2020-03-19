@@ -358,6 +358,179 @@
 			</pre>
 		</li>
 	</ol>
+	<ol>vue ElementUI中form中清空表单数据
+		if (this.$refs[formName] !== undefined) {
+		this.$refs[formName].resetFields()
+		}
+	</ol>
+	<ol>vue ElementUI中绑定值与字符串拼接两种写法
+		<ul>
+			<li><code>:title="`字符串${xx}`"</code></li>
+			<li><code>:title="'字符串' + xx"</code></li>
+		</ul>
+		<ul>
+			<li><code>:ref="`'createDeptTreeSelect'${scope.$index}`"</code></li>
+			<li><code>this.$refs[`'createDeptTreeSelect'${this.selectedAccidentIndex}`].dropdown.hide()</code></li>
+		</ul>
+	</ol>
+	<ol>elementUI中table合计
+		<li>
+			<pre>
+				<el-table
+				:data="tableData6"
+				border
+				:summary-method="getSummaries"
+				show-summary
+				style="width: 100%; margin-top: 20px"
+			  >
+				<el-table-column prop="id" label="ID"></el-table-column>
+				<el-table-column prop="name" label="姓名"></el-table-column>
+				<el-table-column prop="amount1" label="数值 1（元）"></el-table-column>
+				<el-table-column prop="amount2" label="数值 2（元）"></el-table-column>
+				<el-table-column prop="amount3" label="数值 3（元）"></el-table-column>
+				<el-table-column label="总分" width="100" prop="total">
+				  <template slot-scope="scope">
+					<el-input
+					  size="small"
+					  v-model="scope.row.total"
+					  placeholder="请打分"
+					  style="width: 80px;"
+					  @blur="getTotalPoint(scope)"
+					></el-input>
+				  </template>
+				</el-table-column>
+			  </el-table>
+			</pre>
+			<pre>
+				tableData6: [{
+					id: '12987122',
+					name: '王小虎111',
+					amount1: '234',
+					amount2: '3.2',
+					amount3: 10,
+					total: ''
+				  }, {
+					id: '12987123',
+					name: '王小虎222',
+					amount1: '165',
+					amount2: '4.43',
+					amount3: 12,
+					total: ''
+				  }, {
+					id: '12987124',
+					name: '王小虎333',
+					amount1: '324',
+					amount2: '1.9',
+					amount3: 9,
+					total: ''
+				  }, {
+					id: '12987125',
+					name: '王小虎444',
+					amount1: '621',
+					amount2: '2.2',
+					amount3: 17,
+					total: ''
+				  }, {
+					id: '12987126',
+					name: '王小虎555',
+					amount1: '539',
+					amount2: '4.1',
+					amount3: 15,
+					total: ''
+				  }]
+			</pre>
+			<pre>
+				// 失去焦点
+    			getTotalPoint (scope) {
+    			  let total = 0
+    			  for (let key in scope.row) {
+    			    if (key.indexOf('amount') > -1) {
+    			      total += (+scope.row[key])
+    			    }
+    			  }
+    			  scope.row.total = total
+    			},
+    			getSummaries (param) {
+    			  const {
+    			    columns,
+    			    data
+    			  } = param
+    			  console.log('param', param)
+    			  // console.log('data', data)
+    			  const sums = []
+    			  columns.forEach((column, index) => {
+    			    // column 表示列
+    			    if (index === 0) {
+    			      sums[index] = '总价'
+    			      return
+    			    }
+    			    const values = data.map(item => {
+    			      return Number(item[column.property])
+    			    })
+    			    if (!values.every(value => isNaN(value))) {
+    			      sums[index] = values.reduce((prev, curr) => {
+    			        const value = Number(curr)
+    			        if (!isNaN(value)) {
+    			          return prev + curr
+    			        } else {
+    			          return prev
+    			        }
+    			      }, 0)
+    			      sums[index] += ' 元'
+    			    } else {
+    			      sums[index] = 'N/A'
+    			    }
+    			  })
+    			  return sums
+    			},
+			</pre>
+		</li>
+	</ol>
+	<ol>elementUI中form中嵌套table校验
+		<li>
+			<pre>
+				<el-form @submit.native.prevent :model="createFillForm" ref="createFillForm">
+					<el-table
+          				ref="multipleTable"
+          				style="width: 100%;padding-left: 20px;"
+          				tooltip-effect="dark"
+          				v-loading="tableLoading"
+          				:data="createFillForm.accidentReasonBeanList"
+						  @selection-change="handleSelectionChange"
+					>				
+          				<el-table-column
+          				  :show-overflow-tooltip="true"
+          				  prop="directCause"
+          				  align="center"
+          				  label="直接原因"
+          				>
+          				  <template slot-scope="scope">
+              				<el-form-item
+              				  :prop="'accidentReasonBeanList.' + scope.$index + '.directCause'"
+              				  :rules="{ required: true, message: '原因判断不能为空', trigger: 'blur'}"
+              				>
+                				<el-select
+                				  v-model="scope.row.directCause"
+                				  placeholder="请选择直接原因"
+                				  clearable
+                				  filterable
+                				  style="width:300px"
+                				>
+                				  <el-option
+                				    v-for="item in directCauseList"
+                				    :key="item.baseCode"
+                				    :label="item.baseName"
+                				    :value="item.baseCode"
+                				  ></el-option>
+                				</el-select>
+              				</el-form-item>
+          				  </template>
+          				</el-table-column>
+        			</el-table>
+				</el-form>
+			</pre>
+		</li>
+	</ol>
 </body>
 
 </html>
