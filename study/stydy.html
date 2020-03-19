@@ -859,6 +859,19 @@
 						console.log(Object.keys(arr)); // console: ['0', '1', '2']
 					</pre>
 				</ul>
+				<ul>Array数组
+					<li>some一直在找符合条件的值，一旦找到，则不会继续迭代下去。</li>
+					<li>every从迭代开始，一旦有一个不符合条件，则不会继续迭代下去。</li>
+					<code>
+						var arr = [1,2,3,4,5]
+						arr.some(function(item){
+							return item>3;
+						}) // true
+						arr.every(function(item){
+							return item>3;
+						}) // false
+					</code>
+				</ul>
 			</ol>
 		</div>
 

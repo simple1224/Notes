@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TypeScript</title>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
 
 <body>
     <div class="container">
         <div class="const">
+            <div class="bold h3 center">es6</div>
             <ol>const和let
                 <li>ES6 新增了let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。</li>
                 <li>const声明一个只读的常量。一旦声明，常量的值就不能改变。const一旦声明变量，就必须立即初始化，不能留到以后赋值。</li>
@@ -179,6 +180,15 @@
                     </code>
                 </li>
             </ol>
+            <ol>字符串模版
+                <li>`Hello, my name is ${myName}.I'll be ${myAge + 1} years old next month.`</li>
+                <li>var sentence = "Hello, my name is " + myName + ".\nI'll be " + (myAge + 1) + " years old next month.";</li>
+                <li>` 用来定义 ES6 中的模板字符串，${expr} 用来在模板字符串中嵌入表达式</li>
+            </ol>
+            
+        </div>
+        <div class="const">
+            <div class="bold h3 center">TypeScript</div>
             <ol>什么是typescript？
                 <li>TypeScript 是 JavaScript 的一个超集，主要提供了类型系统和对 ES6 的支持</li>
             </ol>
@@ -212,6 +222,89 @@
                         <li>短期可能会增加一些开发成本，毕竟要多写一些类型的定义，不过对于一个需要长期维护的项目，TypeScript 能够减少其维护成本</li>
                         <li>集成到构建流程需要一些工作量</li>
                         <li>可能和一些库结合的不是很完美</li>
+                    </ul>
+                </li>
+            </ol>
+            <ol>.ts文件编译为.js文件
+                <li>tsc hello.ts</li>
+            </ol>
+        </div>
+        <div class="const">
+            <div class="bold h3 center">TypeScript基础</div>
+            <ol>JavaScript分为两种类型：原始数据类型和对象类型。
+                <li>原始数据类型包括Number,String,Boolean,Null,Undefined5种,+es6中symbol</li>
+                <li>对象类型：Object</li>
+            </ol>
+            <ol>TypeScript中的类型
+                <li>let isDone:boolean = false</li>
+                <li>let isDone:string = "false"</li>
+                <li>let isDone:number = 5</li>
+                <li>空值:JavaScript中没有(void)的概念，在TypeSript中，可以使用控制表示没有任何返回值的函数
+                    <code>
+                        function alertName(): void {
+                            alert('My name is Tom');
+                        }
+                    </code>
+                    <li>声明一个 void 类型的变量没有什么用，因为你只能将它赋值为 undefined 和 null. let unusable: void = undefined;</li>
+                </li>
+                <li>null和undefined
+                    <ul>
+                        <li>与void的区别是：null和undefined是所有类型的子类型。举例意思为null的变量可以赋给number的变量</li>
+                        <li>
+                            <code>
+                                // 这样不会报错
+                                let num: number = undefined;
+                                // 这样也不会报错
+                                let u: undefined;
+                                let num: number = u;
+                                // 下面会报错 void类型的变量不能赋值给number类型的变量
+                                let u: void;
+                                let num: number = u;         
+                            </code>
+                        </li>
+                    </ul>
+                </li>
+                <li>任意值(any):允许被赋为任意类型值（一般普通类型，在赋值过程中改变类型是不允许的）
+                    <code>
+                        let myFavoriteNumber: any = 'seven';
+                        myFavoriteNumber = 7;
+                    </code>
+                    <ul>
+                        <li>在任意值上访问任何属性都是允许的</li>
+                        <li>在任意值上访问任何方法都是允许的</li>
+                        <li>对任意值类型,对它的任何操作，返回的内容的类型都是任意值</li>
+                    </ul>
+                </li>
+                <li>类型推论：变量如果在声明的时候，未指定其类型，那么它会被识别为任意值类型：</li>
+                <li>联合类型：联合类型（Union Types）表示取值可以为多种类型中的一种。
+                    <code>
+                        let myFavoriteNumber: string | number;
+                        myFavoriteNumber = 'seven';
+                        myFavoriteNumber = 7;
+                    </code>
+                    <ul>
+                        <li>访问联合类型的属性或方法:当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候，我们只能访问此联合类型的所有类型里共有的属性或方法：
+                            <code>
+                                function getString(something: string | number): string {
+                                    return something.toString();
+                                }
+                            </code>
+                            <code>
+                                let myFavoriteNumber: string | number;
+                                myFavoriteNumber = 'seven';
+                                console.log(myFavoriteNumber.length); // 5
+                                myFavoriteNumber = 7;
+                                console.log(myFavoriteNumber.length); // 编译时报错
+                            </code>
+                        </li>
+                    </ul>
+                </li>
+                <li>对象的类型——接口:Interfaces
+                    <ul>什么是接口
+                        <li>在面向对象语言中，接口（Interfaces）是一个很重要的概念，它是对行为的抽象，
+                            而具体如何行动需要由类（classes）去实现（implement）。</li>
+                        <li>TypeScript 中的接口是一个非常灵活的概念，
+                            除了可用于对类的一部分行为进行抽象以外，也常用于对「对象的形状（Shape）」进行描述。</li>
                     </ul>
                 </li>
             </ol>
