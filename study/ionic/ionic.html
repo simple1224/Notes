@@ -518,6 +518,19 @@
         <ol>QRScanner卸载
             <li>npm uninstall @ionic-native/qr-scanner</li>
         </ol>
+        <ol class="h4">ionic3生成二维码
+            <li>安装npm install angular2-qrcode --save</li>
+            <li>在app.module.ts中引入QrCodeModule模块:
+                import { QRCodeModule } from 'angular2-qrcode';
+                imports: [... QRCodeModule... ],
+            </li>
+            <li>在实际调用页面的module.ts中引入QRCodeModule,并在页面中以指令方式使用:
+                imports: [QRCodeModule],
+                <code>
+                    <qr-code [value]="qrCodeValue"></qr-code>   // qrCodeValue是变量 即为动态二维码
+                </code>
+            </li>
+        </ol>
     </div>
 </body>
 
