@@ -305,6 +305,38 @@
                             而具体如何行动需要由类（classes）去实现（implement）。</li>
                         <li>TypeScript 中的接口是一个非常灵活的概念，
                             除了可用于对类的一部分行为进行抽象以外，也常用于对「对象的形状（Shape）」进行描述。</li>
+                        <code>
+                            interface Person｛ // 定义一个接口Person
+                                name: string;
+                                age: number;
+                            ｝
+                            let tom: Person{ // 定义一个变量tom类型为Person 
+                                name: 'Tom', // 赋值的时候，变量的形状必须和接口的形状保持一致。
+                                age: 18  // 多一个少一个属性都不行
+                            }
+                        </code>
+                        <code>
+                            interface Person {
+                                name?: string; //?表示可选属性
+                                age: number
+                            }
+                            let tom: Person{
+                                age: 89
+                            }
+                        </code>
+                        <code>
+                            interface Person{
+                                name: string;
+                                age?: number;
+                                [propName: string]: any; // 可以定义任意属性 
+                                [propName: string]: string | number;
+                            }
+                            let tom: Person{
+                                name: 'YO',
+                                age: 17,
+                                sex: 'women' // 这里会报错 一个接口中只能定义一个任意属性或者定义联合属性
+                            }
+                        </code>
                     </ul>
                 </li>
             </ol>
