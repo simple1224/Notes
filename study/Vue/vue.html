@@ -11,6 +11,18 @@
 		vue如何创建新项目
 		<li>vue create new-project </li>
 	</ol>
+	<ol>vue的实例方法
+		<li>vm.$forceUpdate():迫使 Vue 实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件
+			<li>一般用于强制刷新</li>
+			<li>vue对于深结构数据无法检测，像直接将数组的长度变成0,或者对象数组直接增加属性,数据不会刷新。
+				一般解决方式有两种：  1、用$set设置 this.$set(this.list[index],'sex','男')
+									2、使用$forceUpdate()
+			</li>
+		</li>
+		<li>vm.nextTick([callback])
+			<li>使用情景：created()中dom没有挂载完毕，若此时操作dom则会报错。使用该函数实现在下一次dom完成挂载时再调用</li>
+		</li>
+	</ol>
 	<ol>vue中如何使用less
 		<li>安装less:
 			npm install less
@@ -530,6 +542,55 @@
 				</el-form>
 			</pre>
 		</li>
+	</ol>
+	<ol>vuex
+		<li>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。</li>
+		<li>状态自管理包括(单数据流)
+			<ul>
+				<li>state，驱动应用的数据源；</li>
+				<li>view，以声明方式将 state 映射到视图；</li>
+				<li>actions，响应在 view 上的用户输入导致的状态变化</li>	
+			</ul>
+		</li>
+		<li>使用场景：vuex可以管理共享状态。适合使用在大型单页面开发。一般业务场景比较简单的不建议使用</li>
+		<li>vuex和单纯的全局对象的区别
+			<ul>
+				<pre>
+					import Vue from 'vue'
+					import Vuex from 'vuex'
+									
+					const store = new Vuex.Store({
+					  state: { // 储存普通变量
+					    count: 0
+					  },
+					  mutations: { // 储存方法 改变state中变量的值
+					    increment (state) {
+					      state.count++
+					    }
+					  }
+					})
+					store.commit('increment')
+					console.log(store.state.count) // -> 1
+				</pre>
+				<li>vuex的状态是响应式的。当vue组件从score中读取状态的时候，如果score的状态发生改变，相应的组件也会及时更新</li>
+				<li>vuex的状态是不可以直接改变的，需要提交（commit）mutation的方式改变</li>
+				<li>this.$store.state.count: 获取state中的属性</li>
+				<li>this.$store.commit('increment'):调用mutations中的方法来改变state中的值</li>
+				<li>由于 Vuex 的状态存储是响应式的，从 store 实例中读取状态最简单的方法就是在计算属性中返回某个状态</li>
+				<pre>
+					...将mapState函数返回的对象与局部计算属性混合使用
+					computed: { // mapState 辅助函数(返回结果是一个对象) ...为es6中对象扩展符（意为把辅助函数中的值和computed中的变量合并在一起计算）
+						...mapState(["wuliaochuku", "getNowDate", "userInfo", "SETRECEIVABLES"])
+					},
+				</pre>
+				<li>mapState函数：若组件中需要获取多个状态 需要进行计算 则引入为state中的变量</li>
+				<li>mapMutations函数:辅助函数 调用mutations中的函数</li>
+			</ul>
+		</li>
+		<li>vuex的核心是store（仓库）。</li>
+	</ol>
+	<ol>vue 插槽
+		<li></li>
 	</ol>
 </body>
 

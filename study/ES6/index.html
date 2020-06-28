@@ -150,6 +150,48 @@
                     );
             </script>
         </ol>
+        <ol>filter(适用于数组) 
+            <li>array.filter(function(currentValue,index,arr), thisValue)
+                currentValue:当前元素
+                index:当前索引
+                arr:当前的数组对象
+            </li>
+            <li>创建一个数组，判断数组中是否存在某个值
+                <pre>
+                    let list = [{age:19,name:'huahua'},{age:20,name:'caocao'}]
+                    let arr = list.filter(item => {return item.age == 19}) // arr = [{age:19,name:'huahua'}]
+                </pre>
+            </li>
+            <li>去掉数组中的undefined,null,空字符串
+                <pre>
+                    var arr = ['1','2',undefined, '3.jpg',null,'']
+                    var newArr = arr.filter(item => item)
+                    console.log(newArr) // ["1", "2", "3.jpg"]
+                </pre>
+            </li>
+            <li>数组去重
+                <pre>
+                    var arr = [1, 2, 2, 3, 4, 5, 5, 6, 7, 7,8,8,0,8,6,3,4,56,2];
+                    var arr2 = arr.filter((x, index,self)=>self.indexOf(x)===index)  
+                    console.log(arr2); //[1, 2, 3, 4, 5, 6, 7, 8, 0, 56]
+                </pre>
+                <pre>推荐Set()去重
+                    let arr = [1, 2, 2, 3, 4, 5, 5, 6];
+                    let newArr = Array.from(new Set(arr)) 
+                </pre>
+            </li>
+            <li>过滤不符合项
+                <code>
+                    var arr = ['10','12','23','44','42']
+                    var newArr = arr.filter(item => item.indexOf('2') < 0)
+                    console.log(newArr); // ['10','44']
+                </code>
+            </li>
+        </ol>
+        <ol>map和forEach的区别
+            <li>return在forEach中失效 无法跳出循环</li>
+            <li>反之map()需要return</li>
+        </ol>
     </div>
 </body>
 
