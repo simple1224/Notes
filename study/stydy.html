@@ -468,6 +468,14 @@
 				<li>javascript编写的代码只能通过html/xhtml文档才能执行，代码一行一行解析，文档在加载的过程中 <br>
 					实际是一边加载一边用document.write写出内容到屏幕上，而加载完成后，document就关闭。如果再调用document.write往网页上写内容的话，就会重写document。
 				</li>
+				<li>javascript获取父元素
+					<pre>
+						let element = document.getElementById('o')
+						let parent = element.parentNode //获取父元素
+						parent.style.position = 'unset' // js设置css
+						parent.setAttribute('style','display:none') //js设置css
+					</pre>
+				</li>
 				e.g.
 				<pre>
 			   <!DOCTYPE html>
@@ -501,7 +509,7 @@
 				<li>object.src="" 用于改变图片的地址</li>
 				<li>object.style.color="red" 用于改变元素的样式</li>
 				<li>javascript代码段可以写在header或者body中 二者之间的区别是：后者更能确保要更改的dom已经存在</li>
-				<li>获取元素的方式：getElementById,getElementByTagName,getElementByClassName,</li>
+				<li>获取元素的方式：getElementById,getElementByTagName,getElementsByClassName,</li>
 				<li>极大或极小的数字表示方式： var y=123e5; // 12300000 var z=123e-5; // 0.00123</li>
 				<li>获取对象的属性值的方式有两种：object.属性名 或者 object["属性名"]</li>
 				<li>undefined和null的区别：前者是定义了变量 变量的值为空也空可以通过null来置空属性值</li>
