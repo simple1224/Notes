@@ -592,6 +592,71 @@
 	<ol>vue 插槽
 		<li></li>
 	</ol>
+	<ol>vue bus:非父子之间的传值
+		<li>在公共文件内创建bus.js
+			import Vue from 'vue';
+			let Bus = new Vue();
+			export default Bus;
+			<!-- Vue.prototype.$bus = vue -->
+		</li>
+		<li>在A.vue文件中引入a.vue和b.vue文件</li>
+		<li>$emit， $on， $off 分别来分发、监听、取消监听事件</li>
+		<li>分发事件的组件(a.vue调用b.vue中的todoSth())
+			methods: {
+				todo: function () {
+				this.$bus.$emit('todoSth', params); //params是传递的参数
+				//...
+				}
+			}
+		</li>
+		<li>监听的组件
+			created() {
+				this.$bus.$on('todoSth', (params) => { //获取传递的参数并进行操作
+				 //todo something
+				})
+				this.$bus.$on('firstTodo', this.firstTodo); //可以触发多个
+ 				this.$bus.$on('secondTodo', this.secondTodo);
+			},
+			// 最好在组件销毁前
+			// 清除事件监听
+			beforeDestroy () {
+				this.$bus.$off('todoSth');
+				this.$bus.$off('firstTodo', this.firstTodo); //可以触发多个
+ 				this.$bus.$off('secondTodo', this.secondTodo);
+			},
+		</li>
+	</ol>
+	<ol>vue 拖拽 vuedraggable插件
+		<li>https://blog.csdn.net/zjiang1994/article/details/79809687</li>
+		<pre>
+			<!-- animation:动画时间 handle：拖拽class='move'才触发移动  
+				 ghostClass: selector 格式为简单css选择器的字符串，当拖动列表单元时会生成一个副本作为影子单元来模拟被拖动单元排序的情况，
+				 			 此配置项就是来给这个影子单元添加一个class，我们可以通过这种方式来给影子元素进行编辑样式
+			-->
+			<draggable  :list="templateList" @end="sortEnd" :options="{animation: 0, ghostClass: 'ghost',handle:'.move'}">
+				<div class="row" v-for="(item,key) in templateList" :key="key">
+					<div class="col">{{item.type}}</div>
+					<div class="col">{{item.name}}</div>
+					<div class="col">{{item.description || '-'}}</div>
+					<div class="col">
+						<div class="ipt" @click.stop="enableFunc(item)">
+							<input class="radio" :checked="item.is_enable == 1" type="checkbox" />
+							<label>
+								<i class="icon iconfont">&#xe797;</i>
+							</label>
+							<span class="mask"></span>
+						</div>
+					</div>
+					<div class="col">
+						<span @click.stop="editTemplate(item)">编辑</span>
+						<span @click.stop="cloneTrmplate(item)">复制</span>
+						<span :class="item.is_system == 1 ? 'grey' : 'red'" @click.stop="delTemplate(key)">删除</span>
+					</div>
+					<div class="col"><i class="icon iconfont move">&#xe6b8;</i></div>
+				</div>
+			</draggable>
+		</pre>
+	</ol>
 </body>
 
 </html>
