@@ -657,6 +657,26 @@
 			</draggable>
 		</pre>
 	</ol>
+	<ol>elementUI中select组件 多选时下拉框不能关闭
+		<li>
+			<el-select ref="selectAppType" v-model="inputVal" clearable filterable :multiple="true" @change="currentSel">
+                <el-option
+                  v-for="(i,k) in item.values"
+                  :key="k"
+                  :label="i.value"
+                  :value="i.value"
+                >
+                </el-option>
+			</el-select>
+			<!-- js -->
+			currentSel(){
+				let _this = this;
+ 	 			setTimeout(function() {
+        			_this.$refs.selectAppType.blur();
+     			}, 50);
+			}
+		</li>
+	</ol>
 </body>
 
 </html>
