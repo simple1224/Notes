@@ -685,6 +685,30 @@
 				<li>形参和实参的区别
 					<ul></ul>
 				</li>
+				<li>js怎么判断空数组
+					<ul>var arr = [];
+						1.console.log(JSON.stringify(arr) === '[]'); // true
+						2.Array.prototype.isPrototypeOf(arr) && arr.length === 0
+					</ul>
+				</li>
+				<li>js怎么判断空对象
+					<ul>
+						var ovj = {};
+						1.console.log(JSON.stringify(ovj) === '{}');// true
+						2.Object.prototype.isPrototypeOf(obj) && Object.keys(obj).length === 0
+					</ul>
+				</li>
+				<li>判断参数为空的方法
+					function isEmpty(a){
+						if (a === "") return true; //检验空字符串
+						if (a === "null") return true; //检验字符串类型的null
+						if (a === "undefined") return true; //检验字符串类型的 undefined
+						if (!a && a !== 0 && a !=="") return true; //检验 undefined 和 null           
+						if (Array.prototype.isPrototypeOf(a) && a.length === 0 ) return true; //检验空数组
+						if (Object.prototype.isPrototypeOf(a) && Object.keys(a).length === 0 ) return true;  //检验空对象
+						return false;
+					}
+				</li>
 			</ol>
 		</div>
 		<div class="javascript2">
