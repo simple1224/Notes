@@ -747,6 +747,43 @@
 			hideAddress();
 		</li>
 	</ol>
+	<ol>前端路由:hash 和 history
+		传统的路由指的是：当用户访问一个url时，对应的服务器会接收这个请求，然后解析url中的路径，从而执行对应的处理逻辑。这样就完成了一次路由分发。
+		单页面应用（SPA）的最大特点是使用前端路由 由前端直接控制路由跳转逻辑
+		前端路由的实现方式有两种：hash模式和history模式（由浏览器提供）
+		https://www.fxiaoke.com#plan/index  //hash模式路由 
+		https://www.fxiaoke.com/plan/index  //history模式路由
+		<li>hash模式：https://www.fxiaoke.com/XV/Home/Index#plan
+			#plan就是哈希值  哈希值变化浏览器不会重新发起请求，会触发Window.hashChange,并获取当前的hash值,用来修改页面内容,达到前端路由的效果
+		</li>
+		<li>hash模式看起来是比较丑的，都带个"#"号，我们也可以采取history模式，history就是我们平时看到的正常的连接形式
+			history 模式改变 url 的方式会导致浏览器向服务器发送请求，这不是我们想看到的，我们需要在服务器端做处理：如果匹配不到任何静态资源，则应该始终返回同一个 html 页面。
+			history：history模式基于window.history对象的方法
+			history.forward(); //在历史记录中前进一步
+			history.back(); //在历史记录中后退一步
+			history.go(n): //在历史记录中跳转n步骤，n=0为刷新本页,n=-1为后退一页。
+
+			html5新加的
+			history.pushState(data[,title][,url]);//向历史记录中追加一条记录
+			history.replaceState(data[,title][,url]);//替换当前页在历史记录中的信息。
+			history.state;//是一个属性，可以得到当前页的state信息。
+			window.onpopstate;//是一个事件，在点击浏览器后退按钮或js调用forward()、back()、go()时触发。监听函数中可传入一个event对象，event.state即为通过pushState()或replaceState()方法传入的data参数
+
+			history模式原理可以这样理解，首先我们要改造我们的超链接，给每个超链接增加onclick方法，阻止默认的超链接跳转，改用history.pushState或history.replaceState来更改浏览器中的url，并修改页面内容。由于通过history的api调整，并不会向后端发起请求，所以也就达到了前端路由的目的。
+			如果用户使用浏览器的前进后退按钮，则会触发window.onpopstate事件，监听页面根据路由地址修改页面内容。
+		</li>
+		<li>区别：
+			hash模式较丑，history模式较优雅
+			pushState设置的新URL可以是与当前URL同源的任意URL；而hash只可修改#后面的部分，故只可设置与当前同文档的URL
+			pushState设置的新URL可以与当前URL一模一样，这样也会把记录添加到栈中；而hash设置的新值必须与原来不一样才会触发记录添加到栈中
+			pushState通过stateObject可以添加任意类型的数据到记录中；而hash只可添加短字符串
+			pushState可额外设置title属性供后续使用
+			hash兼容IE8以上，history兼容IE10以上
+			history模式需要后端配合将所有访问都指向index.html，否则用户刷新页面，会导致404错误
+			history模式下，build之后本地 index.html 打开是无效的。
+			hash模式下，build之后本地 index.html 打开正常！
+		</li>
+	</ol>
 </body>
 
 </html>
